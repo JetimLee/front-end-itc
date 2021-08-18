@@ -2,43 +2,88 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML and CSS Assignment Gavin Coulson</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-    <header>
-        <div class="sideBar">
-            <div class="LogoContainer">
-                <h4 class="logo">Saas Kit</h1>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="sidebar-title-container">
+                <h4 class="logo">Saas Kit</h6>
+            </div>
+            <hr class="my-hr">
+
+            <div class="profile-information">
+                <div class="avatar-container"><img class="avatar" src="images/sierra-feruson.png" alt=""></div>
+                <div class="personal-details">
+                    <h5>Sierra Ferguson</h4>
+                        <p>s.ferguson@gmail.com</p>
+                </div>
+            </div>
+            <ul class="sideby-ul">
+                <div class="li-container"> <img src="images/dashboard-active.svg">
+                    <li>dashboard</li>
+                </div>
+                <div class="li-container">
+                    <img src="images/tasks.svg">
+                    <li>tasks</li>
+                </div>
+                <div class="li-container">
+                    <img src="images/email.svg">
+                    <li>email</li>
+                </div>
+                <div class="li-container">
+                    <img src="images/contacts.svg">
+                    <li>contacts</li>
+                </div>
+                <div class="li-container">
+                    <img src="images/chat.svg">
+                    <li>chat</li>
+                </div>
+                <div class="li-container">
+                    <img src="images/deals.svg">
+                    <li>deals</li>
+                </div>
+            </ul>
+            <hr class="my-hr">
+            <div class="bottom-container">
+
+                <div class="settings">
+                    <img src="images/Vector.svg">
+                    <p>settings</p>
+                </div>
+                <div class="toggle">
+                    <img src="images/toggle_sidebar.svg">
+                </div>
+
             </div>
         </div>
-        <div class="searchContainer"><i class="fas fa-search"></i>
-            <input class="searchInput" placeholder="Global search">
-        </div>
-        <nav class="topHeader">
 
-            <div class="bellContainer"><i class="far fa-bell"></i>
+        <div class="main-content">
+            <header class="header">
+                <div class="searchContainer">
+                    <i class="fas fa-search"></i>
+                    <input class="searchInput" placeholder="Global search" />
+                </div>
+                <nav class="topHeader">
+                    <div class="bellContainer"><i class="far fa-bell"></i></div>
+                </nav>
+            </header>
+            <div class="content-container">
+                
             </div>
-        </nav>
-
-    </header>
-
-
-    <section class="mainContent">
-        <div class="bodyContentContainer">
-            <div class="taskContent"></div>
-            <div class="chartContent"></div>
         </div>
 
-    </section>
+    </div>
+    </div>
+
 </body>
-
 
 </html>
