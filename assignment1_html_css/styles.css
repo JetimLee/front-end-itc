@@ -120,7 +120,81 @@ header {
   width: 100%;
   height: 100%;
   background-color: #e5e5e5;
+  border: 3px solid blue;
+  padding: 2rem 2rem;
 }
 .left-content-container {
   background-color: #ffff;
+  padding: 1rem 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.this-week-span {
+  color: #109cf1;
+}
+.top-task-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1rem;
+}
+.this-week-container {
+  display: flex;
+}
+select {
+  border: none;
+}
+.line {
+  width: 100%;
+  background-color: #2ed47a;
+  height: 2px;
+}
+.line2 {
+  width: 15%;
+  background-color: #ebeff2;
+}
+.line-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 2rem;
+}
+.date-container {
+  width: 100%;
+  display: flex;
+  padding: 1rem 1rem;
+}
+
+.calendar-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.date-card * {
+  text-align: center;
+}
+.first-selected {
+  background: #109cf1;
+  border-radius: 50%;
+  padding: 2px;
+}
+.white-text {
+  color: #ffff;
+}
+.selected-text {
+  color: #109cf1;
+}
+.non-selected-text {
+  color: #334d6e;
+  opacity: 0.5;
+}
+.divider {
+  padding: 1.5rem 0;
+  width: 100%;
+}
+.section-divider {
+  color: #ebeff2;
+  width: 100%;
+  border-bottom: none;
 }
