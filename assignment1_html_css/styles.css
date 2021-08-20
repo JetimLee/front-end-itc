@@ -125,7 +125,6 @@ header {
 }
 .left-content-container {
   background-color: #ffff;
-  padding: 1rem 0rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -197,4 +196,72 @@ select {
   color: #ebeff2;
   width: 100%;
   border-bottom: none;
+}
+
+.card {
+  padding: 1rem 1rem;
+  margin: 1rem 0;
+  box-shadow: 0px 2px 10px 0px #00000014;
+}
+.top-of-card {
+  padding: 0 1rem;
+}
+.top-of-card * {
+  padding: 0.2rem 0;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+.bottom-of-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem;
+}
+.card-picture-container {
+  display: flex;
+
+  padding: 0 0.5rem;
+}
+.card-picture-container * {
+  padding: 0 0.3rem;
+}
+.completed-task {
+  background-color: #2ed47a;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: white;
+}
+.finished-task {
+  background-color: #f7685b;
+  padding: 0.5rem;
+  width: 6rem;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+}
+.card-name {
+  color: #707683;
+}
+.name-container {
+  width: 10rem;
+  word-wrap: normal;
+  display: flex;
+  align-items: center;
+}
+.card-right-content {
+  display: flex;
+  align-items: center;
+}
+.icon-container {
+  margin-right: 1rem;
+  display: flex;
+  width: 4rem;
+  justify-content: space-evenly;
+}
+.icon-container i {
+  color: #c2cfe0;
+}
+.card-image {
+  border-radius: 50%;
 }
