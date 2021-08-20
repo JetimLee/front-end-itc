@@ -120,7 +120,6 @@ header {
   width: 100%;
   height: 100%;
   background-color: #e5e5e5;
-  border: 3px solid blue;
   padding: 2rem 1rem;
   display: flex;
   justify-content: center;
@@ -343,4 +342,102 @@ select {
 }
 .bottom-left-graph-container {
   padding: 1rem 0;
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  * {
+    font-size: 8px;
+  }
+  .content-container {
+    background-color: #ffff;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  hr {
+    padding: 0;
+    margin: 0;
+  }
+  .left-content-container {
+    margin: 0;
+  }
+
+  .calendar-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+  .left-content-container {
+    width: 100%;
+  }
+  .wrapper .sidebar {
+    display: none;
+  }
+  .bottom-of-card {
+    padding: 0;
+  }
+  .card-picture-container {
+    padding: 0;
+  }
+  .graphs-parent-container {
+    width: 100%;
+  }
+  .graph {
+    width: 10rem;
+    height: 100%;
+  }
+
+  .searchContainer {
+    width: 50%;
+  }
+  .header {
+    justify-content: center;
+  }
+
+  .top-chart {
+    align-items: center;
+  }
+  body {
+    overflow-x: none;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+  .wrapper {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .wrapper .main-content {
+    margin-left: 0;
+    width: 265px;
+    overflow-x: none;
+    overflow-x: hidden;
+  }
+  .right-content-container {
+    width: 100%;
+  }
+  .bottom-chart-container {
+    width: 100%;
+  }
+
+  .header {
+    width: 300px;
+  }
+  .bottom-of-card {
+    width: 220px;
+  }
+  .top {
+    width: 220px;
+  }
+  .line-container {
+    padding: 0;
+  }
+  body {
+    overflow-x: hidden;
+  }
 }
