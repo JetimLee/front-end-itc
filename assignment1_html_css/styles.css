@@ -366,9 +366,7 @@ select {
   }
 
   .calendar-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
+    display: none;
   }
   .left-content-container {
     width: 100%;
@@ -410,6 +408,8 @@ select {
     display: flex;
     align-self: center;
     justify-self: center;
+    width: fit-content;
+    overflow-x: hidden;
   }
 
   .wrapper .main-content {
@@ -439,5 +439,8 @@ select {
   }
   body {
     overflow-x: hidden;
+  }
+  .graph2 {
+    width: 15rem;
   }
 }
