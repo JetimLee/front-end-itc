@@ -121,13 +121,17 @@ header {
   height: 100%;
   background-color: #e5e5e5;
   border: 3px solid blue;
-  padding: 2rem 2rem;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
 }
 .left-content-container {
   background-color: #ffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 1rem;
+  width: 60%;
 }
 .this-week-span {
   color: #109cf1;
@@ -264,4 +268,79 @@ select {
 }
 .card-image {
   border-radius: 50%;
+}
+.bottom-of-card-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+.event-container {
+  text-align: center;
+  width: 5rem;
+}
+/* right content container content */
+.right-content-container {
+  width: 30rem;
+  background: #ffff;
+  margin: 0 1rem;
+}
+.separator-container {
+  margin: 0.8rem 0;
+  border: none;
+}
+.right-separator {
+  border-top: none;
+}
+
+.top-chart {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+}
+.closed-deals-container {
+  padding: 0 0.5rem;
+  display: flex;
+  width: 10rem;
+  justify-content: flex-start;
+}
+.closed-deals-container * {
+  padding: 0 0.2rem;
+}
+.graph-container {
+  padding: 1rem 1rem;
+}
+.graphs-parent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottom-chart-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  background-color: #ffff;
+  width: 30rem;
+}
+.bottom-charts-parent {
+  display: flex;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  width: 7rem;
+  justify-content: flex-start;
+}
+.row * {
+  padding: 0 0.1rem;
+}
+.deals-status-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 0 2rem;
+}
+.bottom-left-graph-container {
+  padding: 1rem 0;
 }
