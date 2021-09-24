@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+header {
+  display: flex;
+  justify-content: center;
+  height: 10rem;
+  padding: 0 5rem;
+  flex-direction: column;
+}
+header > div {
+  margin: 1rem 0;
+}
+h1 {
+  font-weight: 400;
+}
+.input-container {
+  display: flex;
+  align-items: center;
+}
+input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  width: 4.5rem;
+}
+p {
+  font-size: 1.2rem;
+}
+.input-container > div {
+  margin: 0 0.2rem;
+}
+button {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #0275d8;
+  color: white;
+  width: 2rem;
+}
+#fibonnaci {
+  font-weight: 700;
+  text-decoration: underline;
+}
