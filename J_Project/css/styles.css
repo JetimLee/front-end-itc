@@ -1,0 +1,24 @@
+.pageWrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#results{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#fibonnaciContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+#fibonnaci{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+
