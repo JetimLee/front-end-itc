@@ -1,6 +1,7 @@
 const myInput = document.getElementById("myInput");
 const submitBtn = document.getElementById("submitBtn");
 const container = document.getElementById("inputContainer");
+const loader = document.getElementById("loader");
 
 let inputValue = myInput.value;
 
@@ -45,9 +46,15 @@ const appendFibonnaci = (value) => {
 // };
 
 const getFibonnaci = async (value) => {
+  loader.classList.remove("hidden");
+  if (document.getElementById("fibonnaciContainer")) {
+    document.getElementById("fibonnaciContainer").classList.add("hidden");
+  }
   console.log(`getFibonnaci called, value is ${value} `);
   if (value === "") {
     console.log("nothing here");
+    loader.classList.add("hidden");
+
     return;
   }
   let detectCharacters = /\D/g;
@@ -56,6 +63,8 @@ const getFibonnaci = async (value) => {
     return;
   } else {
     try {
+      loader.classList.remove("hidden");
+
       const response = await fetch(`http://localhost:5050/fibonacci/${value}`, {
         method: "get",
         mode: "cors",
@@ -64,6 +73,12 @@ const getFibonnaci = async (value) => {
       const data = await response.json();
       console.log(data);
       appendFibonnaci(data.result);
+      loader.classList.add("hidden");
+      if (document.getElementById("fibonnaciContainer")) {
+        document
+          .getElementById("fibonnaciContainer")
+          .classList.remove("hidden");
+      }
       return data;
     } catch (error) {
       console.log(error);
