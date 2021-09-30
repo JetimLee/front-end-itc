@@ -17,18 +17,43 @@
         </div>
 
 
+        <div class="master-container">
 
-        <div id="inputContainer" class="input-container">
-            <div>
-                <p>The Fibonnaci Of</p>
+            <div class="secondary-container">
+                <div id="inputContainer" class="input-container">
+                    <div class="text-container">
+                        <p>The Fibonnaci Of</p>
+                    </div>
+                    <div class="actual-input-container">
+                        <input id="myInput" placeholder="#">
+                    </div>
+                    <div class="button-container">
+                        <button type="submit" id="submitBtn">Is</button>
+                    </div>
+                    <div id="loader" class="lds-ring hidden ">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="serverErrorContainer" class="server-error-container hidden">
+                        <p id="serverErrorText"></p>
+                    </div>
+                </div>
+                <div class="checkbox-container"><input id="saveCalculation" type="checkbox"><label
+                        for="saveCalculation">Save Calculation</label></div>
             </div>
-            <div class="actual-input-container"><input id="myInput" placeholder="#"></div>
-            <div class="button-container"><button type="submit" id="submitBtn">Is</button></div>
-            <div id="loader" class="lds-ring hidden">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div id="error" class="error-container hidden">
+                <div class=" error-message">Can't be larger than 50</div>
+            </div>
+            <div class="results-container">
+                <div>
+                    <h1>Results</h1>
+                </div>
+                <div class="list-container">
+                    <ul id="myList">
+                    </ul>
+                </div>
             </div>
         </div>
 

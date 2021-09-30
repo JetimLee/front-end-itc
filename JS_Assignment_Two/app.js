@@ -41,17 +41,17 @@ app.get("/fibonacci/:number", async (req, res) => {
   const obj = { number, result, createdDate: Date.now() };
 
   // db.insert(obj);
-  res.status(200).send(obj);
+  // res.status(200).send(obj);
 
-  // db.insert(obj, (err) => {
-  //   if (err) {
-  //     return res.status(500).send(err);
-  //   } else {
-  //     console.log("sending");
-  //     console.log(`sending ${obj.result}`);
-  //     return res.status(200).send(obj);
-  //   }
-  // });
+  db.insert(obj, (err) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      console.log("sending");
+      console.log(`sending ${obj.result}`);
+      return res.status(200).send(obj);
+    }
+  });
 });
 
 app.get("/getFibonacciResults", async (req, res) => {
