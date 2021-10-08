@@ -1,0 +1,113 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.hamburger {
+  font-size: 2rem;
+  transform: translateY(3px);
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.hamburger__nav {
+  background-color: #ffde69;
+  color: #fff;
+  font-size: 1.6em;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 0 4px rgba(0, 0, 0.2);
+}
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+.backdrop--active {
+  display: block;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  max-width: 18rem;
+  height: 100%;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: 0 0 4px rgba(0, 0, 0.2);
+  background-color: #393e46;
+  transform: translateX(-100%);
+}
+
+.sidebar--active {
+  transform: translateX(0);
+}
+.sidebar__profile {
+  padding: 1rem 1.5rem;
+  display: flex;
+  border-bottom: 2px solid rgba(2, 2, 2, 0.1);
+  align-items: center;
+}
+.sidebar__profile img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+  transform: translateX(-0.3rem);
+}
+.sidebar__profile h1 {
+  font-size: 1.2em;
+  margin-bottom: 6px;
+  color: #ffde69;
+}
+.sidebar__profile p {
+  font-size: 0.8em;
+  color: #eee;
+}
+.sidebar__unordered__list {
+  list-style: none;
+}
+.sidebar__item {
+  padding: 1rem 1.5rem;
+  font-size: 1.2em;
+
+  position: relative;
+  overflow: hidden;
+}
+.sidebar__item a {
+  text-decoration: none;
+  color: #eee;
+  display: flex;
+  align-items: center;
+}
+.sidebar__item i {
+  margin-right: 0.5rem;
+}
+.sidebar__item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 0;
+  width: 2px;
+  background-color: #ffde69;
+  transition: height 0.5s 0.4s, width 0.5s;
+  z-index: -1;
+}
+.sidebar__item:hover:after {
+  transition: height 0.5s 0.1s, width 0.5s 0.4s;
+  height: 100%;
+  width: 100%;
+}
+.sidebar__item:hover {
+  color: #393e46;
+}
