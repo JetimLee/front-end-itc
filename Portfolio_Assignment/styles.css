@@ -11,9 +11,12 @@
   margin-right: 1rem;
   cursor: pointer;
 }
+header {
+  height: 6rem;
+}
 
 .hamburger__nav {
-  background-color: #ffde69;
+  background-color: #136ef8;
   color: #fff;
   font-size: 1.6em;
   padding: 0.5rem 1rem;
@@ -77,9 +80,9 @@
   list-style: none;
 }
 .sidebar__item {
-  padding: 1rem 1.5rem;
+  padding: 1.5rem 1.5rem;
   font-size: 1.2em;
-
+  border-bottom: 2px solid rgba(2, 2, 2, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -110,4 +113,27 @@
 }
 .sidebar__item:hover {
   color: #393e46;
+}
+.wrapper p {
+  text-align: center;
+}
+
+.social__media {
+  display: flex;
+  list-style: none;
+}
+.social__media li {
+  margin: 0 0.5rem;
+}
+.social__media__links {
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+.social__media i {
+  font-size: 2rem;
+  color: #eee;
+}
+.social__media a {
+  text-decoration: none;
 }
