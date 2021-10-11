@@ -54,8 +54,43 @@
             </nav>
         </div>
     </div>
-    <main class="main--content"></main>
+    <main class="main--content">
+        <div class="typing__text__main">
 
+            <div class="bg">
+                <img id="backgroundImg" src="images/portfolio_pic.jpeg" alt="Gavin Coulson smiling at a camera">
+            </div>
+
+            <div class="text__container"> <strong>
+                    <h1>I am a <span class="introText"></span></h1>
+                </strong>
+                <p>Modern websites and applications using <span class="tools"></span></p>
+                <a href="#" class="button">View Projects
+                </a>
+            </div>
+
+        </div>
+
+
+    </main>
+    <!---typed.js-->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!--script-->
+    <script>
+        var introText = new Typed('.introText', {
+            // Waits 1000ms after typing "First"
+            strings: ['Front-End,', 'Back-End,', 'Developer'],
+            typeSpeed: 100,
+            backSpeed: 70,
+            loop: true
+        });
+        var skillsText = new Typed('.tools', {
+            strings: ['HTML, CSS and JavaScript.', "Vue JS.", "Node JS.", "React JS.", "Puppeteer."],
+            typeSpeed: 100,
+            backSpeed: 70,
+            loop: true
+        })
+    </script>
     <script src="script.js"></script>
 </body>
 

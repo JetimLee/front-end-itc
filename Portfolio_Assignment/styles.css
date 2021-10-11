@@ -5,6 +5,10 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+body,
+html {
+  height: 100%;
+}
 .hamburger {
   font-size: 2rem;
   transform: translateY(3px);
@@ -13,6 +17,8 @@
 }
 header {
   height: 6rem;
+  background-color: #136ef8;
+  box-shadow: 0 0 4px rgba(0, 0, 0.2);
 }
 
 .hamburger__nav {
@@ -23,7 +29,6 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 0 4px rgba(0, 0, 0.2);
 }
 .backdrop {
   position: fixed;
@@ -36,6 +41,7 @@ header {
 }
 .backdrop--active {
   display: block;
+  z-index: 1;
 }
 
 .sidebar {
@@ -49,6 +55,7 @@ header {
   box-shadow: 0 0 4px rgba(0, 0, 0.2);
   background-color: #393e46;
   transform: translateX(-100%);
+  z-index: 1;
 }
 
 .sidebar--active {
@@ -136,4 +143,112 @@ header {
 }
 .social__media a {
   text-decoration: none;
+}
+
+/* typing text section */
+
+.typing__text__main {
+  width: 100%;
+  height: 100vh;
+  background-color: #222222;
+  position: relative;
+}
+.bg {
+  width: 100%;
+  height: 100vh;
+}
+.bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.text__container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(13, 13, 13, 0.5);
+}
+.text__container strong {
+  font-size: 2.5rem;
+  width: 100%;
+  text-align: center;
+  color: #eee;
+  line-height: 60px;
+}
+.text__container p {
+  color: rgba(230, 230, 230, 0.92);
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.text__container * {
+  padding: 0.5rem;
+}
+.button {
+  width: 200px;
+  height: 45px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #eee;
+  text-decoration: none;
+  background-color: #136ef8;
+  margin-top: 1rem;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
+  transition: all ease 0.5s;
+}
+.button:hover {
+  background-color: #393e46;
+  transition: all ease 0.5s;
+}
+.text__container strong span {
+  color: #136ef8;
+}
+.text__container p span {
+  color: #136ef8;
+  font-weight: 500;
+}
+
+/*media queries */
+
+@media (max-width: 780px) {
+  .text__container strong {
+    font-size: 2rem;
+    line-height: 40px;
+    padding: 0 10px;
+  }
+  .text__container p {
+    font-size: 1rem;
+  }
+  .button {
+    width: 180px;
+    height: 44px;
+  }
+}
+@media (max-width: 520px) {
+  .text__container strong {
+    font-size: 1.6rem;
+    line-height: 30px;
+  }
+  .text__container p {
+    width: 90%;
+  }
+  .button {
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 400px) {
+  .text__container strong {
+    font-size: 1.3rem;
+    line-height: 30px;
+  }
 }
