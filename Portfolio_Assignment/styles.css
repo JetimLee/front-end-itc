@@ -9,6 +9,7 @@ body,
 html {
   height: 100%;
 }
+
 .hamburger {
   font-size: 2rem;
   transform: translateY(3px);
@@ -191,7 +192,7 @@ header {
 }
 .button {
   width: 200px;
-  height: 45px;
+  padding: 1.5rem;
   border-radius: 50px;
   display: flex;
   justify-content: center;
@@ -200,11 +201,9 @@ header {
   text-decoration: none;
   background-color: #136ef8;
   margin-top: 1rem;
-  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
   transition: all ease 0.5s;
 }
 .button:hover {
-  background-color: #393e46;
   transition: all ease 0.5s;
 }
 .text__container strong span {
@@ -221,48 +220,52 @@ header {
 /* projects section */
 
 /*about section */
-.about__picture {
-  width: 10rem;
-  height: 100%;
-  border-radius: 0 40%;
-}
-.heading__container {
-  margin: 1rem 0;
-}
-.about__me__container {
+.about__me {
+  padding: 1.5rem;
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+}
+.heading__container {
   color: white;
-  padding: 5rem 0;
+}
+.about__me__info {
+  margin: 1rem 0;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  background-color: #191716;
+  border-radius: 40px 0;
+}
+.about__me__info > div {
+  margin: 0 1.5rem;
+}
+.about__me__pic {
+  height: 10rem;
+  width: 100%;
+  border-radius: 40px 0;
 }
 .actual__text {
-  background-color: #393e46;
-  border-radius: 40% 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.about__info {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding: 0 20rem;
-}
-.about__picture__container {
-  border-radius: 0 40%;
-
-  padding: 5rem 5rem;
-  background-color: #141414;
-}
-.about__text__container {
-  border-radius: 40% 0;
-  padding: 1rem;
+  color: white;
   text-align: center;
+  line-height: 1.7;
+}
+.about__me__text__container {
   display: flex;
   align-items: center;
-  background-color: #141414;
+  background-color: #404040;
+  padding: 0 1rem;
+  border-radius: 40px 0;
+}
+.button__actual {
+  padding: 1.5rem;
+  color: white;
+  border-radius: 50px;
+  font-size: 1rem;
+  border: none;
+  background-color: #136ef8;
+  cursor: pointer;
 }
 /*media queries */
 
