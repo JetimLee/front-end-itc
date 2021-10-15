@@ -19,17 +19,15 @@ header {
   height: 6rem;
   background-color: #136ef8;
   box-shadow: 0 0 4px rgba(0, 0, 0.2);
-}
-
-.hamburger__nav {
-  background-color: #136ef8;
   color: #fff;
   font-size: 1.6em;
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-direction: row;
 }
+
 .backdrop {
   position: fixed;
   left: 0;
@@ -216,7 +214,56 @@ header {
   color: #136ef8;
   font-weight: 500;
 }
+.dark {
+  background-color: #393e46;
+}
 
+/* projects section */
+
+/*about section */
+.about__picture {
+  width: 10rem;
+  height: 100%;
+  border-radius: 0 40%;
+}
+.heading__container {
+  margin: 1rem 0;
+}
+.about__me__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 5rem 0;
+}
+.actual__text {
+  background-color: #393e46;
+  border-radius: 40% 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.about__info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 20rem;
+}
+.about__picture__container {
+  border-radius: 0 40%;
+
+  padding: 5rem 5rem;
+  background-color: #141414;
+}
+.about__text__container {
+  border-radius: 40% 0;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  background-color: #141414;
+}
 /*media queries */
 
 @media (max-width: 780px) {
