@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <title>Gavin Coulson Portfolio</title>
 </head>
 
@@ -31,13 +32,15 @@
                     <a href="#"><i class="ri-home-line"></i>Home</a>
                 </li>
                 <li class="sidebar__item">
+                    <a href="#about__me"><i class="ri-information-line"></i>About</a>
+
+                </li>
+                <li class="sidebar__item">
                     <a href="#"><i class="ri-information-line"></i>Projects</a>
+
                 </li>
                 <li class="sidebar__item">
-                    <a href="#"><i class="ri-contacts-line"></i>Contact</a>
-                </li>
-                <li class="sidebar__item">
-                    <a href="#"><i class="ri-information-line"></i>About</a>
+                    <a href=#><i class="ri-contacts-line"></i>Contact</a>
                 </li>
             </ul>
             <nav class="social__media__links">
@@ -63,28 +66,93 @@
                     <h1>I am a <span class="introText"></span></h1>
                 </strong>
                 <p>Modern websites and applications using <span class="tools"></span></p>
-                <a href="#" class="button">View Projects
+                <a href="#projects" class="button">View Projects
                 </a>
             </div>
         </div>
-        <section class="about__me dark">
+        <section id="about__me" class="about__me dark">
             <div class="heading__container">
+
                 <h2>About Me</h2>
+
             </div>
             <div class="about__me__info">
                 <div class="about__me__picture__container"><img class="about__me__pic" src="images/portfolio_pic.jpeg"
                         alt=""></div>
                 <div class="about__me__text__container">
                     <div class="actual__text">
-                        <p>My name is Gavin. <br>I am from Colorado.<br> I love kombucha, martial arts and all things
+                        <p>My name is Gavin. <br>I am from Colorado.<br> I love kombucha,<br> martial arts and all
+                            things
                             tech.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="button__container"><button class="button__actual">See where I have lived</button></div>
+        </section>
+        <section id="projects" class="projects__section">
+            <div class="heading__container">
+                <div class="curvy__header hot__pink">
+                    <h2>My Projects</h2>
+                </div>
+            </div>
+            <div class="projects__container">
+                <div class="project__card">
+                    <div class="project__name">
+                        <h2>PDAce</h2>
+                    </div>
+                </div>
+                <div class="project__card">
+                    <div class="project__name">
+                        <h2>PDAce</h2>
+                    </div>
+                </div>
+                <div class="project__card">
+                    <div class="project__name">
+                        <h2>PDAce</h2>
+                    </div>
+                </div>
+                <div class="project__card">
+                    <div class="project__name">
+                        <h2>PDAce</h2>
+                    </div>
+                </div>
+                <div class="project__card">
+                    <div class="project__name">
+                        <h2>PDAce</h2>
+                    </div>
+                </div>
+                <div class="project__card">
+                    <div class="project__name">
+                        <h2>PDAce</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="form__master">
+            <div class="form__actual">
+                <div class="left__side">
+                    <div class="left__side__header">
+                        <h2>Drop me a message and,<br> I will be in touch!</h2>
+                    </div>
+                    <i id="mailIcon" class="fas fa-envelope-open-text fa-10x"></i>
+                </div>
+                <form id="myForm" method="POST" action="/formData">
+                    <label for="name">Name: </label>
+                    <input id="name" type="text" name="name" required />
+                    <label for="email">Email: </label>
+                    <input id="email" type="email" name="email" required />
+                    <label for="phonenumber">Phone Number: </label>
+                    <input id="phonenumber" type="tel" name="phonenumber" required />
+                    <textarea placeholder="leave a message..." name="message" id="message" cols="30"
+                        rows="10"></textarea>
+                    <button class="button__actual" id="submitBtn" type="submit" value="send message">
+                        Submit
+                    </button>
+                </form>
+            </div>
 
 
+            </div>
         </section>
 
 
@@ -107,7 +175,11 @@
             backSpeed: 70,
             loop: true
         })
+
     </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI_vucw8VVDR6K1AO-P4Jqtc0EbMil7zA&callback=initMap&libraries=&v=weekly"
+        async></script>
     <script src="script.js"></script>
 </body>
 

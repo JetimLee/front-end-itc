@@ -9,6 +9,9 @@ body,
 html {
   height: 100%;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 .hamburger {
   font-size: 2rem;
@@ -235,7 +238,7 @@ header {
   padding: 1rem 0;
   display: flex;
   justify-content: center;
-  background-color: #191716;
+  background-color: lightgrey;
   border-radius: 40px 0;
 }
 .about__me__info > div {
@@ -260,6 +263,7 @@ header {
 }
 .button__actual {
   padding: 1.5rem;
+  width: 10rem;
   color: white;
   border-radius: 50px;
   font-size: 1rem;
@@ -267,7 +271,112 @@ header {
   background-color: #136ef8;
   cursor: pointer;
 }
-/*media queries */
+.projects__section {
+  padding: 1.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #136ef8;
+}
+.curvy__header {
+  padding: 1rem;
+  border-radius: 40px 20px/ 70px 50px;
+}
+.hot__pink {
+  background-color: #ff0ac2;
+}
+.projects__container {
+  display: flex;
+  padding: 1.5rem 5rem;
+  justify-content: space-around;
+  margin: 1.5rem 0;
+  width: 100%;
+  background-color: #0ac2ff;
+  max-height: 100%;
+  min-height: 10rem;
+  flex-wrap: wrap;
+  border-radius: 80px 50px / 50px 80px;
+}
+.lime__green {
+  background-color: #47ff0a;
+}
+.project__card {
+  width: 200px;
+}
+
+/*form stuff */
+.form__actual {
+  display: flex;
+  justify-content: center;
+  -webkit-box-shadow: 0px 0px 5px 0px #000000;
+  box-shadow: 0px 0px 5px 0px #000000;
+  width: fit-content;
+  padding: 1rem;
+  background-color: #eee;
+}
+.form__master {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0;
+}
+.bigHeader {
+  text-align: center;
+}
+.info-paragraph {
+  text-align: center;
+}
+.headerContainer {
+  padding: 3rem;
+}
+.left__side__header {
+  text-align: center;
+}
+.left__side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 3px solid black;
+  padding: 1rem;
+}
+.left__side * {
+  padding: 0.5rem;
+}
+form {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-left: 3px solid black;
+}
+#mailIcon {
+  color: #136ef8;
+}
+input {
+  width: 100%;
+  padding: 0.5rem;
+  height: 2rem;
+  border-radius: 10%;
+  border-color: whitesmoke;
+}
+input:focus {
+  outline: none;
+  border: 2px solid #00c8dc;
+  border-radius: 10%;
+}
+
+textarea {
+  resize: none;
+  margin: 0.5rem;
+  border-radius: 10px;
+  padding: 5px;
+}
+textarea:focus {
+  outline: none;
+  border: 2px solid #00c8dc;
+}
 
 @media (max-width: 780px) {
   .text__container strong {
