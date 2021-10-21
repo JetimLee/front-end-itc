@@ -21,6 +21,10 @@ axios.get(url).then(response=>{
    const name = comment.name
    const email = comment.email
    const body = comment.body
-   console.log(`The body is ${body}`)
-   
+   logComment(body)
 })
+
+const logComment = (body: string) =>{
+   console.log(`The body is ${body}`)
+
+}
