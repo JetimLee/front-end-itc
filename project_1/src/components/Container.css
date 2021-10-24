@@ -8,13 +8,14 @@
 
 .noteCardContainer {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .note__card {
   margin: 1rem 1rem;
   -webkit-box-shadow: 0px 0px 2px 1px #000000;
   box-shadow: 0px 0px 2px 1px #000000;
   min-width: 300px;
+  min-height: 150px;
   text-align: center;
 }
