@@ -2,9 +2,11 @@ import React from "react";
 
 const NoteCard = (props) => {
   console.log(props);
+  let hasTitle = props.title;
+
   return (
     <div className="note__card">
-      <h1>Title: </h1>
+      {hasTitle !== "" ? <h1>Title: {props.title}</h1> : null}
       <p>Note: {props.text}</p>
       <p>ID: {props.id}</p>
       <p>Date created: {props.dateProp}</p>

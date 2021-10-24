@@ -5,6 +5,7 @@ const Card = (props) => {
   return (
     <div>
       <TextArea
+        handleTitle={props.handleTitle}
         submitHandler={props.submitHandler}
         handleChange={props.handleChange}
       />
