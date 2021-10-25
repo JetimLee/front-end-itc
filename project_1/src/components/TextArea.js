@@ -1,16 +1,13 @@
 import React from "react";
+import TextareaAutosize from "react-textarea-autosize";
 const TextArea = (props) => {
-  console.log(props);
   return (
     <div className="input__textarea__container">
-      <input
-        onKeyPress={(e) => props.handleTitle(e)}
-        placeholder="Title"
-      ></input>
-      <textarea
+      <input onChange={(e) => props.handleTitle(e)} placeholder="Title"></input>
+      <TextareaAutosize
         placeholder="Your note..."
         onChange={(e) => props.handleChange(e)}
-      ></textarea>
+      ></TextareaAutosize>
       <div className="buttonContainer">
         <button onClick={() => props.submitHandler()}>Add note</button>
       </div>

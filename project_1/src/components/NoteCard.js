@@ -1,7 +1,6 @@
 import React from "react";
 
 const NoteCard = (props) => {
-  console.log(props);
   let hasTitle = props.title;
 
   return (

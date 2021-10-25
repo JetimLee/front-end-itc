@@ -5,7 +5,6 @@ import NoteCard from "./NoteCard";
 
 const Container = () => {
   let deleteNote = (value) => {
-    console.log("deleting");
     let question = window.confirm("Are you sure you want to delete?");
     if (question) {
       let noteToDelete = notes.splice(value, 1);
@@ -26,7 +25,6 @@ const Container = () => {
     let fullDate = new Date(dateTimeInMiliseconds).toLocaleString("en-US", {
       timeZone: "Israel",
     });
-    console.log(fullDate);
     return fullDate;
   };
 
@@ -46,10 +44,7 @@ const Container = () => {
   const [dates, setDates] = useState([]);
   const [title, setTitle] = useState("");
   const [titles, setTitles] = useState([]);
-  console.log("this is dates");
-  console.log(dates);
-  console.log("this is date");
-  console.log(date);
+
   return (
     <div className="container">
       <Card

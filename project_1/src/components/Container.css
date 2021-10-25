@@ -35,4 +35,7 @@ input {
 }
 textarea {
   border: none;
+  resize: none;
+  min-height: 100px;
+  height: unset;
 }
