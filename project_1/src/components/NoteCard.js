@@ -5,10 +5,12 @@ const NoteCard = (props) => {
 
   return (
     <div className="note__card">
-      {hasTitle !== "" ? <h1>Title: {props.title}</h1> : null}
-      <p>Note: {props.text}</p>
-      <p>ID: {props.id}</p>
-      <p>Date created: {props.dateProp}</p>
+      <div onClick={props.toggleModal} className="note__card__content">
+        {hasTitle !== "" ? <h1>Title: {props.title}</h1> : null}
+        <p>Note: {props.text}</p>
+        <p>ID: {props.id}</p>
+        <p>Date created: {props.dateProp}</p>
+      </div>
       <button onClick={() => props.deleteNote(props.id)}>Delete</button>
     </div>
   );

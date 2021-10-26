@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Container.css";
 import Card from "./Card";
 import NoteCard from "./NoteCard";
+import Modal from "./Modal";
 
 const Container = () => {
   let deleteNote = (value) => {
@@ -37,6 +38,11 @@ const Container = () => {
     // console.log("this is notes");
     // console.log(notes);
   };
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    setModal(!modal);
+    console.log(modal);
+  };
 
   const [note, setNote] = useState("");
   const [notes, setNotes] = useState([]);
@@ -55,14 +61,25 @@ const Container = () => {
       <div className="noteCardContainer">
         {notes.map((el, i) => {
           return (
-            <NoteCard
-              title={titles[i]}
-              deleteNote={deleteNote}
-              text={notes[i]}
-              id={i}
-              key={i}
-              dateProp={convertDate(dates[i])}
-            />
+            <>
+              <NoteCard
+                toggleModal={toggleModal}
+                title={titles[i]}
+                deleteNote={deleteNote}
+                text={notes[i]}
+                id={i}
+                key={titles[i]}
+                dateProp={convertDate(dates[i])}
+              />
+              {modal ? (
+                <Modal
+                  noteText={notes[i]}
+                  title={titles[i]}
+                  toggleModal={toggleModal}
+                  key={dates[i]}
+                />
+              ) : null}
+            </>
           );
         })}
       </div>
