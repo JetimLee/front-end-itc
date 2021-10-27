@@ -1,0 +1,27 @@
+form {
+  background-color: blue;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1.5rem;
+}
+.formContainer {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  background-color: red;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+textarea {
+  resize: none;
+  width: 100%;
+  min-height: 100px;
+}
+.noteCardContainer {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
