@@ -7,6 +7,7 @@
 # test case - $124.56
 
 def tipCalculator():
+    print('Welcome to the tip calculator!')
     totalBill = input('What was the total bill? $')
     totalBillNumber = float(totalBill)
     selectPercentage = input(
