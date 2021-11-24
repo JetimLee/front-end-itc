@@ -18,8 +18,12 @@ export default {
 
 <style>
 .badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  text-align: center;
+  padding: 0.5rem 0.5rem;
   border-radius: 30px;
   background-color: #ccc;
   color: #2e2e2e;

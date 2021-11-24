@@ -36,6 +36,11 @@ export default {
 html {
   font-family: sans-serif;
 }
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
 
 body {
   margin: 0;
