@@ -1,4 +1,3 @@
-from typing import final
 
 
 def figureBMI():
