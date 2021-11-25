@@ -6,13 +6,12 @@ def findIfLeapYear(year):
         print('not a leap year')
     elif (year % 4 == 0):
         print('leap year')
+    else:
+        print(year)
+        print('not a leap year')
 
 
-findIfLeapYear(2000)
-findIfLeapYear(2100)
-findIfLeapYear(1900)
-findIfLeapYear(2020)
-findIfLeapYear(2024)
-findIfLeapYear(2028)
-findIfLeapYear(1700)
-findIfLeapYear(1800)
+findIfLeapYear(2400)
+findIfLeapYear(1989)
+findIfLeapYear(1990)
+findIfLeapYear(1996)
