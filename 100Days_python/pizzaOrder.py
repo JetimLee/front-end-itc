@@ -1,8 +1,8 @@
 def wantPizza():
     print("Welcome to Python Pizza Deliveries!")
     size = input("What size pizza do you want? S, M, L? ")
-    add_pineapple = input("Do you want pineapple?")
-    extra_cheese = input("Do you want extra cheese?")
+    add_pineapple = input("Do you want pineapple? ")
+    extra_cheese = input("Do you want extra cheese? ")
     bill = 0
     if(size == 'S'):
         bill += 15
