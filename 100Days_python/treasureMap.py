@@ -7,8 +7,7 @@ def treasure_map():
     position = input("Where do you want to put the treasure? ")
     p1 = int(position[0])
     p2 = int(position[1])
-    selected_row = map[p2-1]
-    selected_row[p1-1] = "X"
+    map[p2-1][p1-1] = 'X'
     print(f"{row1}\n{row2}\n{row3}")
 
     # print(position_numbers)
