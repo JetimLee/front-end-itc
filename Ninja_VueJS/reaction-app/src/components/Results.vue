@@ -1,5 +1,9 @@
 <template>
-  <div class="results">Your results are {{ results }}ms</div>
+  <div>
+    <div class="results">Your results are {{ results }}ms</div>
+    <p v-if="results < 500">You have rapid fingers!</p>
+    <p v-else>Keep trying to go faster!</p>
+  </div>
 </template>
 
 <script>
