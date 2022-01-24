@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Create a new kid",
+      "details": "The best kid ever",
+      "complete": true
+    },
+    {
+      "id": 2,
+      "title": "Create a new wife",
+      "details": "The best wife ever",
+      "complete": true
+    }
+  ]
+}
