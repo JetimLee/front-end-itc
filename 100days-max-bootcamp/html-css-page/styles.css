@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #ecd8f2;
+}
+header {
+  margin: 3rem 0 0 0;
+  text-align: center;
+}
+.purple-header {
+  color: #5a378c;
+}
+
+.summary-card-container {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0 0 0;
+  flex-direction: column;
+  align-items: center;
+}
+.summary-card {
+  padding: 35px 20px;
+  background-color: #8850bf;
+  width: 50%;
+  border-radius: 10px;
+}
+.image-container {
+  margin: 1rem 0 0 0;
+  display: flex;
+  justify-content: center;
+}
+.html-css-logo {
+  width: 25rem;
+}
+.white-text {
+  color: #eee;
+}
+.information-section {
+  margin: 15px 0 0 0;
+}
+.information-section > p {
+  margin: 10px 0 0 0;
+}
+
+.yellow-text {
+  color: yellow;
+}
+.indented-text {
+  text-indent: 10px;
+}
+.yellow-bar {
+  color: yellow;
+}
+
+.text-yellow-background {
+  background-color: #f2d43d;
+  color: black;
+  border-radius: 5px;
+  padding: 0 1px;
+}
+.pdf-container {
+  padding: 1.5rem;
+  margin: 10px 0 0 0;
+}
+.pdf-container > a {
+  background-color: #f2d43d;
+  padding: 0.8rem;
+  text-decoration: none;
+  color: black;
+  border-radius: 5px;
+}
+.light-purple {
+  color: #b4a3d9;
+}
