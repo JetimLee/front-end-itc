@@ -2,7 +2,7 @@ import React from "react";
 import FeedbackItem from "./FeedbackItem";
 import PropTypes from "prop-types";
 
-const FeedbackList = ({ feedBack }) => {
+const FeedbackList = ({ feedBack, deleteFeedbackItem }) => {
   if (!feedBack || feedBack.length === 0) {
     return <p>No feedback to display. </p>;
   }
@@ -11,6 +11,7 @@ const FeedbackList = ({ feedBack }) => {
       {feedBack.map((feed) => {
         return (
           <FeedbackItem
+            deleteFeedbackItem={deleteFeedbackItem}
             id={feed.id}
             key={feed.id}
             rating={feed.rating}
@@ -23,6 +24,7 @@ const FeedbackList = ({ feedBack }) => {
 };
 FeedbackList.propType = {
   feedBack: PropTypes.array,
+  deleteFeedBackItem: PropTypes.func,
 };
 
 export default FeedbackList;
