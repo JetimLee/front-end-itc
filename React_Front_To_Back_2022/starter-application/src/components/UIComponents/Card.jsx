@@ -9,7 +9,7 @@ const Card = ({ children, reverse }) => {
 Card.defaultProps = {
   reverse: true,
 };
-Card.propType = {
+Card.propTypes = {
   children: PropTypes.node.isRequired,
   reverse: PropTypes.bool,
 };
