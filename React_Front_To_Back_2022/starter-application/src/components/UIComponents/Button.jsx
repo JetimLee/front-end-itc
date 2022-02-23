@@ -1,9 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ children, version, type, isDisabled }) => {
+const Button = ({ children, version, type, isDisabled, handleSubmit }) => {
   return (
-    <button type={type} version={version} className={`btn btn-${version}`}>
+    <button
+      onClick={handleSubmit}
+      disabled={isDisabled}
+      type={type}
+      version={version}
+      className={`btn btn-${version}`}
+    >
       {children}
     </button>
   );
