@@ -1,0 +1,7 @@
+.task-list {
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+}
