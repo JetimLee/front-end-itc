@@ -1,7 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-
-const FeedbackStats = ({ feedBack }) => {
+// import PropTypes from "prop-types";
+import { useContext } from "react";
+import FeedbackContext from "../context/FeedbackContext";
+const FeedbackStats = () => {
+  const { feedBack } = useContext(FeedbackContext);
   const calcAverage = () => {
     //good to use a reducer when needing an average/sum
     let average =
@@ -19,8 +21,8 @@ const FeedbackStats = ({ feedBack }) => {
   );
 };
 
-FeedbackStats.propType = {
-  feedBack: PropTypes.array,
-};
+// FeedbackStats.propType = {
+//   feedBack: PropTypes.array,
+// };
 
 export default FeedbackStats;
