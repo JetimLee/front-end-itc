@@ -5,7 +5,7 @@ import FeedbackItem from "./FeedbackItem";
 // import PropTypes from "prop-types";
 import FeedbackContext from "../context/FeedbackContext";
 
-const FeedbackList = ({ deleteFeedbackItem }) => {
+const FeedbackList = () => {
   const { feedBack } = useContext(FeedbackContext);
   if (!feedBack || feedBack.length === 0) {
     return <p>No feedback to display. </p>;
@@ -22,13 +22,7 @@ const FeedbackList = ({ deleteFeedbackItem }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <FeedbackItem
-                deleteFeedbackItem={deleteFeedbackItem}
-                id={feed.id}
-                key={feed.id}
-                rating={feed.rating}
-                feedbackText={feed.text}
-              />
+              <FeedbackItem feed={feed} />
             </motion.div>
           );
         })}

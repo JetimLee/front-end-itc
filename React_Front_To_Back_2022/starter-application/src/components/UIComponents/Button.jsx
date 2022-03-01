@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ children, version, type, isDisabled, handleSubmit }) => {
+const Button = ({ children, version, type, isDisabled }) => {
   return (
     <button
-      onClick={handleSubmit}
+      // onClick={handleSubmit}
       disabled={isDisabled}
       type={type}
       version={version}

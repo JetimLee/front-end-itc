@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //hash router uses the hash tags, whereas browseroruter is the most common
 
@@ -12,42 +10,6 @@ import About from "./pages/About";
 import { FeedbackProvider } from "./context/FeedbackContext";
 import AboutIconLink from "./components/AboutIconLink";
 const App = () => {
-  const [feedBack, setFeedback] = useState([
-    {
-      id: 35,
-      rating: 10,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.",
-    },
-    {
-      id: 24,
-      rating: 9,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.",
-    },
-    {
-      id: 69,
-      rating: 8,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.",
-    },
-  ]);
-  const addFeedbackItem = (feedback) => {
-    feedback.id = uuidv4();
-    console.log("adding a feedback item");
-    console.log("here is the feedback object");
-    console.log(feedback);
-    const updatedFeedback = feedBack.map((feedback) => {
-      return feedback;
-    });
-    updatedFeedback.push(feedback);
-    setFeedback(updatedFeedback);
-  };
-  const deleteFeedbackItem = (id) => {
-    console.log("clicked delete item");
-    const updatedFeedbackList = feedBack.filter((feedbackItem) => {
-      return feedbackItem.id !== id;
-    });
-    setFeedback(updatedFeedbackList);
-  };
-
   return (
     <FeedbackProvider>
       <Router>
@@ -61,9 +23,9 @@ const App = () => {
                 path="/"
                 element={
                   <>
-                    <FeedbackForm addFeedbackItem={addFeedbackItem} />
+                    <FeedbackForm />
                     <FeedbackStats />
-                    <FeedbackList deleteFeedbackItem={deleteFeedbackItem} />
+                    <FeedbackList />
                     <AboutIconLink />
                   </>
                 }
