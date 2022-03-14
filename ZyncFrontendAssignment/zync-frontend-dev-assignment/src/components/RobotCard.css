@@ -1,0 +1,100 @@
+h1 {
+    font-weight: 900;
+}
+
+
+
+.robot-card {
+    width: 100%;
+    min-height: 200px;
+    background-color: white;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 1.5rem;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem;
+
+}
+
+.robot-profile {
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 7rem;
+}
+
+.robot-info-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.robot-name-container {
+    padding: 0.3rem 0;
+}
+
+.robot-personal-info {
+    margin-top: 0.5rem;
+    text-indent: 1rem;
+    line-height: 1.7;
+}
+
+
+.robot-card-main-container {
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+
+
+
+}
+
+.grades-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 12rem;
+
+}
+
+.grades-list {
+    padding: 1rem 0;
+}
+
+
+.big-plus {
+    color: lightgrey;
+    font-size: 3rem;
+}
+
+
+
+#tag-input {
+    font-size: 1rem;
+    border-bottom: 1px solid black;
+    width: 100px;
+}
+
+.tags-container>span {
+    padding: 0 0.5rem;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 200px;
+}
+
+
+li>span {
+    margin: 0 0.5rem;
+}
+
+ul {
+    list-style: none;
+}
