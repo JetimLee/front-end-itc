@@ -1,9 +1,11 @@
 import { useEffect, useContext } from "react";
 import { MemoryCardProvider } from "./context/MemoryCardContext";
 import MemoryCardContext from "./context/MemoryCardContext";
+import PokemonGrid from "./components/PokemonGameComponents/PokemonGrid";
+import PokemonCard from "./components/PokemonGameComponents/PokemonCard";
 
 function App() {
-  const { pokemonAmount } = useContext(MemoryCardContext);
+  const { pokemonAmount, cards, setCards } = useContext(MemoryCardContext);
   useEffect(() => {
     const loadPokemon = async () => {
       await getPokemon(pokemonAmount);
@@ -22,11 +24,16 @@ function App() {
       pokemons.push({ id, name, image });
     }
     console.log(pokemons);
+    setCards(pokemons);
     return pokemons;
   };
   return (
     <MemoryCardProvider>
-      <h1>gello</h1>
+      <PokemonGrid>
+        {cards.map((pokemon) => {
+          return <PokemonCard key={pokemon.id} />;
+        })}
+      </PokemonGrid>
     </MemoryCardProvider>
   );
 }

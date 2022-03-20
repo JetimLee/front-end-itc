@@ -12,7 +12,15 @@ export const MemoryCardProvider = ({ children }) => {
   };
   return (
     <MemoryCardContext.Provider
-      value={{ cards, selectedCards, pokemonAmount, handleClick }}
+      value={{
+        setSelectedCards,
+        setPokemonAmount,
+        setCards,
+        cards,
+        selectedCards,
+        pokemonAmount,
+        handleClick,
+      }}
     >
       {children}
     </MemoryCardContext.Provider>
