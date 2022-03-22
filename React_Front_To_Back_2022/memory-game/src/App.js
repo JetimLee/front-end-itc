@@ -6,7 +6,8 @@ import PokemonCard from "./components/PokemonGameComponents/PokemonCard";
 import "./app_styling/app.css";
 
 function App() {
-  const { pokemonAmount, cards, setCards } = useContext(MemoryCardContext);
+  const { pokemonAmount, cards, setCards, selectedCards } =
+    useContext(MemoryCardContext);
   useEffect(() => {
     const loadPokemon = async () => {
       await getPokemon(pokemonAmount);
