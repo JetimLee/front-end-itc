@@ -3,6 +3,7 @@ import { MemoryCardProvider } from "./context/MemoryCardContext";
 import MemoryCardContext from "./context/MemoryCardContext";
 import PokemonGrid from "./components/PokemonGameComponents/PokemonGrid";
 import PokemonCard from "./components/PokemonGameComponents/PokemonCard";
+import "./app_styling/app.css";
 
 function App() {
   const { pokemonAmount, cards, setCards } = useContext(MemoryCardContext);
@@ -12,6 +13,7 @@ function App() {
     };
     loadPokemon();
   }, []);
+
   const getPokemon = async (amountOfPokemon) => {
     console.log("GETTING POKEMON!");
     const pokemons = [];
@@ -28,10 +30,18 @@ function App() {
     return pokemons;
   };
   return (
+    //need to pass down the props to each card and destructure them from within the card props. Then display the information and style the cards as necessary
     <MemoryCardProvider>
       <PokemonGrid>
         {cards.map((pokemon) => {
-          return <PokemonCard key={pokemon.id} />;
+          return (
+            <PokemonCard
+              pokemonObj={pokemon}
+              src={pokemon.image}
+              name={pokemon.name}
+              key={pokemon.id}
+            />
+          );
         })}
       </PokemonGrid>
     </MemoryCardProvider>

@@ -1,0 +1,25 @@
+:root {
+    --color1: rgb(0, 231, 255);
+    --color2: rgb(255, 0, 231);
+}
+
+p {
+    font-size: 24px;
+}
+
+.card {
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        -20px -20px 30px -25px var(--color1),
+        20px 20px 30px -25px var(--color2),
+        -7px -7px 10px -5px var(--color1),
+        7px 7px 10px -5px var(--color2),
+        0 0 13px 4px rgba(255, 255, 255, 0.3),
+        0 55px 35px -20px rgba(0, 0, 0, 0.5);
+    background-color: #eae0c8;
+    color: black;
+}

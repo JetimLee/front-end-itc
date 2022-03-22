@@ -1,13 +1,14 @@
 .pokemonGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 10px;
+    row-gap: 10%;
     width: 100%;
     justify-items: center;
 
 }
 
 .grid-container {
+    padding: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
