@@ -8,8 +8,9 @@ import "../../component_styling/PokemonCard.css";
 //need to create a has won/loss state. loss will record the score, won will result in a new list of pokemon
 //need to then see if the selectedCards array is equal to the cards array
 const PokemonCard = ({ pokemonObj }) => {
-  const { selectedCards, setSelectedCards, cards } =
+  const { selectedCards, setSelectedCards, setHasWon, cards } =
     useContext(MemoryCardContext);
+  console.log("cards in pokemoncard");
   const selectCard = (pokemonObj) => {
     console.log("clicked");
     const updatedSelectedCards = [...selectedCards, pokemonObj];
@@ -22,6 +23,7 @@ const PokemonCard = ({ pokemonObj }) => {
       console.log(updatedSelectedCards[i]);
       if (pokemonMap.hasOwnProperty(updatedSelectedCards[i].name)) {
         console.log("YOU LOSE!!!");
+        setHasWon(true);
       } else {
         pokemonMap[updatedSelectedCards[i].name] = updatedSelectedCards[i].name;
         console.log("pokemon map", pokemonMap);
