@@ -8,7 +8,7 @@ import MemoryCardContext from "../../context/MemoryCardContext";
 
 const PokemonGrid = ({ children }) => {
   //gotta use the state in the primary parent component, cannot do this in the top layer at the app.js
-  const { hasWon, cards, setCards, pokemonAmount, hasLost } =
+  const { hasWon, cards, setCards, pokemonAmount, hasLost, shuffleArray } =
     useContext(MemoryCardContext);
   useEffect(() => {
     const loadPokemon = async () => {
@@ -28,8 +28,8 @@ const PokemonGrid = ({ children }) => {
       const image = pokemon.sprites.front_default;
       pokemons.push({ id, name, image });
     }
-    console.log(pokemons);
-    setCards(pokemons);
+    const shuffledArray = shuffleArray(pokemons);
+    setCards(shuffledArray);
     return pokemons;
   };
   useEffect(() => {
