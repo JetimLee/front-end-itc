@@ -26,6 +26,8 @@ export const MemoryCardProvider = ({ children }) => {
         selectedCards,
         pokemonAmount,
         hasWon,
+        setHasLost,
+        hasLost,
         setHasWon,
       }}
     >
