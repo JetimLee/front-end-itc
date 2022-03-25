@@ -52,9 +52,6 @@ const handleSubmission = async (url) => {
     return;
   }
 
-  //need logic here for validating the form and appending relevant classes to the input box and error message box when incorrect input is given
-  //also need to disable the submit button till the form is filled?
-
   const user = { inputtedEmail, inputtedName };
   //using try-catch here in case there's an issue with communicating with the server
   try {
@@ -71,7 +68,6 @@ const handleSubmission = async (url) => {
     userEmail.value = "";
     submissionButton.innerText = "Submitted";
   } catch (error) {
-    //append an error message to the alert box
     console.log("error when submitting data", error);
   }
 };
