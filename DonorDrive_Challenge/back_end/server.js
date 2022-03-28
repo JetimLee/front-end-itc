@@ -29,7 +29,7 @@ const userData = mongoose.model("userData", userDataSchema);
 
 //Could put all routes in a routes folder if the app was much larger.
 
-app.post("/formData", (req, resp) => {
+app.post("/formData", async (req, resp) => {
   console.log("form data got hit!");
   const data = req.body;
   console.log("data in form data", data);
@@ -47,7 +47,7 @@ app.post("/formData", (req, resp) => {
   let newUserData = new userData({ name: inputtedName, email: inputtedEmail });
   try {
     //newUserData is wrapped in a try/catch block in case there are issues with saving the user's information.
-    newUserData.save();
+    await newUserData.save();
     resp.status(200).send("ok");
   } catch (error) {
     //500 error is given to indicate a server-side issue, client side could use this to create the appropriate client-side error box so user wasn't left in the dark.
