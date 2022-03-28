@@ -7,7 +7,7 @@ const errorList = document.getElementById("error_list");
 
 let inputtedName = "";
 let inputtedEmail = "";
-const formDataURL = "http://localhost:4000/formData";
+const formDataURL = "http://localhost:2000/formData";
 
 const checkButton = (input1, input2) => {
   console.log("checking button");
