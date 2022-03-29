@@ -10,9 +10,6 @@ let inputtedEmail = "";
 const formDataURL = "http://localhost:2000/formData";
 
 const checkButton = (input1, input2) => {
-  console.log("checking button");
-  console.log(input1, input2);
-  console.log(input1.trim() | (input2.trim() === "") ? true : false);
   return input1.trim() === "" || input2.trim() === "" ? true : false;
 };
 

@@ -30,9 +30,7 @@ const userData = mongoose.model("userData", userDataSchema);
 //Could put all routes in a routes folder if the app was much larger.
 
 app.post("/formData", async (req, resp) => {
-  console.log("form data got hit!");
   const data = req.body;
-  console.log("data in form data", data);
   //deconstructing for ease of access
   const { inputtedEmail, inputtedName } = data;
   if (typeof inputtedEmail !== "string" || typeof inputtedName !== "string") {
