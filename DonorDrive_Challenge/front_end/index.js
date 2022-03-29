@@ -13,7 +13,7 @@ const checkButton = (input1, input2) => {
   console.log("checking button");
   console.log(input1, input2);
   console.log(input1.trim() | (input2.trim() === "") ? true : false);
-  return input1.trim() | (input2.trim() === "") ? true : false;
+  return input1.trim() === "" || input2.trim() === "" ? true : false;
 };
 
 userEmail.addEventListener("keyup", (e) => {
@@ -30,7 +30,7 @@ userEmail.addEventListener("keyup", (e) => {
 userName.addEventListener("keyup", (e) => {
   inputtedName = e.target.value;
   if (!checkButton(inputtedName, inputtedEmail)) {
-    submissionButton.classList.remove("disabled-button");
+    submissionButton.classList.remove("disabled");
     submissionButton.disabled = false;
     return;
   }
