@@ -3,6 +3,7 @@ import "./RobotCard.css";
 import RobotListContext from "../context/RobotListContext";
 
 import { FaPlus } from "react-icons/fa";
+//need to just check the styling over really well and then submit this!!!
 const RobotCard = ({
   grades,
   city,
@@ -66,11 +67,6 @@ const RobotCard = ({
               <p>Company: {company}</p>
               <p>Skill: {skill}</p>
               <p>Average:{`${average}%`}</p>
-              <input
-                onKeyDown={(e) => addTag(e)}
-                id="tag-input"
-                placeholder="Add a tag"
-              />
             </div>
           </div>
         </div>
@@ -80,7 +76,11 @@ const RobotCard = ({
         {tags && (
           <div className="tags-container">
             {tags.map((tag, i) => {
-              return <span key={i}>{tag}</span>;
+              return (
+                <span className="tag" key={i}>
+                  {tag}
+                </span>
+              );
             })}
           </div>
         )}
@@ -96,6 +96,13 @@ const RobotCard = ({
             })}
           </ul>
         ) : null}
+        <div className="input-container">
+          <input
+            onKeyDown={(e) => addTag(e)}
+            id="tag-input"
+            placeholder="Add a tag"
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,16 +1,16 @@
 {
   "projects": [
     {
-      "id": 1,
-      "title": "Create a new kid",
-      "details": "The best kid ever",
+      "id": 2,
+      "title": "i love my wife, she's so cool",
+      "details": "she's the best wife and amazing",
       "complete": true
     },
     {
-      "id": 2,
-      "title": "Create a new wife",
-      "details": "The best wife ever",
-      "complete": true
+      "title": "sapir",
+      "details": "is the best ever",
+      "complete": false,
+      "id": 3
     }
   ]
 }

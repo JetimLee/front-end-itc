@@ -9,7 +9,9 @@
     <div class="icons-container">
       <span @click="toggleComplete" class="material-icons done"> done </span>
       <span @click="deleteProject" class="material-icons delete"> delete </span>
-      <span class="material-icons edit"> edit </span>
+      <router-link :to="{ name: 'EditProject', params: { id: project.id } }">
+        <span class="material-icons edit"> edit </span>
+      </router-link>
     </div>
   </div>
 </template>

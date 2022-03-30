@@ -20,9 +20,9 @@ public class MortgageCalculator {
         double inputtedPrincipalAsNumber = Float.parseFloat(inputtedPrincipal);
         double inputtedAnnualInterestRateAsNumber = Float.parseFloat(inputtedAnnualInterestRate);
         double mortgagePercentage = inputtedAnnualInterestRateAsNumber / 100;
-        double mortgagePayment = inputtedPrincipalAsNumber * mortgagePercentage
-                * Math.pow(1 + mortgagePercentage, inputtedPeriodAsNumber / 12)
-                / Math.pow(1 + mortgagePercentage, inputtedPeriodAsNumber / 12) - 1;
+        double mortgagePayment = inputtedPrincipalAsNumber * (mortgagePercentage
+                * (Math.pow(1 + mortgagePercentage, (inputtedPeriodAsNumber * 12))))
+                / (Math.pow(1 + mortgagePercentage, (inputtedPeriodAsNumber * 12))) - 1;
 
         System.out.println(mortgagePayment);
         principal.close();

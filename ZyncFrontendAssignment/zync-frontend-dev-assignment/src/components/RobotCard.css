@@ -8,7 +8,6 @@ h1 {
     width: 100%;
     min-height: 200px;
     background-color: white;
-    padding: 0.5rem;
     display: flex;
     align-items: center;
     padding: 1.5rem 1.5rem;
@@ -55,7 +54,6 @@ h1 {
 }
 
 .grades-container {
-    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     padding-left: 12rem;
@@ -80,14 +78,27 @@ h1 {
     width: 100px;
 }
 
-.tags-container>span {
-    padding: 0 0.5rem;
-}
+
 
 .tags-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 50px);
+    gap: 10px;
     max-width: 200px;
+
+}
+
+.tag {
+    background-color: lightgrey;
+    min-width: 50px;
+    min-height: 30px;
+    max-width: 50px;
+    max-height: 30px;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 
 
@@ -97,4 +108,8 @@ li>span {
 
 ul {
     list-style: none;
+}
+
+.input-container {
+    padding: 1rem 0;
 }

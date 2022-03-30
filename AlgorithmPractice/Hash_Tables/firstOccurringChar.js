@@ -9,20 +9,20 @@
 //It should return undefined
 
 function firstRecurringCharacter(input) {
+  //no input validation since an assumption can be made that the input will always be a valid array
   const occuranceTracker = {};
   //keys are automatically set as equal to the value that is being iterated over
   for (let i = 0; i < input.length; i++) {
+    //basically like checking if occuranceTracker.2 exists or not
     if (occuranceTracker.hasOwnProperty(input[i])) {
-      occuranceTracker[input[i]] = occuranceTracker[input[i]] + 1;
       console.log(input[i]);
-      //   return input[i];
+      return input[i];
     } else {
       occuranceTracker[input[i]] = 1;
     }
   }
-  console.log(occuranceTracker);
-  //   console.log(undefined);
-  //   return undefined;
+  console.log(undefined);
+  return undefined;
 }
 firstRecurringCharacter([2, 5, 1, 2, 3, 3, 5, 1, 2, 4, 69, 666, "karen"]);
 firstRecurringCharacter([2, 3, 4, 5]);

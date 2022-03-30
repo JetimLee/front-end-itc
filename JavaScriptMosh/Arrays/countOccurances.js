@@ -9,7 +9,9 @@ const countOccurances = (arr, searchElement) => {
   // });
   // console.log(occurances);
   // return occurances;
-
+  if (Array.isArray(arr) === false) {
+    throw new Error("Incorrect parameter type was passed");
+  }
   const occurances = arr.reduce((acc, current) => {
     const occurance = current === searchElement ? 1 : 0;
     console.log(acc, current, searchElement);
@@ -18,4 +20,4 @@ const countOccurances = (arr, searchElement) => {
   console.log(occurances);
   return occurances;
 };
-countOccurances(numbers, 6);
+countOccurances(true, 6);

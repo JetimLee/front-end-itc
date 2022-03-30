@@ -1,8 +1,9 @@
 <template>
   <div class="home">
+    <FilterNav @filter="currentFilter = $event" :current="currentFilter" />
     <!--- projects.length is here because the length of an empty array is -1, which is falsy --->
     <div v-if="projects.length">
-      <div v-for="project in projects" :key="project.id">
+      <div v-for="project in filteredProjects" :key="project.id">
         <!--here you can pass down the object being cycled over as a prop -->
         <SingleProject
           @completed="completedHandler"
@@ -17,12 +18,14 @@
 
 <script>
 import SingleProject from "../components/SingleProject.vue";
+import FilterNav from "../components/FilterNav.vue";
 export default {
   name: "Home",
-  components: { SingleProject },
+  components: { SingleProject, FilterNav },
   data() {
     return {
       projects: [],
+      currentFilter: "all",
     };
   },
   methods: {
@@ -39,8 +42,25 @@ export default {
       });
     },
   },
+  computed: {
+    filteredProjects() {
+      if (this.currentFilter === "ongoing") {
+        const ongoingProjects = this.projects.filter((el) => {
+          return el.complete === false;
+        });
+        return ongoingProjects;
+      } else if (this.currentFilter === "completed") {
+        const completedProjects = this.projects.filter((el) => {
+          return el.complete === true;
+        });
+        return completedProjects;
+      }
+      return this.projects;
+    },
+  },
   async mounted() {
     try {
+      console.log("fetching");
       const response = await fetch("http://localhost:3000/projects");
       const data = await response.json();
       this.projects = data;
@@ -51,3 +71,6 @@ export default {
   },
 };
 </script>
+
+<style>
+</style>
