@@ -1,4 +1,3 @@
-const { profileEnd } = require("console");
 const EventEmitter = require("events");
 //creating observers in nodejs
 const gavin = new EventEmitter();
