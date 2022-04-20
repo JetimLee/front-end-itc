@@ -1,4 +1,4 @@
-const friends = require("../friends");
+const friends = require("../models/friends.model");
 
 function createNewFriend(req, resp) {
   console.log(req.body);

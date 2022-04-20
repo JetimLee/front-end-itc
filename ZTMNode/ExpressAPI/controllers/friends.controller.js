@@ -1,4 +1,4 @@
-const friends = require("../friends");
+const friends = require("../models/friends.model");
 
 function getFriendsByID(req, resp) {
   console.log("friends with id hit");
