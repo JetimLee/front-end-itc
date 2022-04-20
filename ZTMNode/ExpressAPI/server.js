@@ -1,18 +1,17 @@
 const express = require("express");
-const res = require("express/lib/response");
+const friends = require("./friends");
 
 const app = express();
+app.use(express.json());
+app.use((req, res, next) => {
+  const start = new Date();
+  console.log(`${req.method} ${req.url} ${JSON.stringify(req.headers)}`);
+  next();
+  //actions go here
+  const responseTime = new Date() - start;
+  console.log(`Request took ${responseTime} ms`);
+});
 
-const friends = [
-  { id: 2, name: "matt2" },
-  { id: 3, name: "michael" },
-  { id: 4, name: "sean" },
-  { id: 5, name: "james" },
-  { id: 6, name: "sapir" },
-  { id: 7, name: "matt" },
-  { id: 0, name: "Player One" },
-  { id: 1, name: "gavin" },
-];
 app.get("/", (req, resp) => {
   console.log("hello");
   resp.send("Hello from node");
@@ -36,7 +35,16 @@ app.get("/messages", (req, resp) => {
   resp.send("<ul><li>Hello Gavin from messages</li></ul>");
 });
 app.post("/messages", (req, resp) => {
+  console.log(req.body);
+  const { name } = req.body;
+  if (!name) {
+    resp.status(400).send({ error: "A required data field wasn't sent" });
+    return;
+  }
+  const newFriend = { name, id: friends.length };
+  friends.push(newFriend);
   console.log("messages was posted to");
+  resp.json(friends);
 });
 const myPort = 4000;
 app.listen(myPort, () => {
