@@ -46,5 +46,9 @@ async function loadPlanetsData() {
   return myPlanetsPromise;
   //can do this or immediately return the promise, no real difference on performance
 }
+function getAllPlanets() {
+  console.log("get all planets called");
+  return habitablePlanets;
+}
 
-module.exports = { loadPlanetsData, planets: habitablePlanets };
+module.exports = { getAllPlanets, loadPlanetsData };
