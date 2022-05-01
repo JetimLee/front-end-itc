@@ -1,4 +1,6 @@
+const res = require("express/lib/response");
 const friends = require("../models/friends.model");
+const path = require("path");
 
 function getFriendsByID(req, resp) {
   console.log("friends with id hit");
@@ -14,7 +16,8 @@ function getFriendsByID(req, resp) {
 }
 
 function sendBasicRequest(req, resp) {
-  resp.send("<ul><li>Hello Gavin from messages</li></ul>");
+  // resp.send("<ul><li>Hello Gavin from messages</li></ul>");
+  resp.sendfile(path.join(__dirname, "..", "public", "skimountain.jpg"));
 }
 
 function getFriends(req, resp) {

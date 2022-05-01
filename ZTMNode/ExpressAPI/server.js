@@ -5,6 +5,8 @@ const messagesRouter = require("./routes/messages.router");
 
 const app = express();
 
+//if there was a website in public, this would serve it
+// app.use("/site", express.static("public"));
 app.use(express.json());
 app.use((req, res, next) => {
   const start = new Date();
