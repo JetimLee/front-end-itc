@@ -2,8 +2,8 @@ const express = require("express");
 const path = require("path");
 
 //the models
-const { products } = require("./products/products.model");
-const { orders } = require("./orders/orders.model");
+// const { products } = require("./products/products.model");
+// const { orders } = require("./orders/orders.model");
 
 //build schema doesn't really work with the graphql-tools
 // const { buildSchema } = require("graphql");

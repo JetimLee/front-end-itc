@@ -1,4 +1,8 @@
-const { getAllProducts } = require("./products.model");
+const {
+  getAllProducts,
+  getProductsByPrice,
+  getProductsByID,
+} = require("./products.model");
 module.exports = {
   Query: {
     //just examples of all the different parameters resolvers can deal with
@@ -13,6 +17,15 @@ module.exports = {
         }, 3000);
       });
       return await productsPromise;
+    },
+    productsByPrice: (parent, args) => {
+      console.log(args);
+      const { minPrice, maxPrice } = args;
+      return getProductsByPrice(minPrice, maxPrice);
+    },
+    productsByID: (parent, args) => {
+      const { id } = args;
+      return getProductsByID(id);
     },
   },
 };
