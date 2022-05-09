@@ -43,6 +43,8 @@ function getProductsByID(id) {
   });
 }
 
+function addNewProductFunction(id, description, price) {}
+
 module.exports = {
   getAllProducts,
   products,
@@ -51,4 +53,5 @@ module.exports = {
   blackHatUUID,
   getProductsByPrice,
   getProductsByID,
+  addNewProductFunction,
 };

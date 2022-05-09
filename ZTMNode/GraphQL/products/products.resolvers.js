@@ -2,6 +2,7 @@ const {
   getAllProducts,
   getProductsByPrice,
   getProductsByID,
+  addNewProductFunction,
 } = require("./products.model");
 module.exports = {
   Query: {
@@ -18,14 +19,21 @@ module.exports = {
       });
       return await productsPromise;
     },
-    productsByPrice: (parent, args) => {
+    productsByPrice: (_, args) => {
       console.log(args);
       const { minPrice, maxPrice } = args;
       return getProductsByPrice(minPrice, maxPrice);
     },
-    productsByID: (parent, args) => {
+    productsByID: (_, args) => {
       const { id } = args;
       return getProductsByID(id);
+    },
+  },
+  Mutation: {
+    addNewProduct: (_, args) => {
+      console.log("args in add new product", args);
+      const { id, description, price } = args;
+      return addNewProductFunction(id, description, price);
     },
   },
 };
