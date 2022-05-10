@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { validateNumber, validateStringNotEmpty } from "./util/validation";
 
-describe("testing validateNumber", () => {
+describe("testing validateNumber()", () => {
   it("should throw an error if given a NaN argument", () => {
     const value = "something";
     const resultFn = () => {
@@ -16,9 +16,16 @@ describe("testing validateNumber", () => {
     };
     expect(resultFn).toThrow(/Invalid number input/);
   });
+  it("should not throw an erorr when given a valid number", () => {
+    const value = 1;
+    const resultFn = () => {
+      validateNumber(value);
+    };
+    expect(resultFn).not.toThrow();
+  });
 });
 
-describe("testing validateStringNotEmpty function", () => {
+describe("testing validateStringNotEmpty()", () => {
   it("should throw an error if given a non string value", () => {
     const value = 1;
     const otherValue = {};
