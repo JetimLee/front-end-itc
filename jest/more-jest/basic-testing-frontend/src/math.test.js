@@ -3,6 +3,9 @@
 //keep in mind triple a pattern
 //arrange, act, assert
 
+//definitely test only the things you can control, don't test things that aren't in your lane of control
+//test only "one thing"
+
 //if a test fails/passes be sure to check that expectation values are good
 
 import { expect, it } from "vitest";
