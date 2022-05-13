@@ -8,8 +8,8 @@ const googleDatabase = [
   "salads.com",
   "flowers.com",
 ];
-const googleSearch = (searchInput) => {
-  const matches = googleDatabase.filter((website) => {
+const googleSearch = (searchInput, db) => {
+  const matches = db.filter((website) => {
     return website.includes(searchInput);
   });
   if (matches.length > 3) {
@@ -18,4 +18,4 @@ const googleSearch = (searchInput) => {
   return matches;
 };
 
-module.exports = { googleDatabase, googleSearch };
+module.exports = { googleSearch };
