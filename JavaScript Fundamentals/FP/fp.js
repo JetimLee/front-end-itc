@@ -27,8 +27,10 @@ const refundCustomer = (item) => {
   console.log(foundItem);
   user.refunds.push(foundItem);
   let indexOfItemToRemove = user.purchases.indexOf(foundItem);
-  let newUserPurchases = user.purchases.slice(indexOfItemToRemove, 1);
-  console.log(newUserPurchases, "new purchases after refund");
+  user.purchases = user.purchases.filter((purchase) => {
+    return purchase.id !== foundItem.id;
+  });
+  userActions.push(`User returned ${JSON.stringify(foundItem)}`);
   return foundItem;
 };
 const addItem = (item) => {
@@ -52,10 +54,13 @@ const buyItems = () => {
   return;
 };
 buyItems();
+console.log(user, "after buying");
 console.log(user.purchases, "purchases");
-console.log("refund", refundCustomer(user.purchases[0]));
-console.log(user);
+console.log("refund", refundCustomer(user.purchases[1]));
+console.log(user.purchases, "purchases after refund");
 console.log(userActions);
+console.log(user);
+
 //Implement a cart feature:
 // 1. Add items to cart.
 // 2. Add 3% tax to item in cart
