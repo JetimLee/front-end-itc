@@ -21,17 +21,21 @@ const clearCart = () => {
   userActions.push("cleared cart");
 };
 const refundCustomer = (item) => {
-  const foundItem = user.purchases.find((purchase) => {
-    return purchase === item;
-  });
-  console.log(foundItem);
-  user.refunds.push(foundItem);
-  let indexOfItemToRemove = user.purchases.indexOf(foundItem);
-  user.purchases = user.purchases.filter((purchase) => {
-    return purchase.id !== foundItem.id;
-  });
-  userActions.push(`User returned ${JSON.stringify(foundItem)}`);
-  return foundItem;
+  if (user.purchases.includes(item)) {
+    const foundItem = user.purchases.find((purchase) => {
+      return purchase === item;
+    });
+    user.refunds.push(foundItem);
+    user.purchases = user.purchases.filter((purchase) => {
+      return purchase.id !== foundItem.id;
+    });
+    userActions.push(`User returned ${JSON.stringify(foundItem)}`);
+    return foundItem;
+  }
+  console.log(
+    `Cannot return ${JSON.stringify(item)} as it isn't in the users purchases`
+  );
+  return;
 };
 const addItem = (item) => {
   user.cart.push(item);
@@ -57,6 +61,7 @@ buyItems();
 console.log(user, "after buying");
 console.log(user.purchases, "purchases");
 console.log("refund", refundCustomer(user.purchases[1]));
+
 console.log(user.purchases, "purchases after refund");
 console.log(userActions);
 console.log(user);
