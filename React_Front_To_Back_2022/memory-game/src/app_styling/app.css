@@ -8,4 +8,6 @@ html,
 body {
     background-image: url('../assets/highdef-pokeball.jpeg');
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
