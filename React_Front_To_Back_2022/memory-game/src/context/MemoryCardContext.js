@@ -30,6 +30,11 @@ export const MemoryCardProvider = ({ children }) => {
       setHighScore(score);
     }
   }
+  async function handleWin() {
+    setPokemonAmount(pokemonAmount + 1);
+    setSelectedCards([]);
+    await getPokemon(pokemonAmount + 1);
+  }
 
   //this resets the game, is called in playagain
   function resetGame() {
@@ -48,15 +53,12 @@ export const MemoryCardProvider = ({ children }) => {
     if (array1.length === array2.length) {
       return array1.every((element) => {
         if (array2.includes(element)) {
-          console.log("equal!!!");
           setHasWon(true);
           return true;
         }
-
         return false;
       });
     }
-
     return false;
   }
 
@@ -71,6 +73,7 @@ export const MemoryCardProvider = ({ children }) => {
       if (pokemonMap.hasOwnProperty(updatedSelectedCards[i].name)) {
         console.log("YOU LOSE!!!");
         setHasLost(true);
+        return;
       } else {
         pokemonMap[updatedSelectedCards[i].name] = updatedSelectedCards[i].name;
         let shuffledArray = shuffleArray(cards);
@@ -79,24 +82,12 @@ export const MemoryCardProvider = ({ children }) => {
     }
     handleScoreIncrease();
     //check if player won
-    areEqual(cards, updatedSelectedCards);
+    const results = areEqual(cards, updatedSelectedCards);
+    if (results === true) {
+      handleWin();
+    }
   };
 
-  const getPokemon = async (amountOfPokemon) => {
-    console.log("GETTING POKEMON!");
-    //optimize this to get rid of the stutter when loading in
-    const pokemons = [];
-    for (let i = 1; i <= amountOfPokemon; i++) {
-      const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
-      const response = await fetch(pokemonUrl);
-      const pokemon = await response.json();
-      const { id, name } = pokemon;
-      const image = pokemon.sprites.front_default;
-      pokemons.push({ id, name, image });
-    }
-    const shuffledArray = shuffleArray(pokemons);
-    setCards(shuffledArray);
-  };
   function shuffleArray(array) {
     let currentIndex = array.length,
       randomIndex;
@@ -116,6 +107,22 @@ export const MemoryCardProvider = ({ children }) => {
     console.log("shuffled array", array);
     return array;
   }
+
+  const getPokemon = async (amountOfPokemon) => {
+    console.log("GETTING POKEMON!");
+    //optimize this to get rid of the stutter when loading in
+    const pokemons = [];
+    for (let i = 1; i <= amountOfPokemon; i++) {
+      const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
+      const response = await fetch(pokemonUrl);
+      const pokemon = await response.json();
+      const { id, name } = pokemon;
+      const image = pokemon.sprites.front_default;
+      pokemons.push({ id, name, image });
+    }
+    const shuffledArray = shuffleArray(pokemons);
+    setCards(shuffledArray);
+  };
 
   //here are the values returned from context
   return (
