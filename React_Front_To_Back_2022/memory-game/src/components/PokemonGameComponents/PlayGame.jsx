@@ -7,8 +7,10 @@ const PlayGame = () => {
   const { startGame } = useContext(MemoryCardContext);
 
   return (
-    <div className="play-button">
-      <button onClick={startGame}>Play Game</button>
+    <div className="play-button-container">
+      <button className="play-button" onClick={startGame}>
+        PLAY GAME
+      </button>
     </div>
   );
 };

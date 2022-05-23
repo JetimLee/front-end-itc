@@ -7,7 +7,9 @@ const PlayAgain = () => {
 
   return (
     <div className="game-over">
-      <button onClick={resetGame}>Play Again?</button>
+      <button className="play-again-button" onClick={resetGame}>
+        PLAY AGAIN?
+      </button>
     </div>
   );
 };
