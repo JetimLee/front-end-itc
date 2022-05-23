@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { MemoryCardProvider } from "./context/MemoryCardContext";
+import AppWrapper from "./components/PokemonGameComponents/AppWrapper";
 
 import App from "./App";
 //BE SURE TO WRAP THE APP EVERYTIME WITH CONTEXT!!!
 ReactDOM.render(
   <React.StrictMode>
-    <MemoryCardProvider>
-      <App />
-    </MemoryCardProvider>
+    <AppWrapper></AppWrapper>
   </React.StrictMode>,
   document.getElementById("root")
 );

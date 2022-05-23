@@ -1,0 +1,26 @@
+ul {
+    list-style: none;
+}
+
+.scoreboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #BF3326;
+    height: 80px;
+    padding: 4px;
+}
+
+.score-title-container {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.scoreboard {
+    display: flex;
+}
+
+.scoreboard>li {
+    padding: 0.5rem;
+}

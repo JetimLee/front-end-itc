@@ -14,7 +14,7 @@ export const MemoryCardProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
-  const [pokemonAmount, setPokemonAmount] = useState(12);
+  const [pokemonAmount, setPokemonAmount] = useState(3);
 
   //function that determines if two arrays have the exact same elements or not - used in determining if the player has won or not.
   //cannot really just compare lengths since the player in theory could just click the wrong card and that would result in both winning and losing if the lengths of the two arrays are the same
@@ -48,8 +48,8 @@ export const MemoryCardProvider = ({ children }) => {
         setHasLost(true);
       } else {
         pokemonMap[updatedSelectedCards[i].name] = updatedSelectedCards[i].name;
-        // let shuffledArray = shuffleArray(cards);
-        // setCards(shuffledArray);
+        let shuffledArray = shuffleArray(cards);
+        setCards(shuffledArray);
       }
     }
     //check if player won
