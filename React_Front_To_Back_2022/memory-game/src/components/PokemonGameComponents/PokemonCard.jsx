@@ -1,6 +1,5 @@
 import React from "react";
-import { useEffect, useContext } from "react";
-import { MemoryCardProvider } from "../../context/MemoryCardContext";
+import { useContext } from "react";
 import MemoryCardContext from "../../context/MemoryCardContext";
 
 import "../../component_styling/PokemonCard.css";

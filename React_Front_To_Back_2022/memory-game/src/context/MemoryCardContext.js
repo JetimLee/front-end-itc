@@ -30,6 +30,9 @@ export const MemoryCardProvider = ({ children }) => {
       setHighScore(score);
     }
   }
+  function startGame() {
+    setIsPlaying(true);
+  }
   async function handleWin() {
     setPokemonAmount(pokemonAmount + 1);
     setSelectedCards([]);
@@ -144,6 +147,8 @@ export const MemoryCardProvider = ({ children }) => {
         resetGame,
         score,
         highScore,
+        isPlaying,
+        startGame,
       }}
     >
       {children}
