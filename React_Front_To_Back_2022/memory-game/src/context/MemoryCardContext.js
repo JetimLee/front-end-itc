@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const MemoryCardContext = createContext();
 
@@ -15,6 +15,31 @@ export const MemoryCardProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   const [pokemonAmount, setPokemonAmount] = useState(3);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+
+  useEffect(() => {
+    handleHighScore();
+  }, [score]);
+
+  function handleScoreIncrease() {
+    setScore(score + 1);
+  }
+  function handleHighScore() {
+    if (score > highScore) {
+      setHighScore(score);
+    }
+  }
+
+  //this resets the game, is called in playagain
+  function resetGame() {
+    setScore(0);
+    setIsPlaying(true);
+    setPokemonAmount(3);
+    setSelectedCards([]);
+    setHasLost(false);
+    setHasWon(false);
+  }
 
   //function that determines if two arrays have the exact same elements or not - used in determining if the player has won or not.
   //cannot really just compare lengths since the player in theory could just click the wrong card and that would result in both winning and losing if the lengths of the two arrays are the same
@@ -52,12 +77,14 @@ export const MemoryCardProvider = ({ children }) => {
         setCards(shuffledArray);
       }
     }
+    handleScoreIncrease();
     //check if player won
     areEqual(cards, updatedSelectedCards);
   };
 
   const getPokemon = async (amountOfPokemon) => {
     console.log("GETTING POKEMON!");
+    //optimize this to get rid of the stutter when loading in
     const pokemons = [];
     for (let i = 1; i <= amountOfPokemon; i++) {
       const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -107,6 +134,9 @@ export const MemoryCardProvider = ({ children }) => {
         shuffleArray,
         getPokemon,
         selectCard,
+        resetGame,
+        score,
+        highScore,
       }}
     >
       {children}

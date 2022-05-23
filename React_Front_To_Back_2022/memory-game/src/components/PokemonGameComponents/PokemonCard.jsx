@@ -13,8 +13,8 @@ const PokemonCard = ({ pokemonObj }) => {
   return (
     <div onClick={() => selectCard(pokemonObj)} className="card-container">
       <div className="card">
+        <p>{name.toUpperCase()}</p>
         <img src={image} alt={"a pokemion card"} />
-        <p>{name}</p>
       </div>
     </div>
   );
