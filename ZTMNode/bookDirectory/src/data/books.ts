@@ -22,12 +22,12 @@ const getBooks = async () => {
 };
 const modifyBooks = async (arr: book[]): Promise<book[]> => {
   console.log(`Array of books received in modify books \n`, arr);
-  const getBooksPromise = new Promise<book[]>((resolve, reject) => {
+  const updateBooksPromise = new Promise<book[]>((resolve, reject) => {
     setTimeout(() => {
       resolve((bookDirectory = arr));
     }, 1000);
   });
-  return getBooksPromise;
+  return updateBooksPromise;
 };
 
 export { getBooks, book, modifyBooks };

@@ -29,11 +29,11 @@ const getBooks = () => __awaiter(void 0, void 0, void 0, function* () {
 exports.getBooks = getBooks;
 const modifyBooks = (arr) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`Array of books received in modify books \n`, arr);
-    const getBooksPromise = new Promise((resolve, reject) => {
+    const updateBooksPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve((bookDirectory = arr));
         }, 1000);
     });
-    return getBooksPromise;
+    return updateBooksPromise;
 });
 exports.modifyBooks = modifyBooks;
