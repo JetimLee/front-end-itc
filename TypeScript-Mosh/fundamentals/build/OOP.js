@@ -105,4 +105,25 @@ function printNames(people) {
     }
 }
 printNames([Gavin, teacher]);
+class Calendar {
+    constructor(name) {
+        this.name = name;
+    }
+    addEvent() { }
+    removeEvent() { }
+}
+class GoogleCalendar {
+    constructor(name) {
+        this.name = name;
+    }
+    addEvent() {
+        console.log("adding event");
+    }
+    removeEvent() {
+        console.log("removing event");
+    }
+    sync() {
+        console.log("syncing calendar");
+    }
+}
 //# sourceMappingURL=OOP.js.map

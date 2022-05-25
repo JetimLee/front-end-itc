@@ -1,3 +1,5 @@
+//private - access anywhere in the class
+//protected - access anywhere in the class and the extensions of that class
 class Account {
   constructor(
     readonly id: number,
@@ -132,3 +134,34 @@ function printNames(people: Person[]) {
 }
 
 printNames([Gavin, teacher]);
+
+class Calendar {
+  constructor(public name: string) {}
+  addEvent(): void {}
+  removeEvent(): void {}
+}
+
+//interfaces cannot have function implementation, abstract classes can
+//interfaces only have method declarations
+
+interface MyCalendar {
+  name: string;
+  addEvent(): void;
+  removeEvent(): void;
+}
+interface CloudCalendar extends MyCalendar {
+  sync(): void;
+}
+
+class GoogleCalendar implements MyCalendar, CloudCalendar {
+  constructor(readonly name: string) {}
+  addEvent(): void {
+    console.log("adding event");
+  }
+  removeEvent(): void {
+    console.log("removing event");
+  }
+  sync(): void {
+    console.log("syncing calendar");
+  }
+}
