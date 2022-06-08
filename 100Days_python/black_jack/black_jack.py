@@ -110,12 +110,13 @@ def play_blackjack():
             if dealerBusts == True:
                 print(
                     f'The dealer went BUSTTTTT {dealerScore}, you win with a score of {playerScore}!')
-                return
+                user_play = get_user_input()
+                continue
         # check if draw again since original scores have changed
         draw = check_if_draw(s1=playerScore, s2=dealerScore)
         if draw == True:
             user_play = get_user_input()
-            return
+            continue
         playerWins = compare_scores(score1=playerScore, score2=dealerScore)
         if playerWins == True:
             print(
