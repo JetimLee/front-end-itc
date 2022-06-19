@@ -4,36 +4,41 @@ import { user } from "../../interfaces/userInterface";
 interface GithubContextInterface {
   userList: user[];
   loading: boolean;
-  getUsers: Function;
+  getUsers: () => Promise<user[] | Error>;
 }
 interface Props {
   children?: ReactNode;
 }
 
-export const GithubContext = createContext<GithubContextInterface | null>(null);
+const GithubContext = createContext<GithubContextInterface>(
+  {} as GithubContextInterface
+);
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
-export const getUsers = async (): Promise<user[] | Error> => {
-  const data: Response = await fetch(`${GITHUB_URL}/users`, {
-    headers: {
-      Authorization: `token ${GITHUB_TOKEN}`,
-    },
-  });
-  try {
-    const response: user[] = await data.json();
-    console.log(response);
-    return response;
-  } catch (error) {
-    console.log(error);
-    return error as Error;
-  }
-};
-
 export const GithubProvider = ({ children }: Props) => {
   const [userList, setUserList] = useState<user[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const getUsers = async (): Promise<user[] | Error> => {
+    const data: Response = await fetch(`${GITHUB_URL}/users`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
+    try {
+      setLoading(true);
+      const response: user[] = await data.json();
+      console.log(response);
+      setUserList(response);
+      setLoading(false);
+      return response;
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      return error as Error;
+    }
+  };
 
   return (
     <GithubContext.Provider value={{ loading, userList, getUsers }}>
@@ -41,5 +46,7 @@ export const GithubProvider = ({ children }: Props) => {
     </GithubContext.Provider>
   );
 };
+
+export default GithubContext;
 
 //  return <TodoContext.Provider value={{ todos, saveTodo, updateTodo }}>{children}</TodoContext.Provider>;
