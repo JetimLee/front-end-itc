@@ -18,5 +18,5 @@ app.use(getAllBooksRouter_1.getAllBooksRouter);
 app.use(deleteBookByIdRouter_1.deleteRouter);
 app.use(getBookByIdRouter_1.router);
 app.listen(3000, () => {
-    console.log("book depository server running on port 3000");
+    console.log("book depository server running on port 3000,running");
 });

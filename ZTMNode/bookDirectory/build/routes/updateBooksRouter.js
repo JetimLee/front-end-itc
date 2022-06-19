@@ -15,9 +15,12 @@ const express_1 = require("express");
 const updateBooksRouter = (0, express_1.Router)();
 exports.updateBooksRouter = updateBooksRouter;
 updateBooksRouter.put("/book/:id", (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
-    const { title, author, id } = req.body;
+    const { title, author } = req.body;
+    const { id } = req.params;
+    console.log("ID in REQ PARAMS", id);
     //would need to check here if a number actually comes through and if not, to handle that error
     const idToNumber = parseFloat(id);
+    console.log(idToNumber, "id to number");
     const updatedBook = { title, author, id: idToNumber };
     const updatedBooks = yield (0, updateBooks_1.updateBooks)(idToNumber, updatedBook);
     resp.send(updatedBooks);
