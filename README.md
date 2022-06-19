@@ -1,2 +1,2 @@
 # front-end-itc
-my repository from my time at the front end bootcamp for olim from itc
+My on going repository for side projects, data structure and algorithm practice and basically all things coding. 
