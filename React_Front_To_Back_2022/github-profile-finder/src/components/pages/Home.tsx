@@ -1,7 +1,11 @@
-export const Home = () => {
+import { useEffect, FC, useState } from "react";
+import { UserResults } from "../users";
+import { user } from "../../interfaces/userInterface";
+
+export const Home: FC = () => {
   return (
-    <div>
-      <h1 className="text-6xl">Welcome</h1>
-    </div>
+    <>
+      <UserResults />
+    </>
   );
 };
