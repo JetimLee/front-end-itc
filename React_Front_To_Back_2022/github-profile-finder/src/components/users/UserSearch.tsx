@@ -1,14 +1,37 @@
+import React, { useContext, useState } from "react";
+
+import GithubContext from "../../context/github/GithubContext";
+
 export const UserSearch = () => {
+  const { userList } = useContext(GithubContext);
+
+  const [text, setText] = useState("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (text.trim() === "") {
+      alert("There isn't anything in the search bar");
+      //could have an element show up that says there must be some text
+      return;
+    }
+    //search for users otherwise - TO DO
+    setText("");
+  };
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 mb-8 gap-8">
       <div>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className="form-control">
             <div className="relative">
               <input
                 type="text"
                 className="w-full pr-40 bg-gray-200 input input-lg text-black"
                 placeholder="Search"
+                //Doing it like this gets rid of an uncontrolled element being controlled warning
+                value={text || ""}
+                onChange={(e) => handleChange(e)}
               />
               <button
                 type="submit"
@@ -20,9 +43,11 @@ export const UserSearch = () => {
           </div>
         </form>
       </div>
-      <div>
-        <button className="btn btn-ghost btn-lg">Clear</button>
-      </div>
+      {userList.length > 0 && (
+        <div>
+          <button className="btn btn-ghost btn-lg">Clear</button>
+        </div>
+      )}
     </div>
   );
 };

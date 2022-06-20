@@ -37,15 +37,29 @@ export const GithubProvider = ({ children }: Props) => {
   const setLoading = (loadingOption: boolean) =>
     dispatch({ type: ActionCommands.SET_LOADING, payload: loadingOption });
 
+  const searchUsers = async (username: string): Promise<user | Error> => {
+    setLoading(true);
+    try {
+      const data: Response = await fetch(`${GITHUB_URL}/users/${username}`);
+      const response: user = await data.json();
+      return response;
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      return error as Error;
+    }
+  };
+
   //get initial users (testing purposes, not actually used)
   const getUsers = async (): Promise<user[] | Error> => {
     setLoading(true);
-    const data: Response = await fetch(`${GITHUB_URL}/users`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
+
     try {
+      const data: Response = await fetch(`${GITHUB_URL}/users`, {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      });
       const response: user[] = await data.json();
       dispatch({ type: ActionCommands.GET_USERS, payload: response });
 

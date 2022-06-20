@@ -6,10 +6,12 @@ interface State<T> {
 export enum ActionCommands {
   SET_LOADING = "SET_LOADING",
   GET_USERS = "GET_USERS",
+  GET_USER = "GET_USER",
 }
 type Action<T> =
   | { type: ActionCommands.GET_USERS; payload: T }
-  | { type: ActionCommands.SET_LOADING; payload: T };
+  | { type: ActionCommands.SET_LOADING; payload: T }
+  | { type: ActionCommands.GET_USER; payload: T };
 
 export const githubReducer = <T>(
   state: State<T>,
