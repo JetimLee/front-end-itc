@@ -1,3 +1,4 @@
 import { UserItem } from "./UserItem";
 import { UserResults } from "./UserResults";
-export { UserItem, UserResults };
+import { UserSearch } from "./UserSearch";
+export { UserItem, UserResults, UserSearch };

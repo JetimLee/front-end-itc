@@ -1,10 +1,10 @@
-import { useEffect, FC, useState } from "react";
-import { UserResults } from "../users";
-import { user } from "../../interfaces/userInterface";
+import { FC } from "react";
+import { UserResults, UserSearch } from "../users";
 
 export const Home: FC = () => {
   return (
     <>
+      <UserSearch />
       <UserResults />
     </>
   );
