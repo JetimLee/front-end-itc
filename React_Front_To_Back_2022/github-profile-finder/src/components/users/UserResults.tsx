@@ -1,15 +1,15 @@
-import { useEffect, FC, useContext } from "react";
+import { FC, useContext } from "react";
 import { user } from "../../interfaces/userInterface";
 import { Spinner } from "../layout";
 import { UserItem } from "./UserItem";
 import GithubContext from "../../context/github/GithubContext";
 
 export const UserResults: FC = () => {
-  const { loading, userList, getUsers } = useContext(GithubContext);
-  useEffect(() => {
-    getUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { loading, userList } = useContext(GithubContext);
+  // useEffect(() => {
+  //   getUsers();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
   return (
     <>
       {loading ? (
