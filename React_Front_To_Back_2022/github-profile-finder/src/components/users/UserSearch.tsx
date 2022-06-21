@@ -3,8 +3,8 @@ import React, { useContext, useState } from "react";
 import GithubContext from "../../context/github/GithubContext";
 
 export const UserSearch = () => {
-  const { userList } = useContext(GithubContext);
-
+  const { userList, searchUsers, clearUsers } = useContext(GithubContext);
+  //no reason to move this to context since it doesn't need to be made globally available
   const [text, setText] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -17,6 +17,7 @@ export const UserSearch = () => {
       return;
     }
     //search for users otherwise - TO DO
+    searchUsers(text);
     setText("");
   };
   return (
@@ -45,7 +46,9 @@ export const UserSearch = () => {
       </div>
       {userList.length > 0 && (
         <div>
-          <button className="btn btn-ghost btn-lg">Clear</button>
+          <button onClick={clearUsers} className="btn btn-ghost btn-lg">
+            Clear
+          </button>
         </div>
       )}
     </div>

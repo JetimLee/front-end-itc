@@ -2,11 +2,16 @@ import { createContext, ReactNode, useReducer } from "react";
 import { user } from "../../interfaces/userInterface";
 import { githubReducer, ActionCommands } from "./GithubReducer";
 
+//TO-DO - HANDLE 404 RESULTS, ERROR CARD?
+//ONE USER SHOWS WHEN QUERIED, CHANGE STRUCTURE OF CARD ?
+
 interface GithubContextInterface {
   userList: user[];
   loading: boolean;
   fish: string;
   getUsers: () => Promise<user[] | Error>;
+  searchUsers: (username: string) => Promise<user[] | Error>;
+  clearUsers: () => void;
 }
 interface Props {
   children?: ReactNode;
@@ -37,17 +42,21 @@ export const GithubProvider = ({ children }: Props) => {
   const setLoading = (loadingOption: boolean) =>
     dispatch({ type: ActionCommands.SET_LOADING, payload: loadingOption });
 
-  const searchUsers = async (username: string): Promise<user | Error> => {
+  const searchUsers = async (username: string): Promise<user[] | Error> => {
     setLoading(true);
     try {
       const data: Response = await fetch(`${GITHUB_URL}/users/${username}`);
       const response: user = await data.json();
-      return response;
+      dispatch({ type: ActionCommands.GET_USER, payload: [response] });
+      return [response];
     } catch (error) {
       setLoading(false);
       console.log(error);
       return error as Error;
     }
+  };
+  const clearUsers = (): void => {
+    dispatch({ type: ActionCommands.CLEAR_USERS, payload: [] });
   };
 
   //get initial users (testing purposes, not actually used)
@@ -80,6 +89,8 @@ export const GithubProvider = ({ children }: Props) => {
         userList: state.userList as user[],
         getUsers,
         fish: state.fish,
+        searchUsers,
+        clearUsers,
       }}
     >
       {children}
