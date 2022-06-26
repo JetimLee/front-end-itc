@@ -3,7 +3,6 @@ import { user } from "../../interfaces/userInterface";
 import { githubReducer, ActionCommands } from "./GithubReducer";
 
 //TO-DO - HANDLE 404 RESULTS, ERROR CARD?
-//ONE USER SHOWS WHEN QUERIED, CHANGE STRUCTURE OF CARD ?
 
 interface GithubContextInterface {
   userList: user[];
@@ -45,10 +44,15 @@ export const GithubProvider = ({ children }: Props) => {
   const searchUsers = async (username: string): Promise<user[] | Error> => {
     setLoading(true);
     try {
-      const data: Response = await fetch(`${GITHUB_URL}/users/${username}`);
-      const response: user = await data.json();
-      dispatch({ type: ActionCommands.GET_USER, payload: [response] });
-      return [response];
+      //new URLSearchParams constructor, definitely very handy
+      const params = new URLSearchParams({ q: username });
+      const data: Response = await fetch(
+        `${GITHUB_URL}/search/users?${params}`
+      );
+      const { items }: { items: user[] } = await data.json();
+      console.log("response", items);
+      dispatch({ type: ActionCommands.GET_USER, payload: items });
+      return items;
     } catch (error) {
       setLoading(false);
       console.log(error);
