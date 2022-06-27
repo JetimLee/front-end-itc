@@ -6,8 +6,8 @@ import { GithubProvider } from "./context/github/GithubContext";
 import { AlertProvider } from "./context/alert/AlertContext";
 const App: FC = () => {
   return (
-    <AlertProvider>
-      <GithubProvider>
+    <GithubProvider>
+      <AlertProvider>
         <Router>
           <div className="flex flex-col justify-between h-screen">
             <Navbar />
@@ -21,8 +21,8 @@ const App: FC = () => {
             <Footer />
           </div>
         </Router>
-      </GithubProvider>
-    </AlertProvider>
+      </AlertProvider>
+    </GithubProvider>
   );
 };
 
