@@ -8,7 +8,7 @@ module.exports = {
   daisyui: {
     styled: true,
 
-    themes: ["night", "winter"],
+    themes: ["night", "retro"],
     base: true,
     utils: true,
     logs: true,

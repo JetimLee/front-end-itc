@@ -3,7 +3,7 @@ export const Footer: FC = () => {
   const footerYear = new Date().getFullYear();
 
   return (
-    <footer className="footer p-1 bg-slate-300 text-black footer-center">
+    <footer className="footer p-1 shadow-lg bg-neutral text-neutral-content footer-center">
       <div>
         <svg
           width="50"

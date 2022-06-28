@@ -44,7 +44,7 @@ export const ThemeProvider = ({ children }: Props) => {
         dispatch({ type: ActionCommands.TOGGLE_THEME, payload: true });
         return;
       }
-      root.setAttribute("data-theme", "winter");
+      root.setAttribute("data-theme", "retro");
       dispatch({ type: ActionCommands.TOGGLE_THEME, payload: false });
 
       return;
@@ -55,7 +55,7 @@ export const ThemeProvider = ({ children }: Props) => {
     const newTheme = state.darkMode === false ? true : false;
     dispatch({ type: ActionCommands.TOGGLE_THEME, payload: newTheme });
     const root = window.document.documentElement;
-    root.setAttribute("data-theme", newTheme === false ? "winter" : "night");
+    root.setAttribute("data-theme", newTheme === false ? "retro" : "night");
     localStorage.setItem("color-theme", newTheme ? "light" : "dark");
   };
 
