@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Toggle } from "./Toggle";
 
 interface Props {
   title?: string;
@@ -25,6 +26,7 @@ export const Navbar: FC<Props> = ({
             <Link to="/about" className="btn btn-ghost btn-sm rounded-btn">
               About
             </Link>
+            <Toggle />
           </div>
         </div>
       </div>

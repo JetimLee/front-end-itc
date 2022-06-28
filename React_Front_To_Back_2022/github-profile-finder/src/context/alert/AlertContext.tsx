@@ -3,7 +3,7 @@ import { alertReducer, ActionCommands } from "./AlertReducer";
 
 interface AlertContextInterface {
   setAlert<T>(msg: T, type: T): void;
-  alert: { msg: string; type: string } | null;
+  alert: { msg: string; type: string };
 }
 
 interface Props {

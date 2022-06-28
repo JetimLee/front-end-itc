@@ -19,7 +19,6 @@ export const githubReducer = <T>(
   state: State<T>,
   action: Action<T>
 ): State<T> => {
-  console.log(state, "State in reducer", action, "action in reducer");
   switch (action.type) {
     case "GET_USERS":
       return {
