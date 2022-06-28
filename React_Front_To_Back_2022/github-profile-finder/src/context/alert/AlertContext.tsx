@@ -18,8 +18,8 @@ const AlertContext = createContext<AlertContextInterface>(
 );
 
 export const AlertProvider = ({ children }: Props) => {
-  type initialState = { alert: { msg: string; type: string } | null };
-  const startingState: initialState = { alert: null };
+  type initialState<T> = { alert: { msg: T; type: T } | null };
+  const startingState: initialState<{}> = { alert: null };
   const [state, dispatch] = useReducer(alertReducer, startingState);
 
   const setAlert = <T,>(msg: T, type: T) => {

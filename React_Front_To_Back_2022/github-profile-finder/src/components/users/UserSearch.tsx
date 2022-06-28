@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 
 import GithubContext from "../../context/github/GithubContext";
+import AlertContext from "../../context/alert/AlertContext";
 
 export const UserSearch = () => {
   const { userList, searchUsers, clearUsers } = useContext(GithubContext);
+  const { setAlert, alert } = useContext(AlertContext);
   //no reason to move this to context since it doesn't need to be made globally available
   const [text, setText] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,8 +14,7 @@ export const UserSearch = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text.trim() === "") {
-      alert("There isn't anything in the search bar");
-      //could have an element show up that says there must be some text
+      setAlert("Please enter something", "error");
       return;
     }
     //search for users otherwise - TO DO
