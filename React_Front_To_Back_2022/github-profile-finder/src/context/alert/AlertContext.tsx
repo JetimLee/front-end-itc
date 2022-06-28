@@ -1,22 +1,28 @@
 import { createContext, ReactNode, useReducer } from "react";
 import { alertReducer, ActionCommands } from "./AlertReducer";
 
-interface AlertContextInterface {}
+interface AlertContextInterface {
+  setAlert<T>(msg: T, type: T): void;
+  alert: { msg: string; type: string } | null;
+}
+
 interface Props {
   children?: ReactNode;
+}
+interface Alert {
+  msg: string;
+  type: string;
 }
 const AlertContext = createContext<AlertContextInterface>(
   {} as AlertContextInterface
 );
 
 export const AlertProvider = ({ children }: Props) => {
-  // const [userList, setUserList] = useState<user[]>([]);
-  // const [loading, setLoading] = useState<boolean>(true);
   type initialState = { alert: { msg: string; type: string } | null };
   const startingState: initialState = { alert: null };
   const [state, dispatch] = useReducer(alertReducer, startingState);
 
-  const setAlert = (msg: string, type: string) => {
+  const setAlert = <T,>(msg: T, type: T) => {
     dispatch({ type: ActionCommands.SET_ALERT, payload: { msg, type } });
 
     setTimeout(() => {
@@ -25,7 +31,7 @@ export const AlertProvider = ({ children }: Props) => {
   };
 
   return (
-    <AlertContext.Provider value={{ alert: state, setAlert }}>
+    <AlertContext.Provider value={{ alert: state.alert as Alert, setAlert }}>
       {children}
     </AlertContext.Provider>
   );
