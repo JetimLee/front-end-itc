@@ -7,11 +7,13 @@ interface Props {
 interface ThemeContextInterface {
   darkMode: boolean;
   toggleDarkMode: () => void;
+  initializeTheme: () => void;
 }
 export const getInitialTheme = () => {
   if (typeof window !== "undefined" && window.localStorage) {
     const userMedia = window.matchMedia("(prefers-color-scheme:dark");
     if (userMedia.matches) {
+      //setups the default theme as dark
       return true;
     }
   }
@@ -31,19 +33,39 @@ export const ThemeProvider = ({ children }: Props) => {
   };
   const [state, dispatch] = useReducer(ThemeReducer, startingState);
 
+  const initializeTheme = () => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      const userMedia = window.matchMedia("(prefers-color-scheme:dark");
+      const root = window.document.documentElement;
+
+      if (userMedia.matches) {
+        //setups the default theme as dark
+        root.setAttribute("data-theme", "night");
+        dispatch({ type: ActionCommands.TOGGLE_THEME, payload: true });
+        return;
+      }
+      root.setAttribute("data-theme", "winter");
+      dispatch({ type: ActionCommands.TOGGLE_THEME, payload: false });
+
+      return;
+    }
+  };
+
   const toggleDarkMode = () => {
-    console.log("toggling!");
-    let newTheme = state.darkMode === false ? true : false;
+    const newTheme = state.darkMode === false ? true : false;
     dispatch({ type: ActionCommands.TOGGLE_THEME, payload: newTheme });
     const root = window.document.documentElement;
-    const isDark = newTheme === true;
-    root.setAttribute("data-theme", isDark ? "winter" : "night");
-    localStorage.setItem("color-theme", isDark ? "light" : "dark");
+    root.setAttribute("data-theme", newTheme === false ? "winter" : "night");
+    localStorage.setItem("color-theme", newTheme ? "light" : "dark");
   };
 
   return (
     <ThemeContext.Provider
-      value={{ darkMode: state.darkMode as boolean, toggleDarkMode }}
+      value={{
+        darkMode: state.darkMode as boolean,
+        toggleDarkMode,
+        initializeTheme,
+      }}
     >
       {children}
     </ThemeContext.Provider>
