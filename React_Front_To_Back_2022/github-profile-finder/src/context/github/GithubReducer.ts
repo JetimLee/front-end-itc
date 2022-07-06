@@ -3,7 +3,7 @@ interface State<T> {
   userList: T;
   loading: boolean;
   fish: string;
-  user: user;
+  user: T;
 }
 export enum ActionCommands {
   SET_LOADING = "SET_LOADING",
@@ -23,6 +23,7 @@ export const githubReducer = <T>(
 ): State<T> => {
   switch (action.type) {
     case "GET_USERS":
+      console.log("getting users", action.type);
       return {
         ...state,
         userList: action.payload,
@@ -37,7 +38,7 @@ export const githubReducer = <T>(
     case "GET_USER":
       return {
         ...state,
-        userList: action.payload,
+        user: action.payload,
         loading: false,
       };
     case "CLEAR_USERS":

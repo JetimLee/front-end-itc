@@ -12,6 +12,7 @@ interface GithubContextInterface {
   getUsers: () => Promise<user[] | Error>;
   searchUsers: (username: string) => Promise<user[] | Error>;
   clearUsers: () => void;
+  getUser: (login: string) => Promise<user | Error>;
 }
 interface Props {
   children?: ReactNode;
@@ -54,9 +55,27 @@ export const GithubProvider = ({ children }: Props) => {
       );
       const { items }: { items: user[] } = await data.json();
       console.log("response", items);
-      dispatch({ type: ActionCommands.GET_USER, payload: items });
+      dispatch({ type: ActionCommands.GET_USERS, payload: items });
       return items;
     } catch (error) {
+      setLoading(false);
+      console.log(error);
+      return error as Error;
+    }
+  };
+
+  const getUser = async (login: string): Promise<user | Error> => {
+    setLoading(true);
+    try {
+      //new URLSearchParams constructor, definitely very handy
+      const response: Response = await fetch(`${GITHUB_URL}/users/${login}`);
+
+      const user: user = await response.json();
+      console.log("user in get user", user);
+      dispatch({ type: ActionCommands.GET_USER, payload: user });
+      return user;
+    } catch (error) {
+      window.location.href = "/notfound";
       setLoading(false);
       console.log(error);
       return error as Error;
@@ -92,7 +111,8 @@ export const GithubProvider = ({ children }: Props) => {
   return (
     <GithubContext.Provider
       value={{
-        user: state.user,
+        getUser,
+        user: state.user as user,
         loading: state.loading,
         userList: state.userList as user[],
         getUsers,
