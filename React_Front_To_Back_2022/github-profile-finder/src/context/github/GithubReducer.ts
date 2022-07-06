@@ -1,7 +1,9 @@
+import { user } from "../../interfaces/userInterface";
 interface State<T> {
   userList: T;
   loading: boolean;
   fish: string;
+  user: user;
 }
 export enum ActionCommands {
   SET_LOADING = "SET_LOADING",

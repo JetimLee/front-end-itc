@@ -1,6 +1,7 @@
 interface State<T> {
   darkMode: T;
 }
+
 export enum ActionCommands {
   TOGGLE_THEME = "TOGGLE_THEME",
 }

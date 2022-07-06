@@ -1,6 +1,7 @@
 import { FaHome } from "react-icons/fa";
+import { FC } from "react";
 import { Link } from "react-router-dom";
-export const NotFound = () => {
+export const NotFound: FC = () => {
   return (
     <div className="hero">
       <div className="text-center hero-content">

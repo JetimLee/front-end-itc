@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { About, Home, NotFound } from "./components/pages";
+import { About, Home, NotFound, User } from "./components/pages";
 import { Footer, Navbar, Alert } from "./components/layout";
 import { GithubProvider } from "./context/github/GithubContext";
 import { AlertProvider } from "./context/alert/AlertContext";
@@ -18,6 +18,7 @@ const App: FC = () => {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
+                  <Route path="/user/:login" element={<User />} />
                   <Route path="/*" element={<NotFound />} />
                 </Routes>
               </main>

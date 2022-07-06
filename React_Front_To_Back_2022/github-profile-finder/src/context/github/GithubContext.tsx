@@ -8,6 +8,7 @@ interface GithubContextInterface {
   userList: user[];
   loading: boolean;
   fish: string;
+  user: user;
   getUsers: () => Promise<user[] | Error>;
   searchUsers: (username: string) => Promise<user[] | Error>;
   clearUsers: () => void;
@@ -28,6 +29,7 @@ export const GithubProvider = ({ children }: Props) => {
   // const [loading, setLoading] = useState<boolean>(true);
   type initialState = {
     userList: user[];
+    user: user;
     loading: boolean;
     fish: string;
   };
@@ -35,6 +37,7 @@ export const GithubProvider = ({ children }: Props) => {
     fish: "hello",
     loading: false,
     userList: [] as user[],
+    user: {} as user,
   };
   const [state, dispatch] = useReducer(githubReducer, startingState);
   //made the set loading function because it's a little bit easier to read this than to constantly dispatch new objects with repeat payloads
@@ -89,6 +92,7 @@ export const GithubProvider = ({ children }: Props) => {
   return (
     <GithubContext.Provider
       value={{
+        user: state.user,
         loading: state.loading,
         userList: state.userList as user[],
         getUsers,

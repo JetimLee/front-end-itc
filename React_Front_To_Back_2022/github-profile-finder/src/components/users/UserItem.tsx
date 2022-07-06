@@ -25,7 +25,7 @@ export const UserItem: FC<Props> = ({
           <h2 className="card-title">{userLogin}</h2>
           <Link
             className="text-base-content text-opacity-40 link-underline link-underline-black"
-            to={`/users/${userLogin}`}
+            to={`/user/${userLogin}`}
           >
             Visit Profile
           </Link>
