@@ -88,7 +88,7 @@
 // };
 // type RGBColor = { r: number; g: number; b: number };
 // type HSLColor = { h: number; s: number; l: number };
-// let colors: RGBColor | HSLColor[];
+// let colors: (RGBColor | HSLColor)[];
 
 // function greet(str: string | string[]) {
 //   if (typeof str === "object") {
