@@ -9,7 +9,9 @@
 
 ul {
     list-style: none;
+    overflow: hidden;
 }
+
 
 
 .main-container {
@@ -236,12 +238,16 @@ button img {
     display: grid;
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: repeat(1, minmax(150px, 1fr));
-    padding: .4rem
+    padding: .4rem;
+    height: 100%;
 }
 
 .projects-container>h3 {
     text-align: center;
+}
+
+.projects-container {
+    overflow: auto;
 }
 
 .projects-box {
@@ -264,6 +270,15 @@ button img {
     justify-content: center;
 }
 
+.card-content {
+    text-overflow: ellipsis;
+    max-height: 12rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
 .social-media-btns-container {
     display: flex;
     justify-content: flex-end;
@@ -280,21 +295,23 @@ button img {
 
 
 .announcements-container {
-    padding: 0 1.5rem;
+    padding: 0 0.8rem;
+    overflow: auto;
+    overflow-x: hidden;
     display: grid;
-    width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: repeat(1, minmax(150px, 0.4fr));
-    justify-items: flex-start;
+    grid-template-rows: repeat(1, minmax(9.375rem, 12.5rem));
 }
 
 .announcements-container>div {
     padding: 0 0.5rem;
 }
 
+
 .announcements,
 .trending {
     justify-self: center;
+    height: fit-content;
 }
 
 
