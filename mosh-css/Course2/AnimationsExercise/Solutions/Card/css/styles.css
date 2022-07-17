@@ -1,0 +1,69 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+.card {
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 0 20px 30px #f9f9f9;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 2rem;
+  max-width: 500px;
+  overflow: hidden;
+  transform: rotate(-5deg);
+  transition: transform .2s;
+}
+
+.card-content p {
+  /* I've removed the margin around paragraphs to ensure a consistent vertical and horizontal 
+  space between the edges of the card and the paragraph. Disable this property to see its impact.  */
+  margin: 0;
+}
+
+.card:hover {
+  transform: rotate(0);
+}
+
+.card-content, .card footer {
+  padding: 2rem;
+}
+
+.card-footer {
+  align-items: center;
+  background: rgb(92, 191, 187);
+  background: linear-gradient(90deg, rgba(92, 191, 187, 1) 0%, rgba(116, 214, 144, 1) 100%);
+  color: #fff;
+  display: flex;
+  font-weight: bold;
+}
+
+.thumb {
+  border-radius: 100%;
+  border: 4px solid #fff;
+  height: 60px;
+  margin: 0 1.5rem;
+  transition: transform .3s;
+  width: 60px;
+}
+
+.card:hover .thumb {
+  transform: scale(1.15);
+}
+
+/* On mobile, we have less space so we need to use a smaller value for horizontal padding. 
+On tablets and wider screens, I've increased the horizontal padding. */
+
+@media screen and (min-width: 768px) {
+  .card-content {
+    padding: 4rem;
+  }
+  .card footer {
+    padding: 2rem 4rem;
+  }
+}
