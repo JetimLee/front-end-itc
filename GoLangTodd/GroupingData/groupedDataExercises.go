@@ -38,22 +38,31 @@ func main() {
 	//JY: in order to use append, do we want to specify a length of 0?
 	//goal here is not to have the old array thrown array and to create a new array
 	//a new array will be created if the cap is hit and the new array will have a cap that is double of the old array
-	y := make([]string, 0, 50)
-	fmt.Println("third time WITH Y")
-	fmt.Println(len(y))
-	fmt.Println(cap(y))
+	// y := make([]string, 0, 50)
+	// fmt.Println("third time WITH Y")
+	// fmt.Println(len(y))
+	// fmt.Println(cap(y))
 
-	states := []string{` Alabama`, ` Alaska`, ` Arizona`, ` Arkansas`, ` California`, ` Colorado`, ` Connecticut`, ` Delaware`, ` Florida`, ` Georgia`, ` Hawaii`, ` Idaho`, ` Illinois`, ` Indiana`, ` Iowa`, ` Kansas`, ` Kentucky`, ` Louisiana`, ` Maine`, ` Maryland`, ` Massachusetts`, ` Michigan`, ` Minnesota`, ` Mississippi`, ` Missouri`, ` Montana`, ` Nebraska`, ` Nevada`, ` New Hampshire`, ` New Jersey`, ` New Mexico`, ` New York`, ` North Carolina`, ` North Dakota`, ` Ohio`, ` Oklahoma`, ` Oregon`, ` Pennsylvania`, ` Rhode Island`, ` South Carolina`, ` South Dakota`, ` Tennessee`, ` Texas`, ` Utah`, ` Vermont`, ` Virginia`, ` Washington`, ` West Virginia`, ` Wisconsin`, ` Wyoming`}
+	// states := []string{` Alabama`, ` Alaska`, ` Arizona`, ` Arkansas`, ` California`, ` Colorado`, ` Connecticut`, ` Delaware`, ` Florida`, ` Georgia`, ` Hawaii`, ` Idaho`, ` Illinois`, ` Indiana`, ` Iowa`, ` Kansas`, ` Kentucky`, ` Louisiana`, ` Maine`, ` Maryland`, ` Massachusetts`, ` Michigan`, ` Minnesota`, ` Mississippi`, ` Missouri`, ` Montana`, ` Nebraska`, ` Nevada`, ` New Hampshire`, ` New Jersey`, ` New Mexico`, ` New York`, ` North Carolina`, ` North Dakota`, ` Ohio`, ` Oklahoma`, ` Oregon`, ` Pennsylvania`, ` Rhode Island`, ` South Carolina`, ` South Dakota`, ` Tennessee`, ` Texas`, ` Utah`, ` Vermont`, ` Virginia`, ` Washington`, ` West Virginia`, ` Wisconsin`, ` Wyoming`}
 
-	//JY: use append instead of assignment
-	y = append(y, states...)
+	// //JY: use append instead of assignment
+	// y = append(y, states...)
 
-	fmt.Println("fourth time WITH Y")
-	fmt.Println(y)
-	fmt.Println(len(y))
-	fmt.Println(cap(y))
+	// fmt.Println("fourth time WITH Y")
+	// fmt.Println(y)
+	// fmt.Println(len(y))
+	// fmt.Println(cap(y))
 
-	for i := 0; i < len(y); i++ {
-		fmt.Println(i, y[i])
+	// for i := 0; i < len(y); i++ {
+	// 	fmt.Println(i, y[i])
+	// }
+	exercise7Slice1 := []string{"James", "Bond", "Shaken, not stirred"}
+	exercise7Slice2 := []string{"Miss", "Moneypenny", "Helllooooo, James"}
+	my2DSlice := [][]string{exercise7Slice1, exercise7Slice2}
+	for i := 0; i < len(my2DSlice); i++ {
+		for j := 0; j < len(my2DSlice[i]); j++ {
+			fmt.Println(my2DSlice[i][j])
+		}
 	}
+
 }
