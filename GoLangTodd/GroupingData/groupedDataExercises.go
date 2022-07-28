@@ -60,9 +60,34 @@ func main() {
 	exercise7Slice2 := []string{"Miss", "Moneypenny", "Helllooooo, James"}
 	my2DSlice := [][]string{exercise7Slice1, exercise7Slice2}
 	for i := 0; i < len(my2DSlice); i++ {
+		fmt.Println("\nRecord: ", i)
 		for j := 0; j < len(my2DSlice[i]); j++ {
-			fmt.Println(my2DSlice[i][j])
+			fmt.Printf("\n%d the index position \t %v the value at the index", j, my2DSlice[i][j])
 		}
 	}
 
+	myMap := map[string][]string{
+		"bond_james": {`Shaken, not stirred`, `Martinis`, `Women`}, "moneypenny_miss": {`James Bond`, `Literature`, `Computer Science`},
+		"no_dr": {`Being evil`, `Ice cream`, `Sunsets`},
+	}
+	for key, value := range myMap {
+		fmt.Printf("\nThe key: %v", key)
+		for i := 0; i < len(value); i++ {
+			fmt.Printf("\nThe index %d, the value at index %v", i, value[i])
+		}
+	}
+	myMap["Gavin"] = []string{"Sapir", "Coding", "Star Wars"}
+	for key, value := range myMap {
+		fmt.Printf("\nThe key in new map: %v", key)
+		for i := 0; i < len(value); i++ {
+			fmt.Printf("\nThe index %d, the value at index %v", i, value[i])
+		}
+	}
+	delete(myMap, "no_dr")
+	for key, value := range myMap {
+		fmt.Printf("\nThe key in new map after deletion: %v", key)
+		for i := 0; i < len(value); i++ {
+			fmt.Printf("\nThe index %d, the value at index %v", i, value[i])
+		}
+	}
 }
