@@ -1,16 +1,28 @@
 import { useEffect, useContext } from "react";
-import { MemoryCardProvider } from "./context/MemoryCardContext";
-import MemoryCardContext from "./context/MemoryCardContext";
 import PokemonGrid from "./components/PokemonGameComponents/PokemonGrid";
-import PokemonCard from "./components/PokemonGameComponents/PokemonCard";
+import Scoreboard from "./components/PokemonGameComponents/Scoreboard.jsx";
+import MemoryCardContext from "./context/MemoryCardContext";
+import GameContainer from "./components/UIComponents/GameContainer";
+import PlayAgain from "./components/PokemonGameComponents/PlayAgain";
+import PlayGame from "./components/PokemonGameComponents/PlayGame";
+
 import "./app_styling/app.css";
 
 function App() {
+  const { hasLost, isPlaying } = useContext(MemoryCardContext);
+
   return (
     //need to pass down the props to each card and destructure them from within the card props. Then display the information and style the cards as necessary
-    <MemoryCardProvider>
-      <PokemonGrid></PokemonGrid>
-    </MemoryCardProvider>
+    <GameContainer>
+      {isPlaying ? (
+        <>
+          <Scoreboard />
+          {hasLost ? <PlayAgain /> : <PokemonGrid></PokemonGrid>}
+        </>
+      ) : (
+        <PlayGame />
+      )}
+    </GameContainer>
   );
 }
 

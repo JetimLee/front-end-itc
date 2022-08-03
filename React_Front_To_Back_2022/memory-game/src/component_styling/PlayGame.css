@@ -1,0 +1,11 @@
+.play-button-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.play-button {
+    padding: 32px;
+    border-radius: 60px;
+}

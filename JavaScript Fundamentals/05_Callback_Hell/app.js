@@ -32,6 +32,7 @@ const moveButton = async () => {
     try {
       await moveX(btn, 100, 1000, success, failure);
     } catch (error) {
+      console.log(error);
       return;
     }
   }

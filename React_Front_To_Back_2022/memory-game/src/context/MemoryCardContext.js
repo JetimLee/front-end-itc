@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const MemoryCardContext = createContext();
 
@@ -14,7 +14,40 @@ export const MemoryCardProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
-  const [pokemonAmount, setPokemonAmount] = useState(12);
+  const [pokemonAmount, setPokemonAmount] = useState(3);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+
+  useEffect(() => {
+    handleHighScore();
+  }, [score]);
+
+  function handleScoreIncrease() {
+    setScore(score + 1);
+  }
+  function handleHighScore() {
+    if (score > highScore) {
+      setHighScore(score);
+    }
+  }
+  function startGame() {
+    setIsPlaying(true);
+  }
+  async function handleWin() {
+    setPokemonAmount(pokemonAmount + 1);
+    setSelectedCards([]);
+    await getPokemon(pokemonAmount + 1);
+  }
+
+  //this resets the game, is called in playagain
+  function resetGame() {
+    setScore(0);
+    setIsPlaying(true);
+    setPokemonAmount(3);
+    setSelectedCards([]);
+    setHasLost(false);
+    setHasWon(false);
+  }
 
   //function that determines if two arrays have the exact same elements or not - used in determining if the player has won or not.
   //cannot really just compare lengths since the player in theory could just click the wrong card and that would result in both winning and losing if the lengths of the two arrays are the same
@@ -23,15 +56,12 @@ export const MemoryCardProvider = ({ children }) => {
     if (array1.length === array2.length) {
       return array1.every((element) => {
         if (array2.includes(element)) {
-          console.log("equal!!!");
           setHasWon(true);
           return true;
         }
-
         return false;
       });
     }
-
     return false;
   }
 
@@ -46,30 +76,21 @@ export const MemoryCardProvider = ({ children }) => {
       if (pokemonMap.hasOwnProperty(updatedSelectedCards[i].name)) {
         console.log("YOU LOSE!!!");
         setHasLost(true);
+        return;
       } else {
         pokemonMap[updatedSelectedCards[i].name] = updatedSelectedCards[i].name;
-        // let shuffledArray = shuffleArray(cards);
-        // setCards(shuffledArray);
+        let shuffledArray = shuffleArray(cards);
+        setCards(shuffledArray);
       }
     }
+    handleScoreIncrease();
     //check if player won
-    areEqual(cards, updatedSelectedCards);
+    const results = areEqual(cards, updatedSelectedCards);
+    if (results === true) {
+      handleWin();
+    }
   };
 
-  const getPokemon = async (amountOfPokemon) => {
-    console.log("GETTING POKEMON!");
-    const pokemons = [];
-    for (let i = 1; i <= amountOfPokemon; i++) {
-      const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
-      const response = await fetch(pokemonUrl);
-      const pokemon = await response.json();
-      const { id, name } = pokemon;
-      const image = pokemon.sprites.front_default;
-      pokemons.push({ id, name, image });
-    }
-    const shuffledArray = shuffleArray(pokemons);
-    setCards(shuffledArray);
-  };
   function shuffleArray(array) {
     let currentIndex = array.length,
       randomIndex;
@@ -90,6 +111,22 @@ export const MemoryCardProvider = ({ children }) => {
     return array;
   }
 
+  const getPokemon = async (amountOfPokemon) => {
+    console.log("GETTING POKEMON!");
+    //optimize this to get rid of the stutter when loading in
+    const pokemons = [];
+    for (let i = 1; i <= amountOfPokemon; i++) {
+      const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
+      const response = await fetch(pokemonUrl);
+      const pokemon = await response.json();
+      const { id, name } = pokemon;
+      const image = pokemon.sprites.front_default;
+      pokemons.push({ id, name, image });
+    }
+    const shuffledArray = shuffleArray(pokemons);
+    setCards(shuffledArray);
+  };
+
   //here are the values returned from context
   return (
     <MemoryCardContext.Provider
@@ -107,6 +144,11 @@ export const MemoryCardProvider = ({ children }) => {
         shuffleArray,
         getPokemon,
         selectCard,
+        resetGame,
+        score,
+        highScore,
+        isPlaying,
+        startGame,
       }}
     >
       {children}

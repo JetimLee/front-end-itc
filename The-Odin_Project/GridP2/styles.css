@@ -1,0 +1,42 @@
+.grid-container {
+    resize: both;
+    overflow: auto;
+    display: grid;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid grey;
+    background-color: skyblue;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+/* 
+
+The real magic of auto-fit and auto-fill comes when we incorporate minmax() into the equation. 
+
+With minmax(), we can tell our grid that we want to have as many columns as possible, using the constraints of our minmax() function to determine each column’s size,
+ without it overflowing our grid. Check out how cool our grid looks when we resize it now!
+
+*/
+
+/*
+
+Using clamp() and minmax() are fantastic methods for making grids more responsive while ensuring we don’t hit critical breakpoints that make our website look bad. 
+This is imperative when using images and elements that may have a tendency to overflow or render in undesirable ways when pushed to extreme sizes.*/
+
+.grid-item {
+    background-color: #444;
+    text-align: center;
+    color: #ddd;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    padding: 12px;
+}
+
+p {
+    margin: 12px auto 24px;
+}
+
+img {
+    height: 60px;
+}

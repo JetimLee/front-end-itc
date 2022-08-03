@@ -1,6 +1,5 @@
 import React from "react";
-import { useEffect, useContext } from "react";
-import { MemoryCardProvider } from "../../context/MemoryCardContext";
+import { useContext } from "react";
 import MemoryCardContext from "../../context/MemoryCardContext";
 
 import "../../component_styling/PokemonCard.css";
@@ -13,8 +12,8 @@ const PokemonCard = ({ pokemonObj }) => {
   return (
     <div onClick={() => selectCard(pokemonObj)} className="card-container">
       <div className="card">
+        <p>{name.toUpperCase()}</p>
         <img src={image} alt={"a pokemion card"} />
-        <p>{name}</p>
       </div>
     </div>
   );

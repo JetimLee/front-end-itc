@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main-container {
+    display: flex;
+}
+
+
+
+img {
+    width: 80px;
+}
+
+.odin-logo {
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: 13rem;
+    padding: 1.5rem 0;
+}
+
+.odin-text {
+    font-size: 5rem;
+}
+
+.white-text {
+    color: white;
+
+}
+
+.ghost {
+    opacity: 0.7;
+}
+
+.text-container {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.white-text>span {
+    text-decoration: underline;
+}
+
+
+.side-container {
+    position: relative;
+    height: 100vh;
+    width: 60%;
+    background-image: url("./assets/odin-plants.avif");
+}
+
+.main-content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.top-content {
+    background-color: #D6DBD4;
+    padding-top: 5rem;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+
+}
+
+.top-text-content {
+    padding: 3rem
+}
+
+.top-text-content>p {
+    font-size: 1.5rem;
+    padding: 1.5rem;
+}
+
+h2 {
+    color: #1F2A37;
+    font-weight: 400;
+}
+
+.middle-content {
+    width: 100%;
+    padding: 1.5rem 0;
+    align-items: flex-start;
+    position: relative;
+    -webkit-box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.form-controls-container {
+    display: flex;
+    width: 80%;
+    padding: 0.5rem 0;
+}
+
+
+input {
+    width: 300px;
+    height: 2rem;
+    border: lightgrey 1px solid;
+    border-radius: 5px;
+
+}
+
+.header-container {
+    padding: 1rem 2.8rem;
+}
+
+label {
+    font-size: 0.8rem;
+}
+
+.input-controls {
+    display: flex;
+    flex-direction: column;
+    padding: 0 3rem;
+}
+
+.bottom-content {
+    background-color: #D6DBD4;
+    height: 100%;
+    padding: 1.5rem 3rem;
+}
+
+button {
+    padding: 1rem 4rem;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #596D48;
+}
+
+.bottom-content-container>div {
+    padding: 1rem 0;
+}
+
+.light-green {
+    color: #596D48;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.active {
+    border: 1px solid blue;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+}
+
+.error-text {
+    color: red;
+    font-size: 0.8rem;
+}

@@ -1,0 +1,64 @@
+.container {
+    display: inline-grid;
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(5, 40px);
+    background-color: lightblue;
+    grid-template-areas:
+        "living-room living-room living-room living-room living-room"
+        "living-room living-room living-room living-room living-room"
+        "bedroom bedroom bathroom kitchen kitchen"
+        "bedroom bedroom bathroom kitchen kitchen"
+        "closet closet . . ."
+}
+
+.room {
+    border: 1px solid;
+    font-size: 50%;
+    text-align: center;
+}
+
+#living-room {
+    grid-area: living-room;
+    /* grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 3; */
+}
+
+#kitchen {
+    grid-area: kitchen;
+    /* grid-column: 4 / 6;
+    grid-row: 3 / 6; */
+}
+
+#bedroom {
+    grid-area: bedroom;
+    /* grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 5; */
+}
+
+#bathroom {
+    grid-area: bathroom;
+    /* grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 6; */
+}
+
+#closet {
+    grid-area: closet;
+    /* grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 6; */
+}
+
+/* 
+
+We can set the implicit grid track sizes using the grid-auto-rows and grid-auto-columns properties. 
+
+In this way we can ensure any new tracks the implicit grid makes for extra content are set at values that we defined.
+
+*/
