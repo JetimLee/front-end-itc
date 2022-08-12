@@ -1,6 +1,9 @@
 export interface user {
   avatar_url: string;
   events_url?: string;
+  bio?: string;
+  name?: string;
+  hireable?: boolean;
   followers_url?: string;
   following_url?: string;
   gists_url?: string;
