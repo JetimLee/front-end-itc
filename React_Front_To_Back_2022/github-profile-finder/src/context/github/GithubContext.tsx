@@ -2,8 +2,6 @@ import { createContext, ReactNode, useReducer } from "react";
 import { user } from "../../interfaces/userInterface";
 import { githubReducer, ActionCommands } from "./GithubReducer";
 
-//TO-DO - HANDLE 404 RESULTS, ERROR CARD?
-
 interface GithubContextInterface {
   userList: user[];
   loading: boolean;

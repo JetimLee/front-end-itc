@@ -1,7 +1,15 @@
 export interface user {
   avatar_url: string;
+  following?: number;
+  company?: string;
+  blog?: string;
   events_url?: string;
+  location?: string;
+  bio?: string;
+  name?: string;
+  hireable?: boolean;
   followers_url?: string;
+  followers: string;
   following_url?: string;
   gists_url?: string;
   gravatar_id?: string;
@@ -10,11 +18,14 @@ export interface user {
   login: string;
   node_id?: string;
   organizations_url?: string;
+  public_repos: number;
+  public_gists: number;
   received_events_url?: string;
   repos_url?: string;
   site_admin?: boolean;
   starred_url?: string;
   subscriptions_url?: string;
   type?: string;
+  twitter_username?: string;
   url?: string;
 }
