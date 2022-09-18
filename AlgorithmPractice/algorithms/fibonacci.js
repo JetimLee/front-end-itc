@@ -25,5 +25,14 @@ function fibonacciRecursive(n) {
   return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
 }
 
-console.log(fibonacciRecursive(6));
-console.log(fibonacciIterative(6));
+// console.log(fibonacciRecursive(6));
+// console.log(fibonacciIterative(6));
+
+function specialFibonacci(n) {
+  if (n < 2) {
+    return n;
+  }
+  return specialFibonacci(n - 1) + specialFibonacci(n - 2);
+}
+
+console.log(specialFibonacci(7));
