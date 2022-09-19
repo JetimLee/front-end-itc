@@ -1,13 +1,15 @@
 import { createContext, ReactNode, useReducer } from "react";
 import { user } from "../../interfaces/userInterface";
+import { repoInterface } from "../../interfaces/repoInterface";
 import { githubReducer, ActionCommands } from "./GithubReducer";
 
 interface GithubContextInterface {
   userList: user[];
   loading: boolean;
-  fish: string;
   user: user;
+  repos: repoInterface[];
   getUsers: () => Promise<user[] | Error>;
+  getUserRepos: (login: string) => Promise<any[] | Error>;
   searchUsers: (username: string) => Promise<user[] | Error>;
   clearUsers: () => void;
   getUser: (login: string) => Promise<user | Error>;
@@ -30,11 +32,11 @@ export const GithubProvider = ({ children }: Props) => {
     userList: user[];
     user: user;
     loading: boolean;
-    fish: string;
+    repos: any[];
   };
   const startingState: initialState = {
-    fish: "hello",
     loading: false,
+    repos: [],
     userList: [] as user[],
     user: {} as user,
   };
@@ -79,6 +81,23 @@ export const GithubProvider = ({ children }: Props) => {
       return error as Error;
     }
   };
+  const getUserRepos = async (login: string): Promise<any[] | Error> => {
+    setLoading(true);
+    try {
+      //new URLSearchParams constructor, definitely very handy
+      const response: Response = await fetch(
+        `${GITHUB_URL}/users/${login}/repos`
+      );
+      const data = await response.json();
+      console.log("data in getUserRepos", data);
+      dispatch({ type: ActionCommands.GET_REPOS, payload: data });
+      return data;
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      return error as Error;
+    }
+  };
   const clearUsers = (): void => {
     dispatch({ type: ActionCommands.CLEAR_USERS, payload: [] });
   };
@@ -110,13 +129,14 @@ export const GithubProvider = ({ children }: Props) => {
     <GithubContext.Provider
       value={{
         getUser,
+        repos: state.repos as any[],
         user: state.user as user,
         loading: state.loading,
         userList: state.userList as user[],
         getUsers,
-        fish: state.fish,
         searchUsers,
         clearUsers,
+        getUserRepos,
       }}
     >
       {children}

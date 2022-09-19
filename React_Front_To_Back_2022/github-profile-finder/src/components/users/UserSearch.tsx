@@ -5,7 +5,7 @@ import AlertContext from "../../context/alert/AlertContext";
 
 export const UserSearch = () => {
   const { userList, searchUsers, clearUsers } = useContext(GithubContext);
-  const { setAlert, alert } = useContext(AlertContext);
+  const { setAlert } = useContext(AlertContext);
   //no reason to move this to context since it doesn't need to be made globally available
   const [text, setText] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

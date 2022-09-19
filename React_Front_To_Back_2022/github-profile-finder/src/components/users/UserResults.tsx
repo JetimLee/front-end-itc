@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext } from "react";
 import { user } from "../../interfaces/userInterface";
 import { Spinner } from "../layout";
 import { UserItem } from "./UserItem";
