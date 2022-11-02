@@ -1,13 +1,7 @@
-function translatePigLatin(str) {
-  let lengthOfString = str.length;
-  const vowels = ["a", "e", "i", "o", "u"];
-
-  if (vowels.includes(str[0].toLowerCase())) {
-    return str + "way";
-  } else {
-    console.log("move consonant");
-  }
+function translatePigLatin(str, charPos = 0) {
+  return ["a", "e", "i", "o", "u"].includes(str[0])
+    ? str + (charPos === 0 ? "way" : "ay")
+    : charPos === str.length
+    ? str + "ay"
+    : translatePigLatin(str.slice(1) + str[0], charPos + 1);
 }
-
-translatePigLatin("consonant");
-translatePigLatin("algorithm");

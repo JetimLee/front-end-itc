@@ -1,0 +1,3 @@
+function checkWord(board, word) {
+  // ...
+}
