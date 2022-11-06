@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Person {
@@ -21,11 +22,17 @@ public class Person {
     public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
     }
+    public void setPassport() {
+        this.passport = new String[] {this.name, this.nationality, this.dateOfBirth};
+    }
 
     private int seatNumber;
 
     public String getName() {
         return name;
+    }
+    public String[] getPassport() {
+        return Arrays.copyOf(this.passport, this.passport.length);
     }
 
     public String getNationality() {
@@ -45,6 +52,7 @@ public class Person {
         this.nationality = initNationality;
         this.dateOfBirth = initDOB;
         this.seatNumber = initSeatNumber;
+
     }
 
     public Person(Person p) {
@@ -52,6 +60,7 @@ public class Person {
         this.nationality = p.nationality;
         this.dateOfBirth = p.dateOfBirth;
         this.seatNumber = p.seatNumber;
+        this.passport = p.getPassport();
     }
 
     public boolean applyPassport() {
@@ -67,5 +76,13 @@ public class Person {
         Random rand = new Random();
         int randInt = rand.nextInt((11 - 1) + 1) + 1;
         this.seatNumber = randInt;
+    }
+
+    public String toString() {
+        return "Name: " + this.name + "\n"
+                +  "Nationality: " + this.nationality + "\n"
+                +  "Date of Birth: " + this.dateOfBirth + "\n"
+                +  "Seat Number: " + this.seatNumber + "\n"
+                +  "Passport: " + Arrays.toString(this.passport) + "\n";
     }
 }

@@ -35,4 +35,4 @@ const isPalindrome = (number) => {
   return parseInt(number.toString().split("").reverse().join("")) === number;
 };
 
-console.log(palindromeChain(37, 3));
+console.log(palindromeChain(39));
