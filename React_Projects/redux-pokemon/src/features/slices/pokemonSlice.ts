@@ -1,8 +1,12 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-interface pokemonResult {
+interface PokemonResult {
   name: string;
   url: string;
+}
+export interface ActualPokemonCardResult {
+  sprites: { back_default: string; front_default: string };
+  species: { name: string; url: string };
 }
 
 export const getPokemon = createAsyncThunk(
@@ -14,7 +18,7 @@ export const getPokemon = createAsyncThunk(
       );
       const data = await response.json();
       const allData = await Promise.all(
-        data.results.map(async (pokemonResult: pokemonResult) => {
+        data.results.map(async (pokemonResult: PokemonResult) => {
           const pokemonResponse = await fetch(pokemonResult.url);
           const pokemonData = await pokemonResponse.json();
           return pokemonData;
@@ -32,13 +36,13 @@ export const getPokemon = createAsyncThunk(
 interface PokemonState {
   loading: boolean;
   error: string | null;
-  data: any[] | null;
+  data: ActualPokemonCardResult[];
 }
 
 const initialState: PokemonState = {
   loading: false,
   error: null,
-  data: null,
+  data: [],
 };
 
 const pokemonSlice = createSlice({

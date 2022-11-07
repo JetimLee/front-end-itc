@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { Layout } from "./interface/Layout";
-import { getPokemon } from "./features/slices/pokemonSlice";
+import { PokemonGrid } from "./interface/PokemonGrid";
+import { PokemonCard } from "./components/PokemonCard";
+import {
+  getPokemon,
+  ActualPokemonCardResult,
+} from "./features/slices/pokemonSlice";
 import "./App.css";
 import { useAppDispatch, useAppSelector } from "./hooks/useTypedSelector";
 
@@ -17,6 +22,11 @@ function App() {
     <div>
       <Layout>
         <SearchBar />
+        <PokemonGrid>
+          {pokemon.map((poke: ActualPokemonCardResult) => {
+            return <PokemonCard name={poke.species.name} />;
+          })}
+        </PokemonGrid>
       </Layout>
     </div>
   );
