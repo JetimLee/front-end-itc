@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import { RootState } from "./app/store";
 import { ReservationCard } from "./components/ReservationCard";
 import { addReservation } from "./features/reservationSlice";
+import {
+  increaseCount,
+  decreaseCount,
+  selectCount,
+} from "./features/countSlice";
 
 function App() {
   const [reservationNameInput, setReservationNameInput] = useState("");
   const reservations = useSelector(
     (state: RootState) => state.reservations.value
   );
-
+  const count = useSelector((state: RootState) => state.counter.count);
   const dispatch = useDispatch();
 
   const handleAddReservations = () => {
@@ -19,12 +24,21 @@ function App() {
     dispatch(addReservation(reservationNameInput));
     setReservationNameInput("");
   };
+  const handleCountIncrease = () => {
+    dispatch(increaseCount(3));
+  };
+  const handleCountDecrease = () => {
+    dispatch(decreaseCount(3));
+  };
   return (
     <div className="App">
       <div className="container">
         <div className="reservation-container">
           <div>
             <h5 className="reservation-header">Reservations</h5>
+            <h4>Count: {count} </h4>
+            <button onClick={handleCountIncrease}>Increase count</button>
+            <button onClick={handleCountDecrease}>Decrease count</button>
             <div className="reservation-cards-container">
               {reservations.map((name) => {
                 return <ReservationCard name={name} />;
