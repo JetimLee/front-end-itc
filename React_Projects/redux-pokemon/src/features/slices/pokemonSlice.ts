@@ -2,13 +2,14 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 export const getPokemon = createAsyncThunk(
   "pokemon/getPokemon",
-  async (data, thunkApi) => {
+  async (_data, thunkApi) => {
     try {
       const response = await fetch(
         "https://pokeapi.co/api/v2/pokemon?limit=151"
       );
       const data = await response.json();
       console.log(data, "data from getPokemon");
+      return data;
     } catch (error) {
       console.log("An error occurred when getting the pokemon", error);
       return thunkApi.rejectWithValue(error);
