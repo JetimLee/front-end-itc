@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+//have to set this up so TS knows the properties of the state that is being dealt with
 interface ReservationState {
   value: string[];
 }
@@ -12,6 +13,7 @@ const initialState: ReservationState = {
 //the slice deals with a certain aspect of the applcations data, much like useReducer and useContext
 
 export const reservationsSlice = createSlice({
+  //this is the reducers information, exporting it as default
   name: "reservations",
   initialState,
   reducers: {
@@ -23,8 +25,11 @@ export const reservationsSlice = createSlice({
     addReservation: (state, action: PayloadAction<string>) => {
       state.value.push(action.payload);
     },
+    removeReservation: (state, action: PayloadAction<number>) => {
+      state.value.splice(action.payload, 1);
+    },
   },
 });
-export const { addReservation } = reservationsSlice.actions;
+export const { addReservation, removeReservation } = reservationsSlice.actions;
 
 export default reservationsSlice.reducer;

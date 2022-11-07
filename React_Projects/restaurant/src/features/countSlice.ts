@@ -20,6 +20,7 @@ export const countSlice = createSlice({
     // add:(state) => {
     //     state.value.push("sdjnhsahjn")
     // }
+    //state is something that redux itself will pass into the reducer
     increaseCount: (state, action: PayloadAction<number>) => {
       state.count += action.payload;
     },

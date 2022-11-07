@@ -4,17 +4,19 @@ import "./App.css";
 import { RootState } from "./app/store";
 import { ReservationCard } from "./components/ReservationCard";
 import { addReservation } from "./features/reservationSlice";
-import {
-  increaseCount,
-  decreaseCount,
-  selectCount,
-} from "./features/countSlice";
+import { increaseCount, decreaseCount } from "./features/countSlice";
+import { CustomerFoodCard } from "./components/CustomerFoodCard";
+import { Customer } from "./features/customerSlice";
 
 function App() {
   const [reservationNameInput, setReservationNameInput] = useState("");
   const reservations = useSelector(
     (state: RootState) => state.reservations.value
   );
+  const customerReservations = useSelector(
+    (state: RootState) => state.customers.customerReservations
+  );
+  //take a callback, gotta give it the state and the type of and then what you want back from that callback
   const count = useSelector((state: RootState) => state.counter.count);
   const dispatch = useDispatch();
 
@@ -40,8 +42,8 @@ function App() {
             <button onClick={handleCountIncrease}>Increase count</button>
             <button onClick={handleCountDecrease}>Decrease count</button>
             <div className="reservation-cards-container">
-              {reservations.map((name) => {
-                return <ReservationCard name={name} />;
+              {reservations.map((name, i) => {
+                return <ReservationCard name={name} index={i} />;
               })}
             </div>
           </div>
@@ -54,16 +56,12 @@ function App() {
           </div>
         </div>
         <div className="customer-food-container">
-          <div className="customer-food-card-container">
-            <p>Selena Gomez</p>
-            <div className="customer-foods-container">
-              <div className="customer-food"></div>
-              <div className="customer-food-input-container">
-                <input />
-                <button>Add</button>
-              </div>
-            </div>
-          </div>
+          {customerReservations.map((customer: Customer) => {
+            const { name, id, food } = customer;
+            return (
+              <CustomerFoodCard key={id} name={name} food={food} id={id} />
+            );
+          })}
         </div>
       </div>
     </div>
