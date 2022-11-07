@@ -14,7 +14,7 @@ export const CustomerFoodCard: FC<Props> = ({ name, id, food }) => {
   const dispatch = useDispatch();
   function handleInputChange() {
     if (foodRef.current?.value !== "") {
-      dispatch(addFood({ food: foodRef.current?.value as string, id }));
+      dispatch(addFood({ food: foodRef.current.value, id }));
     }
     foodRef.current.value = "";
   }
