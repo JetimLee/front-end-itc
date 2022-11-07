@@ -1,0 +1,7 @@
+.pokemon-card {
+  display: flex;
+  background-color: crimson;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

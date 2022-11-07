@@ -24,7 +24,12 @@ function App() {
         <SearchBar />
         <PokemonGrid>
           {pokemon.map((poke: ActualPokemonCardResult) => {
-            return <PokemonCard name={poke.species.name} />;
+            return (
+              <PokemonCard
+                name={poke.species.name}
+                imgUrl={poke.sprites.front_default}
+              />
+            );
           })}
         </PokemonGrid>
       </Layout>
