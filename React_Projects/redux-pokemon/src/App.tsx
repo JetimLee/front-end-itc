@@ -3,11 +3,12 @@ import { SearchBar } from "./components/SearchBar";
 import { Layout } from "./interface/Layout";
 import { getPokemon } from "./features/slices/pokemonSlice";
 import "./App.css";
-import { useDispatch } from "react-redux";
-import { useAppDispatch } from "./hooks/useTypedSelector";
+import { useAppDispatch, useAppSelector } from "./hooks/useTypedSelector";
 
 function App() {
   const dispatch = useAppDispatch();
+  const pokemon = useAppSelector((state) => state.data);
+  console.log(pokemon, "hey pokemon");
 
   useEffect(() => {
     dispatch(getPokemon());

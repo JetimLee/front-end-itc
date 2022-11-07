@@ -1,5 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
+interface pokemonResult {
+  name: string;
+  url: string;
+}
+
 export const getPokemon = createAsyncThunk(
   "pokemon/getPokemon",
   async (_data, thunkApi) => {
@@ -8,8 +13,15 @@ export const getPokemon = createAsyncThunk(
         "https://pokeapi.co/api/v2/pokemon?limit=151"
       );
       const data = await response.json();
-      console.log(data, "data from getPokemon");
-      return data;
+      const allData = await Promise.all(
+        data.results.map(async (pokemonResult: pokemonResult) => {
+          const pokemonResponse = await fetch(pokemonResult.url);
+          const pokemonData = await pokemonResponse.json();
+          return pokemonData;
+        })
+      );
+      console.log("got the data", allData);
+      return allData;
     } catch (error) {
       console.log("An error occurred when getting the pokemon", error);
       return thunkApi.rejectWithValue(error);
