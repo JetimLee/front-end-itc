@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  background-color: #e40428;
+  height: 4rem;
+  font-size: 1.8rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.nav-link {
+  color: white;
+}
+.link-container {
+  padding: 0 0.5rem;
+}
+
+.nav-items-container > * {
+  margin: 0 0.5rem;
+}

@@ -1,28 +1,26 @@
 import { FC } from "react";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import "./styling/navbar.css";
+//these aren't actually transparent, need to make them so
+// import pokeball from "../assets/pokeball-transparent.png";
 
-interface Props {
-  title?: string;
-}
-export const Navbar: FC<Props> = ({
-  title = "Github Profile Searcher",
-}: Props) => {
+export const Navbar = () => {
   return (
-    <nav className="navbar mb-12 shadow-lg bg-neutral text-neutral-content">
-      <div className="container mx-auto">
-        <div className="flex-none px-2 mx-2">
-          <Link to="/" className="text-lg font-bold align-middle btn btn-ghost">
-            <FaGithub className="inline  pr-3 text-5xl" />
-            {title}
+    <nav className="navbar-container">
+      <div className="navbar">
+        <div className="link-container">
+          <Link to="/" className="nav-link">
+            Interactive Poke App
+            {/* <img src={pokeball} /> */}
           </Link>
         </div>
-        <div className="flex-1 px-2 mx-2">
-          <div className="flex justify-end">
-            <Link to="/" className="btn btn-ghost btn-sm rounded-btn">
+        <div className="link-container">
+          <div className="nav-items-container">
+            <Link to="/" className="nav-link">
               Home
             </Link>
-            <Link to="/about" className="btn btn-ghost btn-sm rounded-btn">
+            <Link to="/about" className="nav-link">
               About
             </Link>
           </div>

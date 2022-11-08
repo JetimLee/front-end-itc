@@ -5,7 +5,7 @@ import { PokemonCard } from "./PokemonCard";
 import { PokemonGrid } from "../interface/PokemonGrid";
 
 export const PokemonResults = () => {
-  const pokemon = useAppSelector((state) => state.data);
+  const pokemon = useAppSelector((state) => state.searchList);
   const loading = useAppSelector((state) => state.loading);
 
   return (

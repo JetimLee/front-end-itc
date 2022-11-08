@@ -12,7 +12,8 @@ export const PokemonCard: FC<Props> = ({ name, imgUrl, id }) => {
   return (
     <Link to={`/pokemon/${id}`}>
       <div className="pokemon-card">
-        {name} <img src={imgUrl} alt="pokemon card" />
+        {imgUrl && <img src={imgUrl} alt="pokemon card" />}
+        {imgUrl && <p className="pokemon-name">{name}</p>}
       </div>
     </Link>
   );

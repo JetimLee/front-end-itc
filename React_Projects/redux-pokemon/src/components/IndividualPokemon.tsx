@@ -27,6 +27,7 @@ export const IndividualPokemon = () => {
           id: filteredPokemon.id,
           species: filteredPokemon.species,
           sprites: filteredPokemon.sprites,
+          name: filteredPokemon.name,
         })
       );
     }

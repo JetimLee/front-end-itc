@@ -4,4 +4,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 15rem;
+  padding: 0.5rem;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.pokemon-name {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+a:visited {
+  text-decoration: none;
+}
+.pokemon-card img {
+  width: 10rem;
 }

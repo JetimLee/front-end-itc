@@ -8,6 +8,7 @@ export interface ActualPokemonCardResult {
   sprites: { back_default: string; front_default: string };
   species: { name: string; url: string };
   id: number;
+  name: string;
 }
 
 export const getPokemon = createAsyncThunk(
@@ -38,6 +39,7 @@ interface PokemonState {
   loading: boolean;
   error: string | null;
   data: ActualPokemonCardResult[];
+  searchList: ActualPokemonCardResult[];
   individualPokemon: ActualPokemonCardResult;
 }
 
@@ -45,6 +47,7 @@ const initialState: PokemonState = {
   loading: false,
   error: null,
   data: [],
+  searchList: [],
   individualPokemon: {} as ActualPokemonCardResult,
 };
 
@@ -55,6 +58,15 @@ const pokemonSlice = createSlice({
     filterPokemon: (state, action: PayloadAction<ActualPokemonCardResult>) => {
       state.individualPokemon = action.payload;
     },
+    searchPokemon: (
+      state,
+      action: PayloadAction<ActualPokemonCardResult[]>
+    ) => {
+      state.searchList = action.payload;
+    },
+    resetSearch: (state, action: PayloadAction<ActualPokemonCardResult[]>) => {
+      state.searchList = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -63,6 +75,7 @@ const pokemonSlice = createSlice({
       })
       .addCase(getPokemon.fulfilled, (state, action: PayloadAction<any>) => {
         state.data = action.payload;
+        state.searchList = action.payload;
         state.loading = false;
       })
       .addCase(getPokemon.rejected, (state, action: PayloadAction<any>) => {
@@ -70,6 +83,7 @@ const pokemonSlice = createSlice({
       });
   },
 });
-export const { filterPokemon } = pokemonSlice.actions;
+export const { filterPokemon, searchPokemon, resetSearch } =
+  pokemonSlice.actions;
 
 export default pokemonSlice.reducer;
