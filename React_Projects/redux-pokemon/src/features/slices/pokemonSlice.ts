@@ -7,6 +7,7 @@ interface PokemonResult {
 export interface ActualPokemonCardResult {
   sprites: { back_default: string; front_default: string };
   species: { name: string; url: string };
+  id: number;
 }
 
 export const getPokemon = createAsyncThunk(
@@ -37,31 +38,38 @@ interface PokemonState {
   loading: boolean;
   error: string | null;
   data: ActualPokemonCardResult[];
+  individualPokemon: ActualPokemonCardResult;
 }
 
 const initialState: PokemonState = {
   loading: false,
   error: null,
   data: [],
+  individualPokemon: {} as ActualPokemonCardResult,
 };
 
 const pokemonSlice = createSlice({
   name: "pokemon",
   initialState,
-  reducers: {},
+  reducers: {
+    filterPokemon: (state, action: PayloadAction<ActualPokemonCardResult>) => {
+      state.individualPokemon = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getPokemon.pending, (state, action: PayloadAction<any>) => {
         state.loading = true;
       })
       .addCase(getPokemon.fulfilled, (state, action: PayloadAction<any>) => {
-        state.loading = false;
         state.data = action.payload;
+        state.loading = false;
       })
       .addCase(getPokemon.rejected, (state, action: PayloadAction<any>) => {
         state.error = action.payload;
       });
   },
 });
+export const { filterPokemon } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;
