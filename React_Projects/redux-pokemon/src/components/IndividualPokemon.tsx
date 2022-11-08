@@ -11,7 +11,7 @@ import { useAppDispatch } from "../hooks/useTypedSelector";
 
 export const IndividualPokemon = () => {
   const pokemon = useAppSelector((state) => state.data);
-  const individualPokemon = useAppSelector((state) => state.individualPokemon);
+  const individual = useAppSelector((state) => state.individualPokemon);
   const dispatch = useAppDispatch();
   const params = useParams();
   console.log(params);
@@ -21,9 +21,14 @@ export const IndividualPokemon = () => {
       const filteredPokemon = pokemon.filter(
         (poke) => poke.id === parseFloat(params.id!)
       )[0];
-      dispatch(filterPokemon(filteredPokemon));
-    } else {
-      //do some kind of error handling here
+      console.log(filteredPokemon, "filtered pokemon");
+      dispatch(
+        filterPokemon({
+          id: filteredPokemon.id,
+          species: filteredPokemon.species,
+          sprites: filteredPokemon.sprites,
+        })
+      );
     }
   };
 
@@ -34,7 +39,7 @@ export const IndividualPokemon = () => {
 
   return (
     <div>
-      <p>{individualPokemon.species.name}</p>
+      {Object.keys(individual).length !== 0 && <p>{individual.species.name}</p>}
     </div>
   );
 };
