@@ -17,5 +17,4 @@ jobs:
       run: npm ci
     - name: Run tests
       run: npm test
-    - name: Say done
-      run: echo "Done"
+   
