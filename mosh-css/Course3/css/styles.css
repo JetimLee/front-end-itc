@@ -1,0 +1,8 @@
+/* Defining the color pallete of the sheet */
+:root {
+  --color-primary: #2584ff;
+  --color-secondary: #00d9ff;
+  --color-accent: #ff3400;
+  --color-hjeadings: #1b0760;
+  --color-body: #918ca4;
+}
