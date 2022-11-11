@@ -8,6 +8,7 @@ export const Login = () => {
   const [validEmail, setValidEmail] = useState(false)
   const [validPassword, setValidPassword] = useState(false)
   const validated = useAppSelector((state) => state.formValidated)
+  const loading = useAppSelector((state) => state.loading)
   const dispatch = useAppDispatch()
   const emailInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const passwordInputRef = useRef() as MutableRefObject<HTMLInputElement>
@@ -17,7 +18,7 @@ export const Login = () => {
   const validateEmailInput = () => {
     console.log('hello')
     console.log(emailInputRef.current.value.length)
-    if (emailInputRef.current.value.length >= 50) {
+    if (emailInputRef.current.value.length > 50) {
       emailInputRef.current.classList.add('login__input--invalid')
       emailErrorRef.current.classList.remove('login__error--hide')
       return
@@ -137,9 +138,11 @@ export const Login = () => {
           </div>
           <button
             type="submit"
-            aria-disabled={!validated}
-            className={`btn btn--white-text ${!validated && `btn--invalid`}`}
-            disabled={!validated}
+            aria-disabled={!validated || loading}
+            className={`btn btn--white-text ${!validated && `btn--invalid`} ${
+              loading && `btn--invalid`
+            }`}
+            disabled={loading || !validated}
           >
             Login
           </button>
