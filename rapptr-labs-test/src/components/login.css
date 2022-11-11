@@ -72,6 +72,23 @@
   border: 2px solid red !important;
 }
 
+.login__error-message {
+  font-size: 0.9rem;
+  color: red;
+}
+
+.login__error--show {
+  display: block;
+}
+
+.login__error--hide {
+  display: none;
+}
+
+.login__error-message > p {
+  margin: 0 1rem;
+}
+
 /* 
  TO DO
  ADD MEDIA QUERIES
