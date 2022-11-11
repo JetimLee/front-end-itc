@@ -47,7 +47,7 @@ const initialState: TodoAppState = {
   searchedTodos: [],
 }
 
-const todoSlice = createSlice({
+const todoSlice: any = createSlice({
   name: 'todos',
   initialState,
   reducers: {
@@ -62,6 +62,9 @@ const todoSlice = createSlice({
     },
     resetTodosSearch: (state, action: PayloadAction<Todo[]>) => {
       state.searchedTodos = action.payload
+    },
+    setFormValidation: (state, action: PayloadAction<boolean>) => {
+      state.formValidated = action.payload
     },
   },
   //the example async reducer handler
@@ -81,6 +84,11 @@ const todoSlice = createSlice({
   //   },
 })
 
-export const { addTodo, filterTodos, removeToDo, resetTodosSearch } =
-  todoSlice.actions
+export const {
+  addTodo,
+  filterTodos,
+  removeToDo,
+  resetTodosSearch,
+  setFormValidation,
+} = todoSlice.actions
 export default todoSlice.reducer

@@ -1,0 +1,91 @@
+/* stylelint-disable selector-class-pattern */
+.login__form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  font-size: 1.4rem;
+  transform: translate(-50%, -50%);
+}
+
+.form__container {
+  display: flex;
+  align-items: center;
+}
+
+.login__controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__controls > button {
+  margin: 1.6rem 0;
+}
+
+.btn {
+  height: 2.4rem;
+  background-color: #286adc;
+  border: 1px solid black;
+}
+
+.btn--white-text {
+  color: white;
+}
+
+.btn--invalid {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.input__container > .input__icon {
+  position: absolute;
+  width: 1rem;
+  padding: 0.6rem;
+  text-align: center;
+}
+
+.input__container > input {
+  width: 30rem;
+  height: 2.4rem;
+  padding: 0 2rem;
+  border: 1px solid black;
+}
+
+.disabled {
+  color: gray;
+}
+
+.form__inputs > label {
+  font-weight: bolder;
+}
+
+.form__inputs {
+  margin: 0.4rem 0;
+}
+
+.login__header {
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+.login__input--invalid {
+  border: 2px solid red !important;
+}
+
+/* 
+ TO DO
+ ADD MEDIA QUERIES
+ */
+
+@media only screen and (max-width: 600px) {
+  .input__container > input {
+    width: 20rem;
+    height: 2.4rem;
+    padding: 0 2rem;
+    border: 1px solid black;
+  }
+
+  .login__form {
+    font-size: 1rem;
+  }
+}

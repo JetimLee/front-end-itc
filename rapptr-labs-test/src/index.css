@@ -5,6 +5,7 @@
 }
 
 * {
+  padding: 0;
   margin: 0;
 }
 
@@ -14,6 +15,9 @@ body {
 }
 
 body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 62.5%;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -32,6 +36,10 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+input:focus {
+  outline: none;
 }
 
 p,
