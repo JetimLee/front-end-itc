@@ -36,7 +36,11 @@ export const Login = () => {
     }
   }
   const validatePasswordLength = () => {
-    console.log('password')
+    if (passwordInputRef.current.value.trim().length > 16) {
+      passwordErrorRef.current.classList.remove('login__error--hide')
+      passwordInputRef.current.classList.add('login__input--invalid')
+      return
+    }
     if (passwordInputRef.current.value.trim().length < 4) {
       passwordErrorRef.current.classList.remove('login__error--hide')
       passwordInputRef.current.classList.add('login__input--invalid')
