@@ -19,12 +19,14 @@ export const Login = () => {
     console.log(emailInputRef.current.value.length)
     if (emailInputRef.current.value.length >= 50) {
       emailInputRef.current.classList.add('login__input--invalid')
+      emailErrorRef.current.classList.remove('login__error--hide')
       return
     }
     const emailRegex =
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (!emailRegex.test(emailInputRef.current.value)) {
       emailErrorRef.current.classList.remove('login__error--hide')
+      emailInputRef.current.classList.add('login__input--invalid')
       setValidEmail(false)
     } else {
       emailInputRef.current.classList.remove('login__input--invalid')
@@ -37,10 +39,11 @@ export const Login = () => {
     console.log('password')
     if (passwordInputRef.current.value.trim().length < 4) {
       passwordErrorRef.current.classList.remove('login__error--hide')
-
+      passwordInputRef.current.classList.add('login__input--invalid')
       setValidPassword(false)
     } else {
       passwordErrorRef.current.classList.add('login__error--hide')
+      passwordInputRef.current.classList.remove('login__input--invalid')
 
       setValidPassword(true)
       console.log(validPassword, 'valid password')
