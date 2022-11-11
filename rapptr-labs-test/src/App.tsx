@@ -1,8 +1,20 @@
 import './App.css'
-import { Login, Todo, TodoList } from './components'
-
+import { Login, TodoList } from './components'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { PrivateRoutes } from './utils/PrivateRoute'
 function App() {
-  return <div className="App"></div>
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route path="/" element={<TodoList />} />
+          </Route>
+          <Route element={<Login />} path="/login" />
+        </Routes>
+      </Router>
+    </div>
+  )
 }
 
 export default App
