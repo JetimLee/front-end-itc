@@ -9,6 +9,8 @@ interface formData {
   email: string
 }
 interface User {
+  //would want to work more on this interface
+  user?: string
   token?: string
 }
 
@@ -29,12 +31,13 @@ export const sendLoginRequest = createAsyncThunk(
       console.log(response)
       const data: User = await response.json()
       //how it'd look if i was actually getting back a response here
-      // const { token } = data
-      // localStorage.setItem('token', token)
+      // const { user } = data
+      // localStorage.setItem('user', user)
       //would also want to mess with the type, a 400 request could come back from the server and in which case I'd want to attach a type of bad HTTP and save that to the error state.
       console.log(data, 'data in send login request after response.json')
       // if (data.token) {
-      //   localStorage.setItem('user', data.token)
+      //   localStorage.setItem('user', data.user)
+      // return data;
       // }
       localStorage.setItem('user', 'test')
       return data
@@ -51,6 +54,7 @@ interface TodoAppState {
   todos: Todo[]
   searchedTodos: Todo[]
   user: User | null
+  error: Error | null
 }
 
 const initialState: TodoAppState = {
@@ -61,6 +65,7 @@ const initialState: TodoAppState = {
   //this is what will be shown in the actual todos rendering
   searchedTodos: [],
   user: null,
+  error: null,
 }
 
 const todoSlice: any = createSlice({
@@ -90,7 +95,12 @@ const todoSlice: any = createSlice({
       })
       .addCase(sendLoginRequest.fulfilled, (state, action) => {
         state.loading = false
-        state.user = action.payload as User
+        // console.log(action.type, 'action type')
+        if (action.payload.hasOwnProperty('token')) {
+          state.user = action.payload as User
+        } else {
+          state.error = action.payload as Error
+        }
       })
       .addCase(sendLoginRequest.rejected, (state, action) => {
         state.user = action.payload as null
