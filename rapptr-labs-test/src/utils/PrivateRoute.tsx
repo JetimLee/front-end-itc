@@ -1,8 +1,15 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import { useAppSelector } from '../hooks/useTypedSelector'
 
 export const PrivateRoutes = () => {
-  const authenticated = useAppSelector((state) => state.loggedIn)
+  console.log('private route was hit')
+  const useAuth = () => {
+    const user = localStorage.getItem('user')
+    if (user) {
+      return true
+    }
+    return false
+  }
+  const auth = useAuth()
 
-  return authenticated ? <Outlet /> : <Navigate to={'/login'} />
+  return auth ? <Outlet /> : <Navigate to={'/login'} />
 }

@@ -4,31 +4,45 @@ export interface Todo {
   id: string
   isBeingEdited: boolean
 }
+interface formData {
+  password: string
+  email: string
+}
+interface User {
+  token?: string
+}
 
-//the example async request
-// export const getPokemon = createAsyncThunk(
-//     "pokemon/getPokemon",
-//     async (_data, thunkApi) => {
-//       try {
-//         const response = await fetch(
-//           "https://pokeapi.co/api/v2/pokemon?limit=151"
-//         );
-//         const data = await response.json();
-//         const allData = await Promise.all(
-//           data.results.map(async (pokemonResult: PokemonResult) => {
-//             const pokemonResponse = await fetch(pokemonResult.url);
-//             const pokemonData = await pokemonResponse.json();
-//             return pokemonData;
-//           })
-//         );
-//         console.log("got the data", allData);
-//         return allData;
-//       } catch (error) {
-//         console.log("An error occurred when getting the pokemon", error);
-//         return thunkApi.rejectWithValue(error);
-//       }
-//     }
-//   );
+export const sendLoginRequest = createAsyncThunk(
+  //this is where the auth logic goes
+  'todos/sendLoginRequest',
+  async (data: formData, thunkApi) => {
+    console.log('processing login request')
+    console.log(data, 'data argument in send login request async thunk')
+    const settings: RequestInit = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      mode: 'cors',
+    }
+    const loginUrl = `http://dev.rapptrlabs.com/Tests/scripts/user-login.php`
+    try {
+      const response = await fetch(loginUrl, settings)
+      console.log(response)
+      const data: User = await response.json()
+      //how it'd look if i was actually getting back a response here
+      // const { token } = data
+      // localStorage.setItem('token', token)
+      //would also want to mess with the type, a 400 request could come back from the server and in which case I'd want to attach a type of bad HTTP and save that to the error state.
+      console.log(data, 'data in send login request after response.json')
+      // if (data.token) {
+      //   localStorage.setItem('user', data.token)
+      // }
+      localStorage.setItem('user', 'test')
+      return data
+    } catch (error) {
+      return thunkApi.rejectWithValue(error) as unknown as Error
+    }
+  }
+)
 
 interface TodoAppState {
   loading: boolean
@@ -36,6 +50,7 @@ interface TodoAppState {
   formValidated: boolean
   todos: Todo[]
   searchedTodos: Todo[]
+  user: User | null
 }
 
 const initialState: TodoAppState = {
@@ -45,6 +60,7 @@ const initialState: TodoAppState = {
   todos: [],
   //this is what will be shown in the actual todos rendering
   searchedTodos: [],
+  user: null,
 }
 
 const todoSlice: any = createSlice({
@@ -67,21 +83,19 @@ const todoSlice: any = createSlice({
       state.formValidated = action.payload
     },
   },
-  //the example async reducer handler
-  //   extraReducers(builder) {
-  //     builder
-  //       .addCase(getPokemon.pending, (state, action: PayloadAction<any>) => {
-  //         state.loading = true;
-  //       })
-  //       .addCase(getPokemon.fulfilled, (state, action: PayloadAction<any>) => {
-  //         state.data = action.payload;
-  //         state.searchList = action.payload;
-  //         state.loading = false;
-  //       })
-  //       .addCase(getPokemon.rejected, (state, action: PayloadAction<any>) => {
-  //         state.error = action.payload;
-  //       });
-  //   },
+  extraReducers(builder) {
+    builder
+      .addCase(sendLoginRequest.pending, (state, action) => {
+        state.loading = true
+      })
+      .addCase(sendLoginRequest.fulfilled, (state, action) => {
+        state.loading = false
+        state.user = action.payload as User
+      })
+      .addCase(sendLoginRequest.rejected, (state, action) => {
+        state.user = action.payload as null
+      })
+  },
 })
 
 export const {

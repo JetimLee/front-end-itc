@@ -1,10 +1,16 @@
 import { useAppDispatch, useAppSelector } from '../hooks/useTypedSelector'
 import './login.css'
-import { setFormValidation } from '../features/slices/todoSlice'
+import {
+  setFormValidation,
+  sendLoginRequest,
+} from '../features/slices/todoSlice'
+
 import React, { useState, useRef, MutableRefObject, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 export const Login = () => {
+  const navigate = useNavigate()
   const [validEmail, setValidEmail] = useState(false)
   const [validPassword, setValidPassword] = useState(false)
   const validated = useAppSelector((state) => state.formValidated)
@@ -15,12 +21,13 @@ export const Login = () => {
   const emailErrorRef = useRef() as MutableRefObject<HTMLSpanElement>
   const passwordErrorRef = useRef() as MutableRefObject<HTMLSpanElement>
 
+  //TODO - ROUTE THE USER TO THE TODOS PAGE AFTER LOGIN
   const validateEmailInput = () => {
-    console.log('hello')
     console.log(emailInputRef.current.value.length)
     if (emailInputRef.current.value.length > 50) {
       emailInputRef.current.classList.add('login__input--invalid')
       emailErrorRef.current.classList.remove('login__error--hide')
+      setValidEmail(false)
       return
     }
     const emailRegex =
@@ -33,54 +40,39 @@ export const Login = () => {
       emailInputRef.current.classList.remove('login__input--invalid')
       emailErrorRef.current.classList.add('login__error--hide')
       setValidEmail(true)
-      console.log(validEmail, 'valid email')
     }
   }
   const validatePasswordLength = () => {
     if (passwordInputRef.current.value.trim().length > 16) {
       passwordErrorRef.current.classList.remove('login__error--hide')
       passwordInputRef.current.classList.add('login__input--invalid')
+      setValidPassword(false)
       return
-    }
-    if (passwordInputRef.current.value.trim().length < 4) {
+    } else if (passwordInputRef.current.value.trim().length < 4) {
       passwordErrorRef.current.classList.remove('login__error--hide')
       passwordInputRef.current.classList.add('login__input--invalid')
       setValidPassword(false)
     } else {
       passwordErrorRef.current.classList.add('login__error--hide')
       passwordInputRef.current.classList.remove('login__input--invalid')
-
       setValidPassword(true)
-      console.log(validPassword, 'valid password')
     }
   }
 
   const handleFormSubmission = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('form submitted')
     const formData = {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     }
-    console.log(formData, 'form data')
-
-    const settings: RequestInit = {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      mode: 'cors',
+    console.log(formData, 'form data in handle submission')
+    await dispatch(sendLoginRequest(formData))
+    //purely for testing, wouldn't set it here, but would set in the async request
+    console.log('seeing if local storage has user')
+    console.log(localStorage.getItem('user'))
+    if (localStorage.getItem('user')) {
+      navigate('/')
     }
-
-    const loginUrl = `http://dev.rapptrlabs.com/Tests/scripts/user-login.php`
-
-    try {
-      const response = await fetch(loginUrl, settings)
-      console.log(response)
-      const data = await response.json()
-      console.log(data)
-    } catch (error) {
-      console.log('an error occurred', error)
-    }
-    console.log(settings.body)
   }
 
   useEffect(() => {
@@ -89,6 +81,8 @@ export const Login = () => {
     } else {
       dispatch(setFormValidation(false))
     }
+    console.log(validEmail, 'valid email')
+    console.log(validPassword, 'valid password')
   }, [validEmail, validPassword])
 
   return (
@@ -116,7 +110,6 @@ export const Login = () => {
               </span>
             </div>
           </div>
-
           <div className="form__inputs">
             <label htmlFor="password_input">Password</label>
             <div className="input__container">
@@ -138,9 +131,9 @@ export const Login = () => {
           </div>
           <button
             type="submit"
-            aria-disabled={!validated || loading}
-            className={`btn btn--white-text ${!validated && `btn--invalid`} ${
-              loading && `btn--invalid`
+            aria-disabled={loading || !validated}
+            className={`btn btn--white-text ${
+              !validated || loading ? `btn--invalid` : ''
             }`}
             disabled={loading || !validated}
           >

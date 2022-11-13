@@ -77,10 +77,6 @@
   color: red;
 }
 
-.login__error--show {
-  display: block;
-}
-
 .login__error--hide {
   display: none;
 }
