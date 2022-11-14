@@ -15,6 +15,7 @@ export const Login = () => {
   const [validPassword, setValidPassword] = useState(false)
   const validated = useAppSelector((state) => state.formValidated)
   const loading = useAppSelector((state) => state.loading)
+  const { error } = useAppSelector((state) => state)
   const dispatch = useAppDispatch()
   const emailInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const passwordInputRef = useRef() as MutableRefObject<HTMLInputElement>
@@ -86,10 +87,10 @@ export const Login = () => {
   }, [validEmail, validPassword])
 
   return (
-    <div className="login__container">
-      <form onSubmit={(e) => handleFormSubmission(e)} className="login__form">
-        <h2 className="login__header">Rapptr Labs</h2>
-        <div className="login__controls">
+    <form onSubmit={(e) => handleFormSubmission(e)} className="login__form">
+      <h2 className="login__header">Rapptr Labs</h2>
+      <div className="form__top">
+        <div className="form__middle">
           <div className="form__inputs">
             <label htmlFor="login_input">Email</label>
             <div className="input__container">
@@ -114,6 +115,7 @@ export const Login = () => {
             <label htmlFor="password_input">Password</label>
             <div className="input__container">
               <FontAwesomeIcon className="input__icon" icon={faLock} />
+
               <input
                 onChange={validatePasswordLength}
                 ref={passwordInputRef}
@@ -121,6 +123,7 @@ export const Login = () => {
                 id="password_input"
                 placeholder="Must be at least 4 characters long"
               />
+
               <span
                 ref={passwordErrorRef}
                 className="login__error--hide login__error-message"
@@ -129,6 +132,8 @@ export const Login = () => {
               </span>
             </div>
           </div>
+        </div>
+        <div className="form__bottom">
           <button
             type="submit"
             aria-disabled={loading || !validated}
@@ -139,8 +144,13 @@ export const Login = () => {
           >
             Login
           </button>
+          {error && (
+            <span className="login__error-message">
+              The server could not be reached, please try again later
+            </span>
+          )}
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   )
 }

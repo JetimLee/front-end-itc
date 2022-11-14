@@ -13,13 +13,13 @@
   align-items: center;
 }
 
-.login__controls {
+.form__top {
   display: flex;
   flex-direction: column;
 }
 
-.login__controls > button {
-  margin: 1.6rem 0;
+.form__top > div {
+  margin: 1.2rem 0;
 }
 
 .btn {
@@ -30,6 +30,12 @@
 
 .btn--white-text {
   color: white;
+}
+
+.form__bottom {
+  display: grid;
+  flex-direction: column;
+  text-align: center;
 }
 
 .btn--invalid {
@@ -45,7 +51,7 @@
 }
 
 .input__container > input {
-  width: 30rem;
+  min-width: 26rem;
   height: 2.4rem;
   padding: 0 2rem;
   border: 1px solid black;
@@ -92,13 +98,13 @@
 
 @media only screen and (max-width: 600px) {
   .input__container > input {
-    width: 20rem;
+    min-width: 22rem;
     height: 2.4rem;
     padding: 0 2rem;
     border: 1px solid black;
   }
 
-  .login__form {
-    font-size: 1rem;
+  .login__error-message {
+    max-width: 22rem;
   }
 }

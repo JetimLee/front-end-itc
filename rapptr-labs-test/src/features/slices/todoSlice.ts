@@ -35,11 +35,14 @@ export const sendLoginRequest = createAsyncThunk(
       // localStorage.setItem('user', user)
       //would also want to mess with the type, a 400 request could come back from the server and in which case I'd want to attach a type of bad HTTP and save that to the error state.
       console.log(data, 'data in send login request after response.json')
-      // if (data.token) {
-      //   localStorage.setItem('user', data.user)
-      // return data;
-      // }
-      localStorage.setItem('user', 'test')
+      const { token } = data
+      if (token) {
+        localStorage.setItem('user', token)
+        //this will be the user object i get back
+        return data
+      }
+      //for testing with the broken api
+      // localStorage.setItem('user', 'test')
       return data
     } catch (error) {
       return thunkApi.rejectWithValue(error) as unknown as Error
@@ -103,7 +106,7 @@ const todoSlice: any = createSlice({
         }
       })
       .addCase(sendLoginRequest.rejected, (state, action) => {
-        state.user = action.payload as null
+        state.error = action.payload as Error
       })
   },
 })
