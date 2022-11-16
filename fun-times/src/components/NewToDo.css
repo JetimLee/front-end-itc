@@ -1,0 +1,20 @@
+/* stylelint-disable selector-class-pattern */
+
+.newtodo__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  margin-top: 1px;
+  margin-left: 1px;
+  outline: 2px solid;
+}
+
+.newtodo__input {
+  padding: 0.4rem;
+  margin-left: 0.8rem;
+  border: 1px solid black;
+}
+
+.btn--save {
+  background-color: black;
+}

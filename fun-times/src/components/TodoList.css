@@ -1,0 +1,53 @@
+/* stylelint-disable selector-class-pattern */
+
+.nav__container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.nav__container > button {
+  width: 4rem;
+  padding: 0.4rem;
+}
+
+.todo__container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.todo__list {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(320px, 1fr));
+  padding-bottom: 10rem;
+  border: 3px solid black;
+  border-radius: 0.8rem;
+}
+
+.todo__search {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-top: 1px;
+  margin-left: 1px;
+}
+
+.search__container {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.6rem;
+  border: 1px solid black;
+  border-radius: 1.6rem;
+}
+
+.search__container > input {
+  border: none;
+}
+
+.btn--todo {
+  width: 2.8rem;
+  font-weight: bolder;
+}
