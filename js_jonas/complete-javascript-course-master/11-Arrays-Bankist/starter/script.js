@@ -110,20 +110,21 @@ currencies.forEach((value, key, map) => {
 const calcBalance = movements => {
   return movements.reduce((acc, cur) => acc + cur, 0);
 };
-const calcDisplaySummary = movements => {
-  const totalIncome = movements
+const calcDisplaySummary = acc => {
+  console.log(acc, 'acc in calc display summary');
+  const totalIncome = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, cur) => acc + cur, 0);
   labelSumIn.textContent = `${totalIncome}$`;
 
-  const totalOuts = movements
+  const totalOuts = acc.movements
     .filter(mov => mov <= 0)
     .reduce((acc, cur) => acc + cur, 0);
   labelSumOut.textContent = `${Math.abs(totalOuts)}$`;
 
-  const interestPayments = movements
+  const interestPayments = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       console.log(arr, 'arr inside of interest payments');
       return int >= 1;
@@ -132,12 +133,9 @@ const calcDisplaySummary = movements => {
 
   labelSumInterest.textContent = `${interestPayments}$`;
 };
-calcDisplaySummary(account1.movements);
 const maxNumber = movements.reduce((acc, cur) => {
   return acc > cur ? acc : cur;
 }, movements[0]);
-console.log(maxNumber, 'max number');
-labelBalance.textContent = `$${calcBalance(account1.movements)}`;
 const eurToUsd = 1.1;
 const eurToUsdArray = movements.map(mov => mov * eurToUsd);
 console.log(eurToUsdArray, 'after conversion');
@@ -180,7 +178,36 @@ console.log(foundAccount, 'found account with for of');
 console.log(account);
 
 //My event handlers
-btnLogin.addEventListener('click', () => {});
+let currentAccount;
+
+btnLogin.addEventListener('click', e => {
+  //fun fact, wrapping inputs with a form makes it so that the inputs can be triggered with the enter key
+  e.preventDefault();
+  console.log('login');
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    //display ui and message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 100;
+    inputLoginUsername.value = '';
+    inputLoginPin.value = '';
+    //makes the element lose its focus
+    inputLoginPin.blur();
+
+    //display movements
+    displayMovements(currentAccount.movements);
+    //display balance
+    labelBalance.textContent = `$${calcBalance(currentAccount.movements)}`;
+
+    calcDisplaySummary(currentAccount);
+    //display summary
+  }
+});
 //LECTURE APP STUFF ^^^
 
 /*
