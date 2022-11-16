@@ -22,9 +22,7 @@ export const Login = () => {
   const emailErrorRef = useRef() as MutableRefObject<HTMLSpanElement>
   const passwordErrorRef = useRef() as MutableRefObject<HTMLSpanElement>
 
-  //TODO - ROUTE THE USER TO THE TODOS PAGE AFTER LOGIN
   const validateEmailInput = () => {
-    console.log(emailInputRef.current.value.length)
     if (emailInputRef.current.value.length > 50) {
       emailInputRef.current.classList.add('login__input--invalid')
       emailErrorRef.current.classList.remove('login__error--hide')
@@ -66,15 +64,16 @@ export const Login = () => {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     }
-    console.log(formData, 'form data in handle submission')
     await dispatch(sendLoginRequest(formData))
     //purely for testing, wouldn't set it here, but would set in the async request
-    console.log('seeing if local storage has user')
-    console.log(localStorage.getItem('user'))
     if (localStorage.getItem('user')) {
       navigate('/')
     }
   }
+
+  useEffect(() => {
+    emailInputRef.current.focus()
+  }, [])
 
   useEffect(() => {
     if (validEmail && validPassword) {
@@ -82,13 +81,14 @@ export const Login = () => {
     } else {
       dispatch(setFormValidation(false))
     }
-    console.log(validEmail, 'valid email')
-    console.log(validPassword, 'valid password')
   }, [validEmail, validPassword])
 
   return (
-    <form onSubmit={(e) => handleFormSubmission(e)} className="login__form">
-      <h2 className="login__header">Rapptr Labs</h2>
+    <form
+      onSubmit={(e) => handleFormSubmission(e)}
+      className="center__container"
+    >
+      <h1 className="login__header">Rapptr Labs</h1>
       <div className="form__top">
         <div className="form__middle">
           <div className="form__inputs">
@@ -98,6 +98,7 @@ export const Login = () => {
               <input
                 onChange={validateEmailInput}
                 ref={emailInputRef}
+                aria-invalid={validEmail ? 'false' : 'true'}
                 type="email"
                 className={`login__input`}
                 id="login_input"
@@ -137,18 +138,14 @@ export const Login = () => {
           <button
             type="submit"
             aria-disabled={loading || !validated}
-            className={`btn btn--white-text ${
-              !validated || loading ? `btn--invalid` : ''
+            className={`btn btn--white-text btn--primary ${
+              loading || !validated ? `btn--invalid` : ''
             }`}
             disabled={loading || !validated}
           >
             Login
           </button>
-          {error && (
-            <span className="login__error-message">
-              The server could not be reached, please try again later
-            </span>
-          )}
+          {error && <span className="login__error-message">{error}</span>}
         </div>
       </div>
     </form>

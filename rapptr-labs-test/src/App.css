@@ -1,3 +1,18 @@
+/* stylelint-disable selector-class-pattern */
+
 body {
+  background-color: #fff;
+}
+
+.center__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  font-size: 1.4rem;
+  transform: translate(-50%, -50%);
+}
+
+.btn--white {
   background-color: #fff;
 }

@@ -1,7 +1,6 @@
 import { Outlet, Navigate } from 'react-router-dom'
 
 export const PrivateRoutes = () => {
-  console.log('private route was hit')
   const useAuth = () => {
     const user = localStorage.getItem('user')
     if (user) {

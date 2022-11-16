@@ -1,12 +1,4 @@
 /* stylelint-disable selector-class-pattern */
-.login__form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  font-size: 1.4rem;
-  transform: translate(-50%, -50%);
-}
 
 .form__container {
   display: flex;
@@ -24,8 +16,11 @@
 
 .btn {
   height: 2.4rem;
-  background-color: #286adc;
   border: 1px solid black;
+}
+
+.btn--primary {
+  background-color: #286adc;
 }
 
 .btn--white-text {
@@ -69,10 +64,10 @@
   margin: 0.4rem 0;
 }
 
-.login__header {
+/* .login__header {
   font-size: 3.5rem;
   text-align: center;
-}
+} */
 
 .login__input--invalid {
   border: 2px solid red !important;
@@ -91,10 +86,10 @@
   margin: 0 1rem;
 }
 
-/* 
- TO DO
- ADD MEDIA QUERIES
- */
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
 
 @media only screen and (max-width: 600px) {
   .input__container > input {

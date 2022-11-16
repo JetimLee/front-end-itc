@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import axios, { AxiosError } from 'axios'
+import { TodoItem } from '../../interfaces'
 
-export interface Todo {
-  id: string
-  isBeingEdited: boolean
-}
 interface formData {
   password: string
   email: string
@@ -18,34 +16,30 @@ export const sendLoginRequest = createAsyncThunk(
   //this is where the auth logic goes
   'todos/sendLoginRequest',
   async (data: formData, thunkApi) => {
-    console.log('processing login request')
-    console.log(data, 'data argument in send login request async thunk')
-    const settings: RequestInit = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      mode: 'cors',
-    }
-    const loginUrl = `http://dev.rapptrlabs.com/Tests/scripts/user-login.php`
+    const { email, password } = data
+    let bodyFormData = new FormData()
+    bodyFormData.append('email', email)
+    bodyFormData.append('password', password)
+    const loginUrl = `https://dev.rapptrlabs.com/Tests/scripts/user-login.php`
     try {
-      const response = await fetch(loginUrl, settings)
-      console.log(response)
-      const data: User = await response.json()
-      //how it'd look if i was actually getting back a response here
-      // const { user } = data
-      // localStorage.setItem('user', user)
-      //would also want to mess with the type, a 400 request could come back from the server and in which case I'd want to attach a type of bad HTTP and save that to the error state.
-      console.log(data, 'data in send login request after response.json')
-      const { token } = data
-      if (token) {
-        localStorage.setItem('user', token)
-        //this will be the user object i get back
+      const response = await axios({
+        method: 'post',
+        url: loginUrl,
+        data: bodyFormData,
+      })
+      const { data } = response
+      const { user_token } = data
+      if (user_token) {
+        localStorage.setItem('user', user_token)
         return data
       }
-      //for testing with the broken api
-      // localStorage.setItem('user', 'test')
-      return data
     } catch (error) {
-      return thunkApi.rejectWithValue(error) as unknown as Error
+      console.log(error)
+      if (axios.isAxiosError(error)) {
+        return thunkApi.rejectWithValue(error.message)
+      } else if (error instanceof Error) {
+        return error.message
+      }
     }
   }
 )
@@ -54,10 +48,10 @@ interface TodoAppState {
   loading: boolean
   loggedIn: boolean
   formValidated: boolean
-  todos: Todo[]
-  searchedTodos: Todo[]
+  todos: TodoItem[]
+  searchedTodos: TodoItem[]
   user: User | null
-  error: Error | null
+  error: string | null
 }
 
 const initialState: TodoAppState = {
@@ -75,17 +69,24 @@ const todoSlice: any = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTodo: (state, action: PayloadAction<Todo>) => {
-      state.todos.push(action.payload)
+    addTodo: (state, action: PayloadAction<TodoItem>) => {
+      state.todos.unshift(action.payload)
+      localStorage.setItem('todos', JSON.stringify(state.todos))
     },
-    removeToDo: (state, action: PayloadAction<Todo[]>) => {
+    removeToDo: (state, action: PayloadAction<TodoItem[]>) => {
+      state.todos = action.payload
+      localStorage.setItem('todos', JSON.stringify(state.todos))
+    },
+    setActualToDoItems: (state, action: PayloadAction<TodoItem[]>) => {
       state.todos = action.payload
     },
-    filterTodos: (state, action: PayloadAction<Todo[]>) => {
+    //this is used for rerendering the list
+    setToDoItems: (state, action: PayloadAction<TodoItem[]>) => {
       state.searchedTodos = action.payload
     },
-    resetTodosSearch: (state, action: PayloadAction<Todo[]>) => {
-      state.searchedTodos = action.payload
+    updateTodoITems: (state, action: PayloadAction<TodoItem[]>) => {
+      state.todos = action.payload
+      localStorage.setItem('todos', JSON.stringify(state.todos))
     },
     setFormValidation: (state, action: PayloadAction<boolean>) => {
       state.formValidated = action.payload
@@ -98,24 +99,26 @@ const todoSlice: any = createSlice({
       })
       .addCase(sendLoginRequest.fulfilled, (state, action) => {
         state.loading = false
-        // console.log(action.type, 'action type')
-        if (action.payload.hasOwnProperty('token')) {
+        if (action.payload.hasOwnProperty('user_token')) {
           state.user = action.payload as User
+          state.error = null
         } else {
-          state.error = action.payload as Error
+          state.error = action.payload
         }
       })
       .addCase(sendLoginRequest.rejected, (state, action) => {
-        state.error = action.payload as Error
+        state.loading = false
+        state.error = action.payload as string
       })
   },
 })
 
 export const {
   addTodo,
-  filterTodos,
+  setToDoItems,
   removeToDo,
-  resetTodosSearch,
   setFormValidation,
+  updateTodoITems,
+  setActualToDoItems,
 } = todoSlice.actions
 export default todoSlice.reducer
