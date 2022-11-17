@@ -155,6 +155,18 @@ const updateUI = function (acc) {
 // Event handlers
 let currentAccount;
 
+//fake log in
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+const now = new Date();
+const day = `${now.getDate()}`.padStart(2, 0);
+const month = `${now.getMonth() + 1}`.padStart(2, 0);
+const year = `${now.getFullYear()}`;
+
+const hour = now.getHours();
+const minute = now.getMinutes();
+labelDate.textContent = `${month}/${day}/${year}, ${hour}:${minute}`;
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -251,3 +263,12 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+//parseFloat will give you back a floating point number, whereas parseInt will chop off anything and round to the nearest int
+
+// const now = new Date();
+// console.log(now);
+// console.log(new Date('December 25, 2022'));
+
+// console.log(new Date(account1.movementsDates[0]));
+// console.log(now.getFullYear());

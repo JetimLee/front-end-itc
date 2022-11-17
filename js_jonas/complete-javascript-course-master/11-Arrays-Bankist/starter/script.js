@@ -101,14 +101,8 @@ for (const [i, value] of movements.entries()) {
   );
 }
 
-currencies.forEach((value, key, map) => {
-  console.log(key);
-  console.log(value);
-  console.log(map);
-});
-
-const calcBalance = movements => {
-  return movements.reduce((acc, cur) => acc + cur, 0);
+const calcBalance = acc => {
+  return acc.movements.reduce((acc, cur) => acc + cur, 0);
 };
 const calcDisplaySummary = acc => {
   console.log(acc, 'acc in calc display summary');
@@ -202,11 +196,20 @@ btnLogin.addEventListener('click', e => {
     //display movements
     displayMovements(currentAccount.movements);
     //display balance
-    labelBalance.textContent = `$${calcBalance(currentAccount.movements)}`;
+    labelBalance.textContent = `$${calcBalance(currentAccount)}`;
 
     calcDisplaySummary(currentAccount);
     //display summary
   }
+});
+
+btnTransfer.addEventListener('click', e => {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAccount = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  console.log(amount, receiverAccount);
 });
 //LECTURE APP STUFF ^^^
 
