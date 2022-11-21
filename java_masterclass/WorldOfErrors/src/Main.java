@@ -1,36 +1,49 @@
-import java.util.Arrays;
+import models.Car;
+import models.Dealership;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] matrix = new int[][]{
-                {1, 2, 3},
-                {8, 6, 4},
-                {2, 4, 6}
+
+        Scanner scan = new Scanner(System.in);
+        
+        Car[] cars = new Car[] {
+            new Car("  Ford  ", 5000),
+            new Car("   Honda ", 12000),
         };
-        //issue with this is assuming all arrays are going to be the same inside of the 2d array, but that is a safe assumption when dealing with triangles
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j <= i; j++) {
-//                if (j < i) {
-//                    matrix[j][i] = 0;
-//                }
-//            }
-//        }
-        //cleaner, more readable, achieves same results. Can also be used with arrays that are larger on the inside than the first array
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (j > i) {
-                    matrix[i][j] = 0;
-                }
+        cars[1].setMake("  Toyota  ");
+        cars[1].setPrice(8500);
+
+        Dealership dealership = new Dealership(cars);
+
+        System.out.println("\n************* JAVA DEALERSHIP *************");
+        while (true) {
+            System.out.println(dealership);
+            System.out.print("Enter the spot number of the car you want to buy: ");
+            if(!scan.hasNextInt()){
+                scan.nextLine();
+                System.out.println("Invalid input");
             }
+            int spot = scan.nextInt();
+            scan.nextLine();
+
+            if(spot < 0 || spot>dealership.getLength() - 1){
+                System.out.println("That spot doesn't exist!");
+                continue;
+            }else if(dealership.getCar(spot)==null){
+                System.out.println("There ain't a car there!");
+                continue;
+            }
+
+            dealership.sell(spot);
+        if(dealership.isEmpty()){
+            break;
         }
 
-        System.out.println();
-        printMatrix(matrix);
-    }
-
-    public static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            System.out.println(Arrays.toString(matrix[i]));
         }
+
+        System.out.println("Goodbye, the dealership is empty!");
+
     }
 }
