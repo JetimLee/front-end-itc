@@ -3,6 +3,7 @@
       "browser": true,
       "es2021": true
     },
+    
     "extends": [
       "eslint:recommended",
       "plugin:react/recommended",
@@ -19,7 +20,6 @@
       },
       "ecmaVersion": 2021,
       "sourceType": "module",
-      "project": "./tsconfig.json" // This line was added
     },
     "plugins": ["react", "@typescript-eslint"],
     "rules": {"prettier/prettier": "error"},
