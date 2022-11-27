@@ -13,6 +13,14 @@
   display: flex;
 }
 
+.todo__text--complete {
+  text-decoration: line-through;
+}
+
+.todotext__container > p {
+  cursor: pointer;
+}
+
 .todo__icons {
   display: flex;
   gap: 0.8rem;

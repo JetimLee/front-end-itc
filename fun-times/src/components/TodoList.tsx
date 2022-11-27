@@ -13,7 +13,7 @@ import { useQuery } from '@apollo/client'
 import { Spinner } from './Spinner'
 
 //TODO
-//CATCH AND DISPLAY ERROR, MAYBE USE A POP UP?
+//CATCH AND DISPLAY ERROR, use a cutsie image like the 404 not found or this is the result you're not looking for??
 
 export const TodoList = () => {
   const { data, loading, error } = useQuery(GET_TODOS)

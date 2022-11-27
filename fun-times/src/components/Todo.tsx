@@ -1,20 +1,21 @@
 import React, { FC, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { TOGGLE_TODO } from '../mutations/toggleToDo'
 
 import { TodoItem } from '../interfaces'
 import './Todo.css'
 import { useAppDispatch, useAppSelector } from '../hooks/useTypedSelector'
-import {
-  removeToDo,
-  setToDoItems,
-  updateTodoITems,
-} from '../features/slices/todoSlice'
+import { removeToDo, updateTodoITems } from '../features/slices/todoSlice'
+import { useMutation } from '@apollo/client'
 
 interface TodoProps {
   todo: TodoItem
 }
-export const Todo: FC<TodoProps> = ({ todo: { completed, id, text } }) => {
+export const Todo: FC<TodoProps> = ({ todo }) => {
+  const { done, id, text } = todo
+  const [toggleToDo] = useMutation(TOGGLE_TODO)
+
   const [todoEditing, setToDoEditing] = useState('')
   const dispatch = useAppDispatch()
   const actualToDoList: TodoItem[] = useAppSelector((state) => state.todos)
@@ -25,11 +26,15 @@ export const Todo: FC<TodoProps> = ({ todo: { completed, id, text } }) => {
     dispatch(removeToDo(filteredToDos))
   }
 
+  const handleToggleTodo = (todo: TodoItem) => {
+    toggleToDo({ variables: { id, done: !done } })
+  }
+
   const validateToDoInput = (): boolean => {
     let isValid = false
     if (
-      editInputRef.current.value.trim().length > 0 &&
-      editInputRef.current.value.trim().length <= 25
+      editInputRef.current.value.length > 0 &&
+      editInputRef.current.value.length <= 25
     ) {
       isValid = true
       return isValid
@@ -68,7 +73,12 @@ export const Todo: FC<TodoProps> = ({ todo: { completed, id, text } }) => {
       ) : (
         <>
           <div className="todotext__container">
-            <p>{text}</p>
+            <p
+              className={done ? 'todo__text--complete' : null}
+              onDoubleClick={() => handleToggleTodo(todo)}
+            >
+              {text}
+            </p>
           </div>
           <div className="todo__icons">
             <FontAwesomeIcon
