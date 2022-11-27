@@ -1,20 +1,25 @@
 import { TodoItem } from '../interfaces'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { json, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Todo } from './Todo'
 import './TodoList.css'
 import { useAppSelector, useAppDispatch } from '../hooks/useTypedSelector'
 import { setActualToDoItems, setToDoItems } from '../features/slices/todoSlice'
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { NewToDo } from './NewToDo'
+import { GET_TODOS } from '../queries/getTodos'
+import { useQuery } from '@apollo/client'
 
 export const TodoList = () => {
+  const stuff = useQuery(GET_TODOS)
+  console.log(stuff)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const searchInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const [addingToDo, setAddingToDo] = useState(false)
   //this is the state.searchedTodos that is used for rendering and comparing against the actual todolist
+  //switch out this secondary piece of state to something like useCallBack or useMemo
   const todoList: TodoItem[] = useAppSelector((state) => state.searchedTodos)
   const actualToDoList: TodoItem[] = useAppSelector((state) => state.todos)
   const startNewToDo = (e: React.FormEvent) => {
@@ -36,15 +41,17 @@ export const TodoList = () => {
     )
     dispatch(setToDoItems(searchedToDos))
   }
-  useEffect(() => {
-    const todos = localStorage.getItem('todos')
-    if (todos !== null) {
-      const jsonTodos = JSON.parse(todos)
-      if (todos && jsonTodos.length > 0) {
-        dispatch(setActualToDoItems(JSON.parse(todos)))
-      }
-    }
-  }, [])
+
+  //useful for local storage, IRL would use DB
+  // useEffect(() => {
+  //   const todos = localStorage.getItem('todos')
+  //   if (todos !== null) {
+  //     const jsonTodos = JSON.parse(todos)
+  //     if (todos && jsonTodos.length > 0) {
+  //       dispatch(setActualToDoItems(JSON.parse(todos)))
+  //     }
+  //   }
+  // }, [])
   useEffect(() => {
     handleSearch()
   }, [actualToDoList])
