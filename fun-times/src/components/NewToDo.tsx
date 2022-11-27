@@ -1,10 +1,9 @@
 import React, { MutableRefObject, useRef, FC, useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-
-import { addTodo } from '../features/slices/todoSlice'
-import { useAppDispatch } from '../hooks/useTypedSelector'
-import { TodoItem } from '../interfaces'
+import { useMutation } from '@apollo/client'
+import { createTodoMutation } from '../mutations/createToDomutation'
 import './NewToDo.css'
+import { useDispatch } from 'react-redux'
+import { addTodo } from '../features/slices/todoSlice'
 
 //HERE FOR EXAMPLE, REMOVE BEFORE USING REALLY
 // export interface TodoItem {
@@ -19,7 +18,8 @@ interface NewToDoProps {
 }
 
 export const NewToDo: FC<NewToDoProps> = ({ addingToDo, toggleAddingToDo }) => {
-  const dispatch = useAppDispatch()
+  const [createToDo] = useMutation(createTodoMutation)
+  const dispatch = useDispatch()
   const newToDoInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const validateToDoInput = (): boolean => {
     let isValid = false
@@ -32,15 +32,20 @@ export const NewToDo: FC<NewToDoProps> = ({ addingToDo, toggleAddingToDo }) => {
     }
     return isValid
   }
-  const handleNewToDoSubmission = (e: React.FormEvent) => {
+  const handleNewToDoSubmission = async (e: React.FormEvent) => {
     e.preventDefault()
     if (validateToDoInput()) {
-      const newToDo: TodoItem = {
-        completed: false,
-        id: uuidv4(),
-        text: newToDoInputRef.current.value,
-      }
-      dispatch(addTodo(newToDo))
+      // const newToDo: TodoItem = {
+      //   done: false,
+      //   id: uuidv4(),
+      //   text: newToDoInputRef.current.value,
+      // }
+      // dispatch(addTodo(newToDo))
+      const { data } = await createToDo({
+        variables: { text: newToDoInputRef.current.value },
+      })
+      const { insert_todos_one } = data
+      dispatch(addTodo(insert_todos_one))
       toggleAddingToDo(addingToDo)
     } else {
       return

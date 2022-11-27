@@ -1,8 +1,8 @@
 import React, { FC, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { TOGGLE_TODO } from '../mutations/toggleToDo'
-
+import { TOGGLE_TODO } from '../mutations/toggleToDoMutation'
+import { deleteToDoMutation } from '../mutations/deleteTodoMutation'
 import { TodoItem } from '../interfaces'
 import './Todo.css'
 import { useAppDispatch, useAppSelector } from '../hooks/useTypedSelector'
@@ -15,6 +15,7 @@ interface TodoProps {
 export const Todo: FC<TodoProps> = ({ todo }) => {
   const { done, id, text } = todo
   const [toggleToDo] = useMutation(TOGGLE_TODO)
+  const [deleteToDo] = useMutation(deleteToDoMutation)
 
   const [todoEditing, setToDoEditing] = useState('')
   const dispatch = useAppDispatch()
@@ -22,6 +23,7 @@ export const Todo: FC<TodoProps> = ({ todo }) => {
   const editInputRef = useRef() as MutableRefObject<HTMLInputElement>
 
   const handleDelete = () => {
+    deleteToDo({ variables: { id } })
     const filteredToDos = actualToDoList.filter((todo) => todo.id !== id)
     dispatch(removeToDo(filteredToDos))
   }
