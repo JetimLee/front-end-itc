@@ -65,6 +65,8 @@ export const TodoList = () => {
     handleSearch()
   }, [actualToDoList])
 
+  if (error) return <div>An error occurred when fetching todos...</div>
+
   return (
     <div className="todo__main">
       <nav className="nav__container">
