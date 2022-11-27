@@ -71,11 +71,11 @@ const todoSlice: any = createSlice({
   reducers: {
     addTodo: (state, action: PayloadAction<TodoItem>) => {
       state.todos.unshift(action.payload)
-      localStorage.setItem('todos', JSON.stringify(state.todos))
+      // localStorage.setItem('todos', JSON.stringify(state.todos))
     },
     removeToDo: (state, action: PayloadAction<TodoItem[]>) => {
       state.todos = action.payload
-      localStorage.setItem('todos', JSON.stringify(state.todos))
+      // localStorage.setItem('todos', JSON.stringify(state.todos))
     },
     setActualToDoItems: (state, action: PayloadAction<TodoItem[]>) => {
       state.todos = action.payload
@@ -86,7 +86,7 @@ const todoSlice: any = createSlice({
     },
     updateTodoITems: (state, action: PayloadAction<TodoItem[]>) => {
       state.todos = action.payload
-      localStorage.setItem('todos', JSON.stringify(state.todos))
+      // localStorage.setItem('todos', JSON.stringify(state.todos))
     },
     setFormValidation: (state, action: PayloadAction<boolean>) => {
       state.formValidated = action.payload

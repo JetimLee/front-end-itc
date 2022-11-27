@@ -10,10 +10,13 @@ import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { NewToDo } from './NewToDo'
 import { GET_TODOS } from '../queries/getTodos'
 import { useQuery } from '@apollo/client'
+import { Spinner } from './Spinner'
+
+//TODO
+//CATCH AND DISPLAY ERROR, MAYBE USE A POP UP?
 
 export const TodoList = () => {
-  const stuff = useQuery(GET_TODOS)
-  console.log(stuff)
+  const { data, loading, error } = useQuery(GET_TODOS)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const searchInputRef = useRef() as MutableRefObject<HTMLInputElement>
@@ -42,6 +45,12 @@ export const TodoList = () => {
     dispatch(setToDoItems(searchedToDos))
   }
 
+  useEffect(() => {
+    if (data !== undefined) {
+      dispatch(setActualToDoItems(data.todos))
+    }
+  }, [data])
+
   //useful for local storage, IRL would use DB
   // useEffect(() => {
   //   const todos = localStorage.getItem('todos')
@@ -63,39 +72,48 @@ export const TodoList = () => {
           Logout
         </button>
       </nav>
+
       <main className="todo__container">
-        <h1>My To-Do List</h1>
-        <div className="todo__list">
-          <div className="todo__search">
-            <div className="search__container">
-              <FontAwesomeIcon className="input__icon" icon={faSearch} />
-              <input
-                onChange={handleSearch}
-                ref={searchInputRef}
-                type="search"
-                className="search__input"
-                placeholder="search"
-              />
-            </div>
-            <button
-              onClick={(e) => startNewToDo(e)}
-              type="submit"
-              className="btn--primary btn--white-text btn--todo"
-            >
-              New
-            </button>
+        {loading ? (
+          <div className="center__container">
+            <Spinner />
           </div>
-          {addingToDo && (
-            <NewToDo
-              addingToDo={addingToDo}
-              toggleAddingToDo={toggleAddingToDo}
-            />
-          )}
-          {todoList.map((todo: TodoItem) => {
-            const { id } = todo
-            return <Todo key={id} todo={todo} />
-          })}
-        </div>
+        ) : (
+          <>
+            <h1>My To-Do List</h1>
+            <div className="todo__list">
+              <div className="todo__search">
+                <div className="search__container">
+                  <FontAwesomeIcon className="input__icon" icon={faSearch} />
+                  <input
+                    onChange={handleSearch}
+                    ref={searchInputRef}
+                    type="search"
+                    className="search__input"
+                    placeholder="search"
+                  />
+                </div>
+                <button
+                  onClick={(e) => startNewToDo(e)}
+                  type="submit"
+                  className="btn--primary btn--white-text btn--todo"
+                >
+                  New
+                </button>
+              </div>
+              {addingToDo && (
+                <NewToDo
+                  addingToDo={addingToDo}
+                  toggleAddingToDo={toggleAddingToDo}
+                />
+              )}
+              {todoList.map((todo: TodoItem) => {
+                const { id } = todo
+                return <Todo key={id} todo={todo} />
+              })}
+            </div>
+          </>
+        )}
       </main>
     </div>
   )

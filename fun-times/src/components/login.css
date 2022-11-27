@@ -86,11 +86,6 @@
   margin: 0 1rem;
 }
 
-.offscreen {
-  position: absolute;
-  left: -9999px;
-}
-
 @media only screen and (max-width: 600px) {
   .input__container > input {
     min-width: 20rem;
