@@ -2,7 +2,7 @@ import React, { FC, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { TOGGLE_TODO } from '../mutations/toggleToDoMutation'
-import { DELETE_TODO_MUTATION } from '../mutations'
+import { DELETE_TODO_MUTATION, CHANGE_TODO_MUTATION } from '../mutations'
 import { TodoItem } from '../interfaces'
 import './Todo.css'
 import { useAppDispatch, useAppSelector } from '../hooks/useTypedSelector'
@@ -16,6 +16,7 @@ export const Todo: FC<TodoProps> = ({ todo }) => {
   const { done, id, text } = todo
   const [toggleToDo] = useMutation(TOGGLE_TODO)
   const [deleteToDo] = useMutation(DELETE_TODO_MUTATION)
+  const [changeToDo] = useMutation(CHANGE_TODO_MUTATION)
 
   const [todoEditing, setToDoEditing] = useState('')
   const dispatch = useAppDispatch()
@@ -33,30 +34,24 @@ export const Todo: FC<TodoProps> = ({ todo }) => {
   }
 
   const validateToDoInput = (): boolean => {
-    let isValid = false
-    if (
+    return (
       editInputRef.current.value.length > 0 &&
       editInputRef.current.value.length <= 25
-    ) {
-      isValid = true
-      return isValid
-    }
-    return isValid
+    )
   }
   const handleEdit = (e: React.FormEvent) => {
     e.preventDefault()
     if (validateToDoInput()) {
       const updatedTodos = [...actualToDoList].map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, text: editInputRef.current.value }
-        }
-        return todo
+        return todo.id === id
+          ? { ...todo, text: editInputRef.current.value }
+          : todo
       })
+      changeToDo({ variables: { id, text: editInputRef.current.value } })
       dispatch(updateTodoITems(updatedTodos))
       setToDoEditing('')
       return
     }
-    console.log('could not save input')
   }
   return (
     <div className="todoitem__container">
