@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useRef, FC, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
-import { createTodoMutation } from '../mutations/createToDomutation'
+import { CREATE_TODO_MUTATION } from '../mutations'
 import './NewToDo.css'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../features/slices/todoSlice'
@@ -18,7 +18,7 @@ interface NewToDoProps {
 }
 
 export const NewToDo: FC<NewToDoProps> = ({ addingToDo, toggleAddingToDo }) => {
-  const [createToDo] = useMutation(createTodoMutation)
+  const [createToDo] = useMutation(CREATE_TODO_MUTATION)
   const dispatch = useDispatch()
   const newToDoInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const validateToDoInput = (): boolean => {

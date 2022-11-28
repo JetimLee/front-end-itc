@@ -53,10 +53,6 @@ export const TodoList = () => {
     }
   }, [data])
 
-  useEffect(() => {
-    console.log('rememoized!')
-  }, [memoizedToDoList])
-
   //useful for local storage, IRL would use DB
   // useEffect(() => {
   //   const todos = localStorage.getItem('todos')
