@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 *,
 *::before,
 *::after {
@@ -70,4 +72,9 @@ p {
 #root,
 #__next {
   isolation: isolate;
+}
+
+.btn--invalid {
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
 }

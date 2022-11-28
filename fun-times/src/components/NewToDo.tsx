@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef, FC, useEffect } from 'react'
+import React, { MutableRefObject, useRef, FC, useEffect, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { CREATE_TODO_MUTATION } from '../mutations'
 import './NewToDo.css'
@@ -11,6 +11,7 @@ interface NewToDoProps {
 }
 
 export const NewToDo: FC<NewToDoProps> = ({ addingToDo, toggleAddingToDo }) => {
+  const [submitLoading, setSubmitLoading] = useState(false)
   const [createToDo] = useMutation(CREATE_TODO_MUTATION)
   const dispatch = useDispatch()
   const newToDoInputRef = useRef() as MutableRefObject<HTMLInputElement>
@@ -23,6 +24,7 @@ export const NewToDo: FC<NewToDoProps> = ({ addingToDo, toggleAddingToDo }) => {
   const handleNewToDoSubmission = async (e: React.FormEvent) => {
     e.preventDefault()
     if (validateToDoInput()) {
+      setSubmitLoading(true)
       // const newToDo: TodoItem = {
       //   done: false,
       //   id: uuidv4(),
@@ -35,6 +37,7 @@ export const NewToDo: FC<NewToDoProps> = ({ addingToDo, toggleAddingToDo }) => {
       const { insert_todos_one } = data
       dispatch(addTodo(insert_todos_one))
       toggleAddingToDo(addingToDo)
+      setSubmitLoading(false)
     } else {
       return
     }
@@ -58,7 +61,11 @@ export const NewToDo: FC<NewToDoProps> = ({ addingToDo, toggleAddingToDo }) => {
       <button
         onClick={handleNewToDoSubmission}
         type="submit"
-        className="btn--save btn--todo btn--white-text"
+        disabled={submitLoading}
+        aria-disabled={submitLoading}
+        className={`btn--save btn--todo btn--white-text ${
+          submitLoading && `btn--invalid`
+        }`}
       >
         Save
       </button>

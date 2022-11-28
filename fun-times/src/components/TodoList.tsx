@@ -22,8 +22,8 @@ export const TodoList = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [addingToDo, setAddingToDo] = useState(false)
   const actualToDoList: TodoItem[] = useAppSelector((state) => state.todos)
-  // const memoizedToDoList = useMemo(() => actualToDoList, [actualToDoList])
-  const filteredResults = actualToDoList.filter((todo) => {
+  const memoizedToDoList = useMemo(() => actualToDoList, [actualToDoList])
+  const filteredResults = memoizedToDoList.filter((todo) => {
     return todo.text.toLowerCase().includes(searchTerm.toLowerCase())
   })
 
