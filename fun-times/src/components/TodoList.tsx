@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { Todo } from './Todo'
 import './TodoList.css'
 import { useAppSelector, useAppDispatch } from '../hooks/useTypedSelector'
-import { setActualToDoItems, setToDoItems } from '../features/slices/todoSlice'
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { setActualToDoItems } from '../features/slices/todoSlice'
+import React, { useEffect, useState, useMemo } from 'react'
 import { NewToDo } from './NewToDo'
 import { GET_TODOS } from '../queries/getTodos'
 import { useQuery } from '@apollo/client'
@@ -19,12 +19,14 @@ export const TodoList = () => {
   const { data, loading, error } = useQuery(GET_TODOS)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const searchInputRef = useRef() as MutableRefObject<HTMLInputElement>
+  const [searchTerm, setSearchTerm] = useState('')
   const [addingToDo, setAddingToDo] = useState(false)
-  //this is the state.searchedTodos that is used for rendering and comparing against the actual todolist
   //switch out this secondary piece of state to something like useCallBack or useMemo
-  const todoList: TodoItem[] = useAppSelector((state) => state.searchedTodos)
   const actualToDoList: TodoItem[] = useAppSelector((state) => state.todos)
+  const memoizedToDoList = useMemo(() => actualToDoList, [actualToDoList])
+  const filteredResults = memoizedToDoList.filter((todo) => {
+    return todo.text.toLowerCase().includes(searchTerm.toLowerCase())
+  })
   const startNewToDo = (e: React.FormEvent) => {
     e.preventDefault()
     setAddingToDo(!addingToDo)
@@ -36,20 +38,24 @@ export const TodoList = () => {
     localStorage.removeItem('user')
     navigate('/login')
   }
-  const handleSearch = () => {
-    const searchedToDos = actualToDoList.filter((todo) =>
-      todo.text
-        .toLowerCase()
-        .includes(searchInputRef.current.value.toLowerCase())
-    )
-    dispatch(setToDoItems(searchedToDos))
-  }
+  // const handleSearch = () => {
+  //   // const searchedToDos = actualToDoList.filter((todo) =>
+  //   //   todo.text
+  //   //     .toLowerCase()
+  //   //     .includes(searchInputRef.current.value.toLowerCase())
+  //   // )
+  //   // dispatch(setToDoItems(searchedToDos))
+  // }
 
   useEffect(() => {
     if (data !== undefined) {
       dispatch(setActualToDoItems(data.todos))
     }
   }, [data])
+
+  useEffect(() => {
+    console.log('rememoized!')
+  }, [memoizedToDoList])
 
   //useful for local storage, IRL would use DB
   // useEffect(() => {
@@ -61,9 +67,9 @@ export const TodoList = () => {
   //     }
   //   }
   // }, [])
-  useEffect(() => {
-    handleSearch()
-  }, [actualToDoList])
+  // useEffect(() => {
+  //   handleSearch()
+  // }, [actualToDoList])
 
   if (error) return <div>An error occurred when fetching todos...</div>
 
@@ -88,8 +94,7 @@ export const TodoList = () => {
                 <div className="search__container">
                   <FontAwesomeIcon className="input__icon" icon={faSearch} />
                   <input
-                    onChange={handleSearch}
-                    ref={searchInputRef}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     type="search"
                     className="search__input"
                     placeholder="search"
@@ -109,7 +114,7 @@ export const TodoList = () => {
                   toggleAddingToDo={toggleAddingToDo}
                 />
               )}
-              {todoList.map((todo: TodoItem) => {
+              {filteredResults.map((todo: TodoItem) => {
                 const { id } = todo
                 return <Todo key={id} todo={todo} />
               })}

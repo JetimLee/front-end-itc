@@ -49,7 +49,6 @@ interface TodoAppState {
   loggedIn: boolean
   formValidated: boolean
   todos: TodoItem[]
-  searchedTodos: TodoItem[]
   user: User | null
   error: string | null
 }
@@ -60,7 +59,6 @@ const initialState: TodoAppState = {
   formValidated: false,
   todos: [],
   //this is what will be shown in the actual todos rendering
-  searchedTodos: [],
   user: null,
   error: null,
 }
@@ -81,9 +79,7 @@ const todoSlice: any = createSlice({
       state.todos = action.payload
     },
     //this is used for rerendering the list
-    setToDoItems: (state, action: PayloadAction<TodoItem[]>) => {
-      state.searchedTodos = action.payload
-    },
+
     updateTodoITems: (state, action: PayloadAction<TodoItem[]>) => {
       state.todos = action.payload
       // localStorage.setItem('todos', JSON.stringify(state.todos))
@@ -115,7 +111,6 @@ const todoSlice: any = createSlice({
 
 export const {
   addTodo,
-  setToDoItems,
   removeToDo,
   setFormValidation,
   updateTodoITems,
