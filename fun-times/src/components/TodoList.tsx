@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '../hooks/useTypedSelector'
 import { setActualToDoItems } from '../features/slices/todoSlice'
 import React, { useEffect, useState, useMemo } from 'react'
 import { NewToDo } from './NewToDo'
-import { GET_TODOS } from '../queries/getTodos'
+import { GET_TODOS } from '../queries'
 import { useQuery } from '@apollo/client'
 import { Spinner } from './Spinner'
 
