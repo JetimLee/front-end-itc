@@ -50,7 +50,6 @@ export const Todo: FC<TodoProps> = ({ todo }) => {
       changeToDo({ variables: { id, text: editInputRef.current.value } })
       dispatch(updateTodoITems(updatedTodos))
       setToDoEditing('')
-      return
     }
   }
   return (

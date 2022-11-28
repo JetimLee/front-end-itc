@@ -6,7 +6,7 @@ import { Todo } from './Todo'
 import './TodoList.css'
 import { useAppSelector, useAppDispatch } from '../hooks/useTypedSelector'
 import { setActualToDoItems } from '../features/slices/todoSlice'
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, memo } from 'react'
 import { NewToDo } from './NewToDo'
 import { GET_TODOS } from '../queries'
 import { useQuery } from '@apollo/client'
@@ -21,12 +21,12 @@ export const TodoList = () => {
   const dispatch = useAppDispatch()
   const [searchTerm, setSearchTerm] = useState('')
   const [addingToDo, setAddingToDo] = useState(false)
-  //switch out this secondary piece of state to something like useCallBack or useMemo
   const actualToDoList: TodoItem[] = useAppSelector((state) => state.todos)
-  const memoizedToDoList = useMemo(() => actualToDoList, [actualToDoList])
-  const filteredResults = memoizedToDoList.filter((todo) => {
+  // const memoizedToDoList = useMemo(() => actualToDoList, [actualToDoList])
+  const filteredResults = actualToDoList.filter((todo) => {
     return todo.text.toLowerCase().includes(searchTerm.toLowerCase())
   })
+
   const startNewToDo = (e: React.FormEvent) => {
     e.preventDefault()
     setAddingToDo(!addingToDo)
@@ -49,7 +49,9 @@ export const TodoList = () => {
 
   useEffect(() => {
     if (data !== undefined) {
-      dispatch(setActualToDoItems(data.todos))
+      console.log(data.todos)
+      const sorted = [...data.todos].reverse()
+      dispatch(setActualToDoItems(sorted))
     }
   }, [data])
 

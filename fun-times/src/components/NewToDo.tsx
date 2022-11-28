@@ -5,13 +5,6 @@ import './NewToDo.css'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../features/slices/todoSlice'
 
-//HERE FOR EXAMPLE, REMOVE BEFORE USING REALLY
-// export interface TodoItem {
-//     id: string
-//     text: string
-//     completed: boolean
-//   }
-
 interface NewToDoProps {
   addingToDo: boolean
   toggleAddingToDo: Function
@@ -22,15 +15,10 @@ export const NewToDo: FC<NewToDoProps> = ({ addingToDo, toggleAddingToDo }) => {
   const dispatch = useDispatch()
   const newToDoInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const validateToDoInput = (): boolean => {
-    let isValid = false
-    if (
-      newToDoInputRef.current.value.trim().length > 0 &&
-      newToDoInputRef.current.value.trim().length <= 25
-    ) {
-      isValid = true
-      return isValid
-    }
-    return isValid
+    return (
+      newToDoInputRef.current.value.length > 0 &&
+      newToDoInputRef.current.value.length <= 25
+    )
   }
   const handleNewToDoSubmission = async (e: React.FormEvent) => {
     e.preventDefault()
