@@ -68,6 +68,7 @@ export const TodoList = () => {
   // useEffect(() => {
   //   handleSearch()
   // }, [actualToDoList])
+  console.log(error)
 
   if (error) return <div>An error occurred when fetching todos...</div>
 

@@ -45,7 +45,7 @@ public class Cart {
      *             1. Removes the item that matches the name passed in.
      */
     public void remove(String name) {
-        if (this.items.size() == 0) {
+        if (this.items.isEmpty()) {
             throw new IllegalStateException("There aren't any items in the cart!");
         }
         for (int i = 0; i < this.items.size(); i++) {
@@ -69,6 +69,9 @@ public class Cart {
      */
 
     public String checkout() {
+        if (this.items.isEmpty()) {
+            throw new IllegalStateException("There aren't any items in the cart!");
+        }
         final DecimalFormat df = new DecimalFormat("0.00");
         double subtotal = 0;
         for (Item i : this.items) {

@@ -16,6 +16,7 @@ public class Item {
     }
 
     /* Pretty important for comparing objects for likeness as the default .equals compares two objects for references which isn't always horribly useful */
+    /* Will need to write a custom equals method anytime you deal with a list of objects that need to be checked against each other for one reason or another */
     public boolean equals(Object possibleItem1) {
         if (possibleItem1 == null) {
             return false;
