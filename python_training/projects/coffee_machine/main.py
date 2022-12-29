@@ -76,8 +76,8 @@ def check_has_ingredients(required_ingredients):
     global resources
     for k in required_ingredients:
         if required_ingredients[k] > resources[k]:
-            return False
-    return True
+            return k
+    return None
 
 
 def deposit_money(amount):
@@ -113,8 +113,8 @@ def dispense(selected_item, required_ingredients):
     change_resources(required_ingredients)
 
 
-def apologize():
-    print("We are sorry, but we are out of that drink")
+def apologize(missingIngredient):
+    print(f"Sorry, we are out of {missingIngredient}")
 
 
 def start_machine():
@@ -130,17 +130,17 @@ def start_machine():
             required_ingredients = get_flavor_ingredients(user_input.lower())
             has_ingredients = check_has_ingredients(required_ingredients)
             dispense(user_input.lower(),
-                     required_ingredients) if has_ingredients else apologize()
+                     required_ingredients) if has_ingredients == None else apologize(has_ingredients)
         elif user_input.lower() == "espresso":
             required_ingredients = get_flavor_ingredients(user_input.lower())
             has_ingredients = check_has_ingredients(required_ingredients)
             dispense(user_input.lower(),
-                     required_ingredients) if has_ingredients else apologize()
+                     required_ingredients) if has_ingredients == None else apologize(has_ingredients)
         elif user_input.lower() == "cappuccino":
             required_ingredients = get_flavor_ingredients(user_input.lower())
             has_ingredients = check_has_ingredients(required_ingredients)
             dispense(user_input.lower(),
-                     required_ingredients) if has_ingredients else apologize()
+                     required_ingredients) if has_ingredients == None else apologize(has_ingredients)
 
 
 start_machine()
