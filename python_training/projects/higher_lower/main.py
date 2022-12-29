@@ -12,7 +12,7 @@ def game():
         p2 = data[randint(0, len(data)-1)]
         while (p2 is p1):
             print("Same person, trying again!")
-            p2 = [randint(0, len(data)-1)]
+            p2 = data[randint(0, len(data)-1)]
         print("Compare A: {}, a {} from {}".format(
             p1["name"], p1["description"], p1["country"]))
         print(vs)
