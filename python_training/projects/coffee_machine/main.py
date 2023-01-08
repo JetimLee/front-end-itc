@@ -128,19 +128,22 @@ def start_machine():
             print_report()
         elif user_input.lower() == "latte":
             required_ingredients = get_flavor_ingredients(user_input.lower())
-            has_ingredients = check_has_ingredients(required_ingredients)
+            missing_required_ingredient = check_has_ingredients(
+                required_ingredients)
             dispense(user_input.lower(),
-                     required_ingredients) if has_ingredients == None else apologize(has_ingredients)
+                     required_ingredients) if missing_required_ingredient == None else apologize(missing_required_ingredient)
         elif user_input.lower() == "espresso":
             required_ingredients = get_flavor_ingredients(user_input.lower())
-            has_ingredients = check_has_ingredients(required_ingredients)
+            missing_required_ingredient = check_has_ingredients(
+                required_ingredients)
             dispense(user_input.lower(),
-                     required_ingredients) if has_ingredients == None else apologize(has_ingredients)
+                     required_ingredients) if missing_required_ingredient == None else apologize(missing_required_ingredient)
         elif user_input.lower() == "cappuccino":
             required_ingredients = get_flavor_ingredients(user_input.lower())
-            has_ingredients = check_has_ingredients(required_ingredients)
+            missing_required_ingredient = check_has_ingredients(
+                required_ingredients)
             dispense(user_input.lower(),
-                     required_ingredients) if has_ingredients == None else apologize(has_ingredients)
+                     required_ingredients) if missing_required_ingredient == None else apologize(missing_required_ingredient)
 
 
 start_machine()
