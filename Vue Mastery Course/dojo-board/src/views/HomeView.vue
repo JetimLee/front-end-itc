@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <h1>Home</h1>
+    <div v-if="error">{{ error }}</div>
     <PostList v-if="showPosts" :posts="posts" />
+    <div v-if="loading">loading</div>
     <button @click="togglePosts">Toggle Posts</button>
     <p ref="p">
       MY name is {{ ninjaone.name }} and my age is {{ ninjaone.age }}
@@ -59,14 +61,32 @@ export default {
       console.log(search.value, "watch effect ran");
     });
 
-    const posts = ref([
-      {
-        title: "welcome to the blog",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        id: 1,
-      },
-      { title: "top 5 css tips", body: "Lorem ipsum", id: 2 },
-    ]);
+    const posts = ref([]);
+    const error = ref(null);
+    const loading = ref(false);
+
+    const load = async () => {
+      try {
+        let response = await fetch("http://localhost:3000/posts");
+        loading.value = true;
+        console.log(loading.value);
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          posts.value = data;
+          loading.value = false;
+        } else {
+          throw new Error("An error occurred when getting the data");
+        }
+      } catch (err) {
+        console.log("an error occurred", err);
+        error.value = err;
+        loading.value = false;
+      }
+    };
+
+    load();
+
     const ninjaone = ref({ name: "mario", age: 30 });
     const ninjatwo = reactive({ name: "luigi", age: 35 });
     const names = ref([
@@ -116,6 +136,8 @@ export default {
       posts,
       showPosts,
       togglePosts,
+      error,
+      loading,
     };
   },
 
