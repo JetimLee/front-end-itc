@@ -4,9 +4,14 @@ import { Message } from "./Message";
 import { ListGroup } from "./components";
 
 function App() {
+  const handleSelect = (item: string) => console.log(item);
   return (
     <>
-      <ListGroup />
+      <ListGroup
+        onSelectItem={handleSelect}
+        heading="My list"
+        items={["New York", "San Francisco", "Tokyo", "London", "Paris"]}
+      />
     </>
   );
 }
