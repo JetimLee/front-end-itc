@@ -12,7 +12,7 @@ menu = [
 # my solution
 
 
-def remove_spam(lst):
+def remove_spam(lst:list):
     for indx, menu in enumerate(lst):
         while "spam" in menu:
             menu.remove("spam")
