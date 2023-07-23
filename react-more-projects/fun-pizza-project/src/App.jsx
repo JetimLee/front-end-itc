@@ -1,13 +1,11 @@
 import "./index.css";
-import { Pizza } from "./components/Pizza";
-import { pizzaData } from "../public/data";
+import { Footer, Header, Menu } from "./components";
 function App() {
   return (
     <>
-      {pizzaData.map((pizza) => {
-        const { name, ingredients } = pizza;
-        return <Pizza key={name} pizzaName={name} ingredients={ingredients} />;
-      })}
+      <Header />
+      <Menu />
+      <Footer />
     </>
   );
 }
