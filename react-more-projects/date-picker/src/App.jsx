@@ -40,12 +40,12 @@ function App() {
       <div className="container">
         <div className="button-container">
           <button onClick={decreaseStep}>-</button>
-          <p>Step:{step} </p>
+          <p>Step: {step}</p>
           <button onClick={increaseStep}>+</button>
         </div>
         <div className="button-container">
           <button onClick={decreaseCount}>-</button>
-          <p>Count:{count} </p>
+          <p>Count: {count}</p>
           <button onClick={increaseCount}>+</button>
         </div>
         <div>

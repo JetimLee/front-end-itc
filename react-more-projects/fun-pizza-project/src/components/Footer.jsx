@@ -1,10 +1,13 @@
 const Footer = () => {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closedHour = 22;
+
   return (
-    <div>
-      <footer>
-        {new Date().toLocaleTimeString()}We&apos;re currently open
-      </footer>
-    </div>
+    <footer className="footer">
+      We&apos;re currently{" "}
+      {hour >= openHour && hour <= closedHour ? "open" : "closed"}
+    </footer>
   );
 };
 

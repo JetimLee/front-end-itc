@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
-const Pizza = ({ pizzaName, ingredients }) => {
+const Pizza = ({ pizzaName, ingredients, pizzaPicture }) => {
   return (
     <div>
-      <h2>{pizzaName}</h2>
-      <p>{ingredients}</p>
+      <img src={pizzaPicture} alt="a whole pizza with varying ingredients" />
+      <div>
+        <h3>{pizzaName}</h3>
+        <p>{ingredients}</p>
+      </div>
     </div>
   );
 };
@@ -11,6 +14,7 @@ const Pizza = ({ pizzaName, ingredients }) => {
 Pizza.propTypes = {
   pizzaName: PropTypes.string,
   ingredients: PropTypes.string,
+  pizzaPicture: PropTypes.string
 };
 
 export { Pizza };
