@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Idea Factory Assessment</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="reset.css" />
+  </head>
+  <body>
+    <div class="container--space-between border--bottom p">
+      <div class="avatar--image"></div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Invoices</a>
+        <a href="#">Clients</a>
+        <a href="#">Expenses</a>
+      </nav>
+      <div class="profile--container">
+        <i class="fa-regular fa-bell"></i>
+        <div class="name--container">GC</div>
+      </div>
+    </div>
+    <div class="container--space-between p">
+      <nav>
+        <p><strong>Cashflow</strong></p>
+        <div class="half-vertical-border"></div>
+        <a href="#" class="active">Last 7 days</a>
+        <a href="#">Last 30 days</a>
+        <a href="#">All-time</a>
+      </nav>
+      <button>
+        <strong><span>+</span> New Invoice</strong>
+      </button>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="container--space-between p">
+          <p class="card--text">Revenue</p>
+          <span class="card--number--positive">+4.75%</span>
+        </div>
+        <span class="card--number p-2">$405,091.00</span>
+      </div>
+      <div class="card card--negative">
+        <div class="container--space-between p">
+          <p class="card--text">Overdue invoices</p>
+          <span class="card--number--negative">+54.02%</span>
+        </div>
+        <span class="card--number p-2">$12,787.00</span>
+      </div>
+      <div class="card card--negative">
+        <div class="container--space-between p">
+          <p class="card--text">Outstanding invoices</p>
+          <span class="card--number--positive">-1.39%</span>
+        </div>
+        <span class="card--number p-2">$405,091.00</span>
+      </div>
+      <div class="card card--negative">
+        <div class="container--space-between p">
+          <p class="card--text">Expenses</p>
+          <span class="card--number--negative">+10.18%</span>
+        </div>
+        <span class="card--number p-2">$405,091.00</span>
+      </div>
+    </div>
+    <div class="p-1 border--bottom">
+      <h2>Recent activity</h2>
+    </div>
+  </body>
+</html>
