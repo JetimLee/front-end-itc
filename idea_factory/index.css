@@ -18,6 +18,7 @@ html {
   --card--text-color: #656b78;
   --number--negative-color: #cf3c4c;
   --number--positive-color: #4e5461;
+  --divider--color: #f8f9fa;
 }
 
 a {
@@ -37,7 +38,7 @@ button {
 }
 nav {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 i {
   color: var(--icon--color);
@@ -85,6 +86,9 @@ i {
 .mt-2 {
   margin-top: 2rem;
 }
+.divider {
+  background-color: var(--divider--color);
+}
 
 .grid {
   display: grid;
@@ -92,6 +96,8 @@ i {
 }
 .grid > .card {
   border: 1px solid var(--border-color);
+  margin-top: -1px;
+  margin-left: -1px;
 }
 .card {
   display: flex;
