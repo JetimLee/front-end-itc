@@ -3,7 +3,7 @@ import 'dart:math';
 
 void main() {
   while (true) {
-    print(
+    stdout.write(
         "rock paper scissors, type r for rock, p for paper, s for scissors: ");
     final input = stdin.readLineSync();
     const choices = ["rock", "paper", "scissors"];
@@ -36,7 +36,7 @@ void main() {
         print("You win! the AI chose ${computerChoice}");
       }
     }
-    print("Do you want to  play again? Press y for yes, n for no: ");
+    stdout.write("Do you want to  play again? Press y for yes, n for no: ");
     final playAgain = stdin.readLineSync();
     if (playAgain?.toLowerCase() == "y") {
       continue;
