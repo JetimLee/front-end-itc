@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             tooltip: 'Decrement',
             child: const Icon(Icons.remove),
           ),
-          SizedBox(width: 16), // Add some spacing between the buttons
+          const SizedBox(width: 16), // Add some spacing between the buttons
           FloatingActionButton(
             onPressed: _incrementCounter,
             tooltip: 'Increment',
