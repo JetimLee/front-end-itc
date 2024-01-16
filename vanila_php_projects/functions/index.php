@@ -119,7 +119,7 @@ function findLongestWord(string $sentence)
     $wordArray = explode(" ", $sentence);
 
     foreach ($wordArray as $word) {
-        $wordLength = strlen($word);
+        $wordLength = strlen(trim($word));
 
         if ($wordLength > $length) {
             $length = $wordLength;
