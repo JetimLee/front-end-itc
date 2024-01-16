@@ -82,6 +82,10 @@ function convertWithClosure()
     return $conversion;
 }
 
+$anotherClosureConvert = function ($f) use ($baseTemp) {
+    return ($f - $baseTemp) * 5 / 9;
+};
+
 $closure = convertWithClosure();
 $convertedTemp = $closure();
 
@@ -93,6 +97,8 @@ echo '<br>' . $tempToPlayWith . 'F = ' . fahrenheitToCelsius($tempToPlayWith);
 echo '<br>' . $baseTemp . 'F = ' . harderFahrenheitToCelsius();
 echo '<br>' . $baseTemp . 'F = ' . $convertArrowFahrenToCelsius($baseTemp);
 echo '<br>' . $baseTemp . 'F = ' . $convertedTemp;
+echo '<br>' . 68 . 'F = ' . $anotherClosureConvert(68);
+
 
 function printNamesToUpperCase(array $listOfNames)
 {
