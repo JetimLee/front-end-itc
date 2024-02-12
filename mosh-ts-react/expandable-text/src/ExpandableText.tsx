@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface Props {
   maxLimit?: number;
@@ -8,7 +8,7 @@ interface Props {
 export const ExpandableText = ({ maxLimit = 100, children }: Props) => {
   const [showingMore, setShowingMore] = useState<boolean>(false);
   const text = showingMore ? children : children.substring(0, maxLimit);
-  const handleSetTextToShow = () => {
+  const handleShowLess = () => {
     setShowingMore(false);
   };
 
@@ -20,7 +20,7 @@ export const ExpandableText = ({ maxLimit = 100, children }: Props) => {
     <div>
       <span>{text}</span>
       {showingMore ? (
-        <button onClick={handleSetTextToShow}>Show less</button>
+        <button onClick={handleShowLess}>Show less</button>
       ) : (
         <button onClick={handleShowMore}>Show more</button>
       )}
