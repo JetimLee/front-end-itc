@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 interface Props {
-  maxLimit: number;
+  maxLimit?: number;
   children: string;
 }
 
-export const ExpandableText = ({ maxLimit, children }: Props) => {
+export const ExpandableText = ({ maxLimit = 100, children }: Props) => {
   const [textToShow, setTextToShow] = useState<string>("");
   const [showingMore, setShowingMore] = useState<boolean>(false);
 
