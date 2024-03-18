@@ -3,7 +3,8 @@ fn main() {
 
     last_name();
 
-    show_result(add(3, 2))
+    show_result(add(3, 2));
+    say_something(true);
 }
 
 fn first_name() {
@@ -19,4 +20,12 @@ fn add(a: i32, b: i32) -> i32 {
 }
 fn show_result(x: i32) {
     println!("{:?}", x);
+}
+
+fn say_something(say_hello: bool) {
+    if say_hello {
+        print!("Hello!")
+    } else {
+        print!("Goodbye!")
+    }
 }
